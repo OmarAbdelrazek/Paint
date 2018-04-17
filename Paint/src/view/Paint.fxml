@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -51,33 +52,32 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="Drag components from Library here…" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
-            <GridPane layoutX="186.0" layoutY="61.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-      </children>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
-    </AnchorPane>
+      <SplitPane dividerPositions="0.09680741503604531" prefHeight="668.0" prefWidth="963.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="97.0">
+               <children>
+                  <Button fx:id="button1" layoutX="12.0" layoutY="96.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="button2" layoutX="12.0" layoutY="166.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="button3" layoutX="12.0" layoutY="237.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="button4" layoutX="12.0" layoutY="313.0" mnemonicParsing="false" text="Button" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">
+               <children>
+                  <SplitPane dividerPositions="0.06097560975609756" layoutX="-6.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="873.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="256.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="889.0">
+                           <children>
+                              <Canvas fx:id="canvas" height="612.0" width="871.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
   </children>
   <stylesheets>
     <URL value="@../Paint/BasicApplication.css" />
