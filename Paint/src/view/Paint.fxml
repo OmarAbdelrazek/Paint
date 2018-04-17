@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -66,7 +68,14 @@
                <children>
                   <SplitPane dividerPositions="0.06097560975609756" layoutX="-6.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="873.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="256.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="256.0">
+                           <children>
+                              <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="6.0">
+                                 <effect>
+                                    <Reflection />
+                                 </effect>
+                              </ColorPicker>
+                           </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="889.0">
                            <children>
                               <Canvas fx:id="canvas" height="612.0" width="871.0" />

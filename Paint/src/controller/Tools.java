@@ -10,15 +10,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+
+
 /**
  *
  * @author Tommy
  */
 public class Tools {
-    private class ItemListenerHandler implements ItemListener
+   /* private class ItemListenerHandler implements ItemListener
     {
         public void itemStateChanged( ItemEvent event )
         {
+           
             // process filled checkbox events
             if ( event.getSource() == filled )
             {
@@ -44,7 +47,7 @@ public class Tools {
             }
             
         } // end method itemStateChanged
-    }
+    }*/
     
     
 }
