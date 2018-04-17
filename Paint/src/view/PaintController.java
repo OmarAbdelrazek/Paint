@@ -7,6 +7,7 @@ package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -24,8 +25,6 @@ import model.*;
 public class PaintController implements Initializable {
 
     @FXML
-    private Button button1;
-    @FXML
     private Button button2;
     @FXML
     private Button button3;
@@ -34,6 +33,19 @@ public class PaintController implements Initializable {
     @FXML
     private ColorPicker colorPicker;
     double centerX,centerY,endX,endY;
+    private String shape;
+    private double hght,wdth;
+    @FXML
+    private Button circleBtn;
+    GraphicsContext gc ;
+    
+    /**
+     Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+         gc = canvas.getGraphicsContext2D();
+    } 
 
     public ColorPicker getColorPicker() {
         return colorPicker;
@@ -47,27 +59,35 @@ public class PaintController implements Initializable {
     private void canvasOnMousePressed(MouseEvent e) {
         centerX =  e.getX();
         centerY =  e.getY();
+       
         
     }
-      @FXML
-    private void canvasOnMouseReleased(MouseEvent e) {
-        endX = e.getX();
-        endY =  e.getY();
-        
-        
-        
-        
-        
-        
-        
+   
+
+       
+
+    @FXML
+    private void circleBtn(ActionEvent event) {
+        shape = "circle";
+    }
+    
+    private void drawCircle(){
+        gc.strokeOval(centerX, centerY, hght, wdth);
     }
 
-    /**
-     Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-    }    
+    @FXML
+    private void canvasOnMouseRe(MouseEvent e) {
+        endX = e.getX();
+        endY =  e.getY();
+        hght = Math.abs(endY-centerY);
+        wdth = Math.abs(endX - centerX);
+        
+        if(shape.compareTo("circle") == 0){
+            gc.setFill(colorPicker.getValue());
+            drawCircle();
+        }
+        
+        
+    }
     
 }

@@ -58,7 +58,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="97.0">
                <children>
-                  <Button fx:id="button1" layoutX="12.0" layoutY="96.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="circleBtn" layoutX="12.0" layoutY="96.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="26.0" prefWidth="52.0" text="Circle" />
                   <Button fx:id="button2" layoutX="12.0" layoutY="166.0" mnemonicParsing="false" text="Button" />
                   <Button fx:id="button3" layoutX="12.0" layoutY="237.0" mnemonicParsing="false" text="Button" />
                   <Button fx:id="button4" layoutX="12.0" layoutY="313.0" mnemonicParsing="false" text="Button" />
@@ -78,7 +78,7 @@
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="889.0">
                            <children>
-                              <Canvas fx:id="canvas" height="612.0" width="871.0" />
+                              <Canvas fx:id="canvas" height="612.0" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="871.0" />
                            </children>
                         </AnchorPane>
                     </items>
