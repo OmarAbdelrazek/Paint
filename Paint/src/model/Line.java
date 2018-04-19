@@ -35,4 +35,4 @@ public class Line extends Shape
         g.setStroke(g.getStroke() ); //sets the color
         g.strokeLine( getX1(), getY1(), getX2(), getY2() ); //draws the line
     } 
-} // end class MyLine
+} 

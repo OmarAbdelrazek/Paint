@@ -61,15 +61,18 @@
         </Menu>
       </menus>
     </MenuBar>
-      <SplitPane dividerPositions="0.09680741503604531" prefHeight="668.0" prefWidth="963.0">
+      <SplitPane dividerPositions="0.17273673257023933" prefHeight="668.0" prefWidth="963.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="97.0">
                <children>
-                  <Button fx:id="circleBtn" layoutX="10.0" layoutY="96.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="26.0" prefWidth="69.0" text="Circle" />
-                  <Button fx:id="button2" layoutX="4.0" layoutY="166.0" mnemonicParsing="false" onAction="#rectangleBtn" text="Rectangle" />
-                  <Button fx:id="button3" layoutX="10.0" layoutY="237.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="26.0" prefWidth="69.0" text="Triangle" />
-                  <Button fx:id="undo" layoutX="13.0" layoutY="305.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Button" />
-                  <Button fx:id="redo" layoutX="12.0" layoutY="356.0" mnemonicParsing="false" text="Button" />
+                  <Button fx:id="circleBtn" layoutX="47.0" layoutY="92.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="26.0" prefWidth="69.0" text="Circle" />
+                  <Button fx:id="button2" layoutX="39.0" layoutY="163.0" mnemonicParsing="false" onAction="#rectangleBtn" text="Rectangle" />
+                  <Button fx:id="button3" layoutX="48.0" layoutY="233.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="26.0" prefWidth="69.0" text="Triangle" />
+                  <Button fx:id="lineBtn" layoutX="57.0" layoutY="304.0" mnemonicParsing="false" onAction="#lineBtn" text="Line" />
+                  <Slider fx:id="width" layoutX="11.0" layoutY="401.0" min="1.0" showTickMarks="true" value="1.0" />
+                  <TextField fx:id="widthText" alignment="CENTER" layoutX="14.0" layoutY="436.0" prefHeight="31.0" prefWidth="69.0" />
+                  <Button mnemonicParsing="false" text="Button" />
+                  <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">
@@ -85,9 +88,9 @@
                               </ColorPicker>
                               <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill" />
                            </children></AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="889.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="761.0">
                            <children>
-                              <Canvas fx:id="canvas" height="612.0" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="871.0" />
+                              <Canvas fx:id="canvas" height="612.0" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="791.0" />
                            </children>
                         </AnchorPane>
                     </items>

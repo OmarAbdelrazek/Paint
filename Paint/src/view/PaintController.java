@@ -8,8 +8,10 @@ package view;
 import java.awt.Shape;
 import java.net.URL;
 import static java.sql.JDBCType.NULL;
+import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import java.util.Stack;
+import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +20,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import model.*;
 
@@ -33,8 +37,6 @@ public class PaintController implements Initializable {
     @FXML
     private Button button3;
     @FXML
-    private Button button4;
-    @FXML
     private ColorPicker colorPicker;
     double startX,startY,endX,endY;
     private String shape;
@@ -45,6 +47,14 @@ public class PaintController implements Initializable {
     @FXML
     private CheckBox Filled;
     private boolean isFilled = false;
+    @FXML
+    private Button lineBtn;
+    @FXML
+    private Slider width;
+    @FXML
+    private TextField widthText;
+    @FXML
+    private Button okBtn;
     
     /**
      Initializes the controller class.
@@ -52,6 +62,9 @@ public class PaintController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          gc = canvas.getGraphicsContext2D();
+         widthText.setText("1.0");
+         widthText.textProperty().bindBidirectional(width.valueProperty(), NumberFormat.getNumberInstance());
+   
     } 
 
     public ColorPicker getColorPicker() {
@@ -77,11 +90,6 @@ public class PaintController implements Initializable {
     private void circleBtn(ActionEvent event) {
         shape = "circle";
     }
-    
-    private void drawCircle(){
-        gc.strokeOval(startX, startY, hght, wdth);
-    }
-
     @FXML
     private void canvasOnMouseRe(MouseEvent e) {
         endX = e.getX();
@@ -129,6 +137,18 @@ public class PaintController implements Initializable {
             t.setY2((int) endY);
             t.draw(gc);
         }
+        else if(shape.compareTo("line") == 0)
+        {
+             if(!isFilled)
+            gc.setStroke(colorPicker.getValue());
+            gc.setFill(colorPicker.getValue());
+            Line l = new Line();
+            l.setX1((int) startX);
+            l.setY1((int) startY);
+            l.setX2((int) endX);
+            l.setY2((int) endY);
+            l.draw(gc);
+        }
         startX = 0;
         startY=0;
         endX=0;
@@ -150,6 +170,16 @@ public class PaintController implements Initializable {
     private void isFilled(ActionEvent event) {
         isFilled =! isFilled;
     }
+    @FXML
+    private void lineBtn(ActionEvent event) {
+        shape = "line";
+        Boolean mero = false;
+        Filled.setDisable(!mero);
+    }
+    @FXML
+    private void width(ActionEvent event) {
+        
+        gc.setLineWidth(width.getValue());
+    }
 
-    
 }
