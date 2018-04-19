@@ -73,6 +73,7 @@
                   <TextField fx:id="widthText" alignment="CENTER" layoutX="14.0" layoutY="436.0" prefHeight="31.0" prefWidth="69.0" />
                   <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                   <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
+                  <Button fx:id="Brush" layoutX="46.0" layoutY="54.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="25.0" prefWidth="69.0" text="Brush" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">
@@ -91,7 +92,7 @@
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="761.0">
                            <children>
-                              <Canvas fx:id="canvas" height="612.0" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="791.0" />
+                              <Canvas fx:id="canvas" height="612.0" onMouseDragged="#canvasOnMOuseDragged" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="791.0" />
                            </children>
                         </AnchorPane>
                     </items>

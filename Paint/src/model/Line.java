@@ -29,7 +29,7 @@ public class Line extends Shape
      * Overrides the draw method in Myshape. It sets the gets the color from Myshape
      * and the coordinates it needs to draw from MyShape as well.
      */
-    @Override
+    
     public void draw(GraphicsContext g)
     {
         g.setStroke(g.getStroke() ); //sets the color

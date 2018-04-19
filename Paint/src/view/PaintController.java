@@ -73,9 +73,10 @@ public class PaintController implements Initializable {
          Paint p = new Paint();
          gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
          gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
+    }
          
-   
-    } 
+      
 
     public ColorPicker getColorPicker() {
         return colorPicker;
@@ -92,10 +93,29 @@ public class PaintController implements Initializable {
        
         
     }
+    @FXML
+    private void canvasOnMOuseDragged(MouseEvent e)
+    {
+         if(shape.compareTo("brush")==0){
+           widthText.setText("8");
+            double size = Double.parseDouble(widthText.getText());
+            double x = e.getX() - (size/2) ;
+            double y = e.getY() - (size/2) ;
+           
+                
+                    gc.setFill(colorPicker.getValue());
+                   
+                    gc.fillRoundRect(x, y, size, size, size, size);
+                
+        }
+    }
    
 
+       @FXML
        
-
+private void brushBtn(ActionEvent event) {
+        shape = "brush";
+    }
     @FXML
     private void circleBtn(ActionEvent event) {
         shape = "circle";
