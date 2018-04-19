@@ -73,6 +73,7 @@ public class PaintController implements Initializable {
          Paint p = new Paint();
          gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
          gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+         colorPicker.setValue(javafx.scene.paint.Color.BLACK);
         
     }
          
