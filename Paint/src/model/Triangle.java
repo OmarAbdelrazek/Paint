@@ -29,7 +29,7 @@ public class Triangle extends BoundedShape {
     @Override
     public void draw( GraphicsContext g )
     {
-        double[] Xcoord = { getUpperLeftX(), (getUpperLeftX()+ getWidth())/2, getUpperLeftX()+ getWidth()};
+        double[] Xcoord = { getUpperLeftX(), (getUpperLeftX()+ getWidth()), getUpperLeftX()+ getWidth()};
         double[] Ycoord = { getLowerRightY(), getUpperLeftY(), getLowerRightY()};
         g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false

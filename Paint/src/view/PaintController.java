@@ -6,6 +6,7 @@
 package view;
 
 import java.net.URL;
+import static java.sql.JDBCType.NULL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -94,10 +95,10 @@ public class PaintController implements Initializable {
         
         Oval c = new Oval();
         c.setFill(isFilled);
-        c.setX1((int) endX);
-        c.setY1((int) endY);
-        c.setX2((int) startX);
-        c.setY2((int) startY);
+        c.setX1((int) startX);
+        c.setY1((int) startY);
+        c.setX2((int) endX);
+        c.setY2((int) endY);
         c.draw(gc);
         }
         else if(shape.compareTo("rectangle") == 0)
@@ -107,10 +108,10 @@ public class PaintController implements Initializable {
             gc.setFill(colorPicker.getValue());
             Rectangle r = new Rectangle();
             r.setFill(isFilled);
-            r.setX1((int) endX);
-            r.setY1((int) endY);
-            r.setX2((int) startX);
-            r.setX2((int) startY);
+            r.setX1((int) startX);
+            r.setY1((int) startY);
+            r.setX2((int) endX);
+            r.setY2((int) endY);
             r.draw(gc);
         }
         else if(shape.compareTo("triangle") == 0)
@@ -120,13 +121,17 @@ public class PaintController implements Initializable {
             gc.setFill(colorPicker.getValue());
             Triangle t = new Triangle();
             t.setFill(isFilled);
-            t.setX1((int) endX);
-            t.setY1((int) endY);
-            t.setX2((int) startX);
-            t.setX2((int) startY);
+            t.setX1((int) startX);
+            t.setY1((int) startY);
+            t.setX2((int) endX);
+            t.setX2((int) endY);
             t.draw(gc);
         }
-
+        startX = 0;
+        startY=0;
+        endX=0;
+        endY=0;
+        
     }
 
     @FXML
