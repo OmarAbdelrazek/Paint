@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class inherits from MyBoundedShape and is responsible for drawing a rectangle
@@ -30,13 +31,13 @@ public class Rectangle extends BoundedShape
      * to set the color and the values it needs to draw from MyBoundedShape as well.
      */
     @Override
-    public void draw( Graphics g )
+    public void draw(GraphicsContext g)
     {
-        g.setColor( getColor() ); //sets the color
+        g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false
             g.fillRect( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a filled rectangle
         else
-            g.drawRect( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular rectangle
+            g.strokeRect( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular rectangle
         
     } 
     

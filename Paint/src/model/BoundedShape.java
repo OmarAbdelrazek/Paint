@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This is an abstract class with an abstract draw method. It inherits from MyShape
@@ -49,11 +50,18 @@ abstract class BoundedShape extends Shape
     {
         return Math.min(getX1(),getX2());
     }
-    
+    public int getLowerRightX()
+    {
+        return Math.max(getX1(),getX2());
+    }
     /**
      * gets the upper left y
      */
     public int getUpperLeftY()
+    {
+        return Math.max(getY1(),getY2());
+    }
+    public int getLowerRightY()
     {
         return Math.min(getY1(),getY2());
     }
@@ -87,5 +95,5 @@ abstract class BoundedShape extends Shape
     /**
      * Abstract method for drawing the shape that must be overriden
      */
-    abstract public void draw( Graphics g );
+    abstract public void draw(GraphicsContext g);
 } // end class MyBoundedShape

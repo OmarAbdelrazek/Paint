@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class contains int coordinates and a Color color. It has accessor and mutator methods for them.
@@ -125,6 +126,6 @@ abstract class Shape
     /**
      * Abstract method for drawing the shape that must be overriden
      */
-    abstract public void draw( Graphics g );
+    abstract public void draw(GraphicsContext g);
 
 }

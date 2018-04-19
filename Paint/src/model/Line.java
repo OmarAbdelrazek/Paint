@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class inherits from MyShape and is responsible for drawing a line.
@@ -29,9 +30,9 @@ public class Line extends Shape
      * and the coordinates it needs to draw from MyShape as well.
      */
     @Override
-    public void draw( Graphics g )
+    public void draw(GraphicsContext g)
     {
-        g.setColor( getColor() ); //sets the color
-        g.drawLine( getX1(), getY1(), getX2(), getY2() ); //draws the line
+        g.setStroke(g.getStroke() ); //sets the color
+        g.strokeLine( getX1(), getY1(), getX2(), getY2() ); //draws the line
     } 
 } // end class MyLine

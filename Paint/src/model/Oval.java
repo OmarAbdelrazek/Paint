@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class inherits from MyBoundedShape and is responsible for drawing a oval.
@@ -30,13 +31,13 @@ public class Oval extends BoundedShape
      * to set the color and the values it needs to draw from MyBoundedShape as well.
      */
     @Override
-    public void draw( Graphics g )
+    public void draw(GraphicsContext g)
     {
-        g.setColor( getColor() ); //sets the color
+        g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false
             g.fillOval( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a filled oval
         else
-            g.drawOval( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular oval
+            g.strokeOval( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular oval
         
     }
     

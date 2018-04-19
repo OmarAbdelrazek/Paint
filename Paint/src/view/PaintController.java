@@ -15,7 +15,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
-import model.*;
 
 /**
  FXML Controller class
@@ -84,7 +83,6 @@ public class PaintController implements Initializable {
         
         if(shape.compareTo("circle") == 0){
             gc.setFill(colorPicker.getValue());
-            drawCircle();
         }
         
         
