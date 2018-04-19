@@ -97,7 +97,7 @@ public class PaintController implements Initializable {
     private void canvasOnMOuseDragged(MouseEvent e)
     {
          if(shape.compareTo("brush")==0){
-           widthText.setText("8");
+           //widthText.setText("8");
             double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size/2) ;
             double y = e.getY() - (size/2) ;
