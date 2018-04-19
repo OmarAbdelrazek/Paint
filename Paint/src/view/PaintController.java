@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import model.*;
@@ -38,6 +39,9 @@ public class PaintController implements Initializable {
     @FXML
     private Button circleBtn;
     GraphicsContext gc ;
+    @FXML
+    private CheckBox Filled;
+    private boolean isFilled = false;
     
     /**
      Initializes the controller class.
@@ -84,15 +88,61 @@ public class PaintController implements Initializable {
         
         if(shape.compareTo("circle") == 0)
         {
-        gc.setFill(colorPicker.getValue());    
+           if(!isFilled)
+            gc.setStroke(colorPicker.getValue());
+            gc.setFill(colorPicker.getValue());
+        
         Oval c = new Oval();
+        c.setFill(isFilled);
         c.setX1((int) endX);
         c.setY1((int) endY);
         c.setX2((int) startX);
         c.setY2((int) startY);
         c.draw(gc);
         }
+        else if(shape.compareTo("rectangle") == 0)
+        {
+            if(!isFilled)
+            gc.setStroke(colorPicker.getValue());
+            gc.setFill(colorPicker.getValue());
+            Rectangle r = new Rectangle();
+            r.setFill(isFilled);
+            r.setX1((int) endX);
+            r.setY1((int) endY);
+            r.setX2((int) startX);
+            r.setX2((int) startY);
+            r.draw(gc);
+        }
+        else if(shape.compareTo("triangle") == 0)
+        {
+             if(!isFilled)
+            gc.setStroke(colorPicker.getValue());
+            gc.setFill(colorPicker.getValue());
+            Triangle t = new Triangle();
+            t.setFill(isFilled);
+            t.setX1((int) endX);
+            t.setY1((int) endY);
+            t.setX2((int) startX);
+            t.setX2((int) startY);
+            t.draw(gc);
+        }
 
     }
+
+    @FXML
+    private void rectangleBtn(ActionEvent event) {
+        shape = "rectangle";
+    }
+
+    @FXML
+    private void triangleBtn(ActionEvent event) {
+        shape = "triangle";
+    }
+
+    @FXML
+    private void isFilled(ActionEvent event) {
+        isFilled =! isFilled;
+    }
+    
     
 }

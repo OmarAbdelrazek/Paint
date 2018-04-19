@@ -21,9 +21,9 @@ public class Oval extends BoundedShape
      * Overloaded constructor that takes coordinates, color and fill. 
      * It passes them into MyBoundedShape's constructor.
      */
-    public Oval( int x1, int y1, int x2, int y2, Color color, boolean fill )
+    public Oval( int x1, int y1, int x2, int y2, Color color, boolean isfill )
     {
-        super(x1, y1, x2, y2, color,fill);
+        super(x1, y1, x2, y2, color,isfill);
     }
      
     /**
@@ -34,7 +34,7 @@ public class Oval extends BoundedShape
     public void draw(GraphicsContext g)
     {
         g.setStroke(g.getStroke()); //sets the color
-        if (getFill()) //determines whether fill is true or false
+        if (getFill() ) //determines whether fill is true or false
             g.fillOval( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a filled oval
         else
             g.strokeOval( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular oval

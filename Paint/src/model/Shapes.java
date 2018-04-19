@@ -27,6 +27,7 @@ public interface Shapes {
     public void setFillColor(java.awt.Color color);
 
     public java.awt.Color getFillColor();
+    
 
     /* redraw the shape on the canvas,
 for swing, you will cast canvas to java.awt.Graphics */
