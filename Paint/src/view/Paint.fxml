@@ -71,7 +71,7 @@
                   <Button fx:id="lineBtn" layoutX="57.0" layoutY="304.0" mnemonicParsing="false" onAction="#lineBtn" text="Line" />
                   <Slider fx:id="width" layoutX="11.0" layoutY="401.0" min="1.0" showTickMarks="true" value="1.0" />
                   <TextField fx:id="widthText" alignment="CENTER" layoutX="14.0" layoutY="436.0" prefHeight="31.0" prefWidth="69.0" />
-                  <Button mnemonicParsing="false" text="Button" />
+                  <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                   <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
                </children>
             </AnchorPane>
@@ -87,7 +87,7 @@
                                  </effect>
                               </ColorPicker>
                               <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
-                              <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" />
+                              <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" onAction="#setfill" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="761.0">
                            <children>

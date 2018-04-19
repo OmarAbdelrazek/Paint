@@ -169,11 +169,17 @@ public class PaintController implements Initializable {
     @FXML
     private void rectangleBtn(ActionEvent event) {
         shape = "rectangle";
+        Boolean mero = true;
+        Filled.setDisable(!mero);
+        fillpick.setDisable(!mero);
     }
 
     @FXML
     private void triangleBtn(ActionEvent event) {
         shape = "triangle";
+        Boolean mero = true;
+        Filled.setDisable(!mero);
+        fillpick.setDisable(!mero);
     }
 
     @FXML
@@ -186,11 +192,22 @@ public class PaintController implements Initializable {
         shape = "line";
         Boolean mero = false;
         Filled.setDisable(!mero);
+        fillpick.setDisable(!mero);
     }
     @FXML
     private void width(ActionEvent event) {
         
         gc.setLineWidth(width.getValue());
     }
+    @FXML
+    private void clearBtn(ActionEvent event) {
+         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+    @FXML
+    private void setfill(ActionEvent event) {
+        gc.setFill(javafx.scene.paint.Paint.valueOf(colorPicker.getValue().toString()));
+         
+    }    
 
 }
