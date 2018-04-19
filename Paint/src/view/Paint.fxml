@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -14,7 +20,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
+<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -59,10 +65,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="97.0">
                <children>
-                  <Button fx:id="circleBtn" layoutX="12.0" layoutY="96.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="26.0" prefWidth="69.0" text="Circle" />
-                  <Button fx:id="button2" layoutX="12.0" layoutY="166.0" mnemonicParsing="false" onAction="#rectangleBtn" text="Rectangle" />
-                  <Button fx:id="button3" layoutX="12.0" layoutY="237.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="26.0" prefWidth="69.0" text="Triangle" />
-                  <Button fx:id="button4" layoutX="12.0" layoutY="313.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Button" />
+                  <Button fx:id="circleBtn" layoutX="10.0" layoutY="96.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="26.0" prefWidth="69.0" text="Circle" />
+                  <Button fx:id="button2" layoutX="4.0" layoutY="166.0" mnemonicParsing="false" onAction="#rectangleBtn" text="Rectangle" />
+                  <Button fx:id="button3" layoutX="10.0" layoutY="237.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="26.0" prefWidth="69.0" text="Triangle" />
+                  <Button fx:id="undo" layoutX="13.0" layoutY="305.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="69.0" text="Button" />
+                  <Button fx:id="redo" layoutX="12.0" layoutY="356.0" mnemonicParsing="false" text="Button" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">

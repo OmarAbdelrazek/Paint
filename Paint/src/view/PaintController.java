@@ -5,9 +5,11 @@
  */
 package view;
 
+import java.awt.Shape;
 import java.net.URL;
 import static java.sql.JDBCType.NULL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -124,7 +126,7 @@ public class PaintController implements Initializable {
             t.setX1((int) startX);
             t.setY1((int) startY);
             t.setX2((int) endX);
-            t.setX2((int) endY);
+            t.setY2((int) endY);
             t.draw(gc);
         }
         startX = 0;
@@ -148,6 +150,6 @@ public class PaintController implements Initializable {
     private void isFilled(ActionEvent event) {
         isFilled =! isFilled;
     }
-    
+
     
 }

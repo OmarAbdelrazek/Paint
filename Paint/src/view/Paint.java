@@ -16,6 +16,10 @@ import javafx.stage.Stage;
  * @author Tommy
  */
 public class Paint extends Application {
+
+    static Object getInstance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
