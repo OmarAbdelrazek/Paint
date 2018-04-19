@@ -36,9 +36,13 @@ public class Triangle extends BoundedShape
         double[] Ycoord = { getY1(), getY2(), getY2()};
         g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false
+        {
+            g.strokePolygon(Xcoord, Ycoord, 3);
             g.fillPolygon(Xcoord, Ycoord, 3); //draws a filled triangle
+        }
         else
             g.strokePolygon(Xcoord, Ycoord, 3); //draws a regular triangle
+        
         
     }
  }

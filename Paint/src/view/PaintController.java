@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Color;
+import static java.awt.Color.BLACK;
+import static java.awt.PageAttributes.ColorType.COLOR;
 import java.awt.Shape;
 import java.net.URL;
 import static java.sql.JDBCType.NULL;
@@ -55,6 +58,8 @@ public class PaintController implements Initializable {
     private TextField widthText;
     @FXML
     private Button okBtn;
+    @FXML
+    private ColorPicker fillpick;
     
     /**
      Initializes the controller class.
@@ -64,6 +69,11 @@ public class PaintController implements Initializable {
          gc = canvas.getGraphicsContext2D();
          widthText.setText("1.0");
          widthText.textProperty().bindBidirectional(width.valueProperty(), NumberFormat.getNumberInstance());
+         fillpick.setVisible(false);
+         Paint p = new Paint();
+         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+         
    
     } 
 
@@ -101,7 +111,7 @@ public class PaintController implements Initializable {
         {
            if(!isFilled)
             gc.setStroke(colorPicker.getValue());
-            gc.setFill(colorPicker.getValue());
+            gc.setFill(fillpick.getValue());
         
         Oval c = new Oval();
         c.setFill(isFilled);
@@ -115,7 +125,7 @@ public class PaintController implements Initializable {
         {
             if(!isFilled)
             gc.setStroke(colorPicker.getValue());
-            gc.setFill(colorPicker.getValue());
+            gc.setFill(fillpick.getValue());
             Rectangle r = new Rectangle();
             r.setFill(isFilled);
             r.setX1((int) startX);
@@ -128,7 +138,7 @@ public class PaintController implements Initializable {
         {
              if(!isFilled)
             gc.setStroke(colorPicker.getValue());
-            gc.setFill(colorPicker.getValue());
+            gc.setFill(fillpick.getValue());
             Triangle t = new Triangle();
             t.setFill(isFilled);
             t.setX1((int) startX);
@@ -141,7 +151,7 @@ public class PaintController implements Initializable {
         {
              if(!isFilled)
             gc.setStroke(colorPicker.getValue());
-            gc.setFill(colorPicker.getValue());
+            gc.setFill(fillpick.getValue());
             Line l = new Line();
             l.setX1((int) startX);
             l.setY1((int) startY);
@@ -169,6 +179,7 @@ public class PaintController implements Initializable {
     @FXML
     private void isFilled(ActionEvent event) {
         isFilled =! isFilled;
+        fillpick.setVisible(isFilled);
     }
     @FXML
     private void lineBtn(ActionEvent event) {

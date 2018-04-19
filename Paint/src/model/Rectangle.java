@@ -35,7 +35,10 @@ public class Rectangle extends BoundedShape
     {
         g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false
+        {
+            g.strokeRect( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() );
             g.fillRect( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a filled rectangle
+        }
         else
             g.strokeRect( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular rectangle
         

@@ -63,7 +63,7 @@
     </MenuBar>
       <SplitPane dividerPositions="0.17273673257023933" prefHeight="668.0" prefWidth="963.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="97.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="97.0" style="-fx-background-color: #3D4956;">
                <children>
                   <Button fx:id="circleBtn" layoutX="47.0" layoutY="92.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="26.0" prefWidth="69.0" text="Circle" />
                   <Button fx:id="button2" layoutX="39.0" layoutY="163.0" mnemonicParsing="false" onAction="#rectangleBtn" text="Rectangle" />
@@ -77,16 +77,17 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">
                <children>
-                  <SplitPane dividerPositions="0.06097560975609756" layoutX="-6.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="873.0">
+                  <SplitPane dividerPositions="0.08079268292682927" layoutX="-6.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="873.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="256.0">
                            <children>
                               <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="6.0">
                                  <effect>
-                                    <Reflection />
+                                    <Blend />
                                  </effect>
                               </ColorPicker>
-                              <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill" />
+                              <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
+                              <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="761.0">
                            <children>
