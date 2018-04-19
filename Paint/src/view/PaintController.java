@@ -15,6 +15,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
+import model.*;
 
 /**
  FXML Controller class
@@ -31,7 +32,7 @@ public class PaintController implements Initializable {
     private Button button4;
     @FXML
     private ColorPicker colorPicker;
-    double centerX,centerY,endX,endY;
+    double startX,startY,endX,endY;
     private String shape;
     private double hght,wdth;
     @FXML
@@ -56,8 +57,8 @@ public class PaintController implements Initializable {
     
     @FXML
     private void canvasOnMousePressed(MouseEvent e) {
-        centerX =  e.getX();
-        centerY =  e.getY();
+        startX =  e.getX();
+        startY =  e.getY();
        
         
     }
@@ -71,21 +72,27 @@ public class PaintController implements Initializable {
     }
     
     private void drawCircle(){
-        gc.strokeOval(centerX, centerY, hght, wdth);
+        gc.strokeOval(startX, startY, hght, wdth);
     }
 
     @FXML
     private void canvasOnMouseRe(MouseEvent e) {
         endX = e.getX();
         endY =  e.getY();
-        hght = Math.abs(endY-centerY);
-        wdth = Math.abs(endX - centerX);
+        hght = Math.abs(endY-startY);
+        wdth = Math.abs(endX - startX);
         
-        if(shape.compareTo("circle") == 0){
-            gc.setFill(colorPicker.getValue());
+        if(shape.compareTo("circle") == 0)
+        {
+        gc.setFill(colorPicker.getValue());    
+        Oval c = new Oval();
+        c.setX1((int) endX);
+        c.setY1((int) endY);
+        c.setX2((int) startX);
+        c.setY2((int) startY);
+        c.draw(gc);
         }
-        
-        
+
     }
     
 }

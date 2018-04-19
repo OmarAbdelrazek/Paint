@@ -59,11 +59,11 @@ abstract class BoundedShape extends Shape
      */
     public int getUpperLeftY()
     {
-        return Math.max(getY1(),getY2());
+        return Math.min(getY1(),getY2());
     }
     public int getLowerRightY()
     {
-        return Math.min(getY1(),getY2());
+        return Math.max(getY1(),getY2());
     }
     
     /**
