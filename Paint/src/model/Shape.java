@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Effect;
@@ -9,7 +10,7 @@ import javafx.scene.effect.Effect;
 /**
  * This class contains int coordinates and a Color color. It has accessor and mutator methods for them.
  */
-abstract class Shape
+abstract class Shape implements Serializable ,Cloneable
 {
     private int x1,y1,x2,y2; //coordinates of shape
     private Color color; // color of shape
@@ -129,5 +130,7 @@ abstract class Shape
     /**
      * Abstract method for drawing the shape that must be overriden
      */
+    //public abstract Shape createCopy();
+
 
 }

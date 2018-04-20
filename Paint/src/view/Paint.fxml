@@ -84,7 +84,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="256.0">
                            <children>
-                              <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="6.0">
+                              <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="6.0" onAction="#setstroke">
                                  <effect>
                                     <Blend />
                                  </effect>

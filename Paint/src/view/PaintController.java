@@ -120,7 +120,8 @@ public class PaintController implements Initializable {
             c.setX1((int) startX);
             c.setY1((int) startY);
             c.setX2((int) e.getX());
-            c.setY2((int) e.getY());   
+            c.setY2((int) e.getY());  
+            c.createCopy();
         }
     }
 
@@ -280,6 +281,11 @@ public class PaintController implements Initializable {
         Boolean mero = false;
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
+    }
+    @FXML
+        private void setstroke(ActionEvent event) {
+        gc.setStroke(javafx.scene.paint.Paint.valueOf(colorPicker.getValue().toString()));
+
     }
 
 }

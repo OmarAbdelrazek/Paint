@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Circle;
 
 /**
  * This class inherits from MyBoundedShape and is responsible for drawing a
@@ -38,6 +39,7 @@ public class Oval extends BoundedShape {
         g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false
         {
+            g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
             g.fillOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a filled oval
         } else {
             g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a regular oval
@@ -49,6 +51,17 @@ public class Oval extends BoundedShape {
         gc.clearRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
         gc.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
 
+    }
+
+    public Circle createCopy() {
+        System.out.println("Circle is copping");
+        Circle circle = null;
+        try {
+            circle = (Circle) super.clone();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return circle;
     }
 
 }
