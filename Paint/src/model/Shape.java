@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Effect;
 
@@ -123,6 +124,7 @@ abstract class Shape
     {
         return color;
     }
+
     
     /**
      * Abstract method for drawing the shape that must be overriden

@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -96,4 +97,5 @@ abstract class BoundedShape extends Shape
      * Abstract method for drawing the shape that must be overriden
      */
     abstract public void draw(GraphicsContext g);
+    abstract public void update(GraphicsContext gc );
 } // end class MyBoundedShape

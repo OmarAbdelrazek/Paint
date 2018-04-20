@@ -74,6 +74,8 @@
                   <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                   <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
                   <Button fx:id="Brush" layoutX="46.0" layoutY="54.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="25.0" prefWidth="69.0" text="Brush" />
+                  <Button fx:id="delete" layoutX="48.0" layoutY="522.0" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="moveBtn" layoutX="50.0" layoutY="355.0" mnemonicParsing="false" onAction="#moveBtn" text="move" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">

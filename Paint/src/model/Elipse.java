@@ -7,6 +7,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -15,26 +16,33 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Elipse extends BoundedShape {
 
-    public Elipse( int x1, int y1, int x2, int y2, Color color, boolean fill )
-    {
-        super(x1, y1, x2, y2, color,fill);
+    public Elipse(int x1, int y1, int x2, int y2, Color color, boolean fill) {
+        super(x1, y1, x2, y2, color, fill);
     }
-     
+
     /**
-     * Overrides the draw method in MyBoundedShape. It sets the gets the color from MyBoundedShape
-     * to set the color and the values it needs to draw from MyBoundedShape as well.
+     * Overrides the draw method in MyBoundedShape. It sets the gets the color
+     * from MyBoundedShape to set the color and the values it needs to draw from
+     * MyBoundedShape as well.
+     *
      * @param g
      */
     @Override
-    public void draw( GraphicsContext g)
-    {
-        g.setStroke( g.getStroke() ); //sets the color
+    public void draw(GraphicsContext g) {
+        g.setStroke(g.getStroke()); //sets the color
         if (getFill()) //determines whether fill is true or false
-            g.fillOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a filled oval
-        else
-            g.strokeOval( getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight() ); //draws a regular oval
-        
+        {
+            g.fillOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a filled oval
+        } else {
+            g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a regular oval
+        }
     }
 
+    @Override
+    public void update(GraphicsContext gc) {
+
+        gc.clearRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
+        gc.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
+    }
 
 }
