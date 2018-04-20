@@ -120,8 +120,7 @@ public class PaintController implements Initializable {
             c.setX1((int) startX);
             c.setY1((int) startY);
             c.setX2((int) e.getX());
-            c.setY2((int) e.getY());
-            c.update(gc);   
+            c.setY2((int) e.getY());   
         }
     }
 
