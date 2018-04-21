@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Paint;
 
 /**
  *
@@ -16,8 +17,8 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class Elipse extends BoundedShape {
 
-    public Elipse(int x1, int y1, int x2, int y2, Color color, boolean fill) {
-        super(x1, y1, x2, y2, color, fill);
+    public Elipse(int x1, int y1, int x2, int y2, Paint paint, boolean fill, Paint fillpaint,Double lw) {
+        super(x1, y1, x2, y2, paint, fill, fillpaint,lw);
     }
 
     /**
@@ -29,9 +30,12 @@ public class Elipse extends BoundedShape {
      */
     @Override
     public void draw(GraphicsContext g) {
-        g.setStroke(g.getStroke()); //sets the color
+       // g.setLineWidth(this.getLineWidth());
+        g.setStroke(this.getPaint()); //sets the color
         if (getFill()) //determines whether fill is true or false
         {
+            g.setFill(this.getFillPaint());
+            g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
             g.fillOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a filled oval
         } else {
             g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a regular oval

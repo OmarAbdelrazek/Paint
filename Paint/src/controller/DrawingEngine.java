@@ -5,6 +5,11 @@
  */
 package controller;
 
+
+import java.util.HashMap;
+import model.Shape;
+import view.*;
+
 /**
 
  @author Omar's PC
@@ -12,9 +17,9 @@ package controller;
 public interface DrawingEngine {
 
     /* redraw all shapes on the canvas */
-   /* public void refresh(Object canvas);
+   public void refresh(Object canvas);
 
-    public void addShape(Shape shape);
+    public void addShape(Shape shape,HashMap HashMapOfShapes);
 
     public void removeShape(Shape shape);
 

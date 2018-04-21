@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Paint;
 
 /**
  * This class inherits from MyBoundedShape and is responsible for drawing a
@@ -23,8 +24,8 @@ public class Rectangle extends BoundedShape {
      * Overloaded constructor that takes coordinates, color and fill. It passes
      * them into MyBoundedShape's constructor
      */
-    public Rectangle(int x1, int y1, int x2, int y2, Color color, boolean fill) {
-        super(x1, y1, x2, y2, color, fill);
+    public Rectangle(int x1, int y1, int x2, int y2, Paint paint, boolean fill, Paint fillpaint,Double lw) {
+        super(x1, y1, x2, y2, paint, fill, fillpaint, lw);
     }
 
     /**
@@ -34,9 +35,11 @@ public class Rectangle extends BoundedShape {
      */
     @Override
     public void draw(GraphicsContext g) {
-        g.setStroke(g.getStroke()); //sets the color
+        //g.setLineWidth(this.getLineWidth());
+        g.setStroke(this.getPaint()); //sets the color
         if (getFill()) //determines whether fill is true or false
         {
+            g.setFill(this.getFillPaint());
             g.strokeRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
             g.fillRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a filled rectangle
         } else {

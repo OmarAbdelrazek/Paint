@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 /**
@@ -24,8 +25,8 @@ public class Oval extends BoundedShape {
      * Overloaded constructor that takes coordinates, color and fill. It passes
      * them into MyBoundedShape's constructor.
      */
-    public Oval(int x1, int y1, int x2, int y2, Color color, boolean isfill) {
-        super(x1, y1, x2, y2, color, isfill);
+    public Oval(int x1, int y1, int x2, int y2,Paint paint, boolean isfill,Paint fillpaint,Double lw) {
+        super(x1, y1, x2, y2, paint, isfill ,fillpaint,lw);
     }
 
     /**
@@ -36,9 +37,10 @@ public class Oval extends BoundedShape {
     @Override
     public void draw(GraphicsContext g) {
 
-        g.setStroke(g.getStroke()); //sets the color
+        g.setStroke(this.getPaint()); //sets the color
+        //g.setLineWidth(this.getLineWidth());
         if (getFill()) //determines whether fill is true or false
-        {
+        {   g.setFill(this.getFillPaint());
             g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
             g.fillOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a filled oval
         } else {
@@ -53,15 +55,6 @@ public class Oval extends BoundedShape {
 
     }
 
-    public Circle createCopy() {
-        System.out.println("Circle is copping");
-        Circle circle = null;
-        try {
-            circle = (Circle) super.clone();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return circle;
-    }
+
 
 }
