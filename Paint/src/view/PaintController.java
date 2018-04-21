@@ -109,7 +109,6 @@ public class PaintController implements Initializable {
 
     @FXML
     private Canvas canvas;
-
     @FXML
     private void canvasOnMousePressed(MouseEvent e) {
         startX = e.getX();
@@ -142,7 +141,7 @@ public class PaintController implements Initializable {
             c.setY1((int) startY);
             c.setX2((int) e.getX());
             c.setY2((int) e.getY());
-            c.setColor(colorPicker.getValue());
+            c.setPaint(colorPicker.getValue());
             temp.add(0,(Shape) c);
 
 
@@ -199,7 +198,7 @@ public class PaintController implements Initializable {
             r.setY1((int) startY);
             r.setX2((int) endX);
             r.setY2((int) endY);
-            r.setColor(colorPicker.getValue());
+            r.setPaint(colorPicker.getValue());
             r.setFillPaint(fillpick.getValue());
            // r.setLineWidth(width.getValue());
             r.addShape(hmap);
@@ -215,7 +214,7 @@ public class PaintController implements Initializable {
             t.setY1((int) startY);
             t.setX2((int) endX);
             t.setY2((int) endY);
-            t.setColor(colorPicker.getValue());
+            t.setPaint(colorPicker.getValue());
             t.setFillPaint(fillpick.getValue());
           //  t.setLineWidth(width.getValue());
             t.addShape(hmap);
@@ -229,7 +228,7 @@ public class PaintController implements Initializable {
             l.setY1((int) startY);
             l.setX2((int) endX);
             l.setY2((int) endY);
-            l.setColor(colorPicker.getValue());
+            l.setPaint(colorPicker.getValue());
           //  l.setLineWidth(width.getValue());
             l.addShape(hmap);
         } /*else if (shape.compareTo("move") == 0) {

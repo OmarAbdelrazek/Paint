@@ -124,9 +124,7 @@ public abstract class Shape implements Serializable ,Cloneable
     /**
      * Mutator method for color
      */
-    public void setColor(Paint paint)    {
-        this.paint=paint;
-    }
+
     
     
     //Accessor methods

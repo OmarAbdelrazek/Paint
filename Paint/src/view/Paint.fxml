@@ -107,7 +107,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">
                <children>
-                  <SplitPane dividerPositions="0.08079268292682927" layoutX="-6.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="873.0">
+                  <SplitPane layoutX="-6.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="658.0" prefWidth="873.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="167.0" prefWidth="256.0">
                            <children>
@@ -119,11 +119,6 @@
                               <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
                               <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" onAction="#setfill" />
                            </children></AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="761.0">
-                           <children>
-                              <SwingNode fx:id="canvas" layoutX="295.0" layoutY="130.0" />
-                           </children>
-                        </AnchorPane>
                     </items>
                   </SplitPane>
                </children>
