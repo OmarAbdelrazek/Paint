@@ -167,6 +167,13 @@ public class PaintController implements Initializable {
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
     }
+     @FXML
+    private void squareBtn(ActionEvent event) {
+        shape = "square";
+        Boolean mero = true;
+        Filled.setDisable(!mero);
+        fillpick.setDisable(!mero);
+    }
 
     @FXML
     private void canvasOnMouseRe(MouseEvent e) {
@@ -234,7 +241,27 @@ public class PaintController implements Initializable {
             l.setPaint(colorPicker.getValue());
           //  l.setLineWidth(width.getValue());
             l.addShape(hmap);
-        } /*else if (shape.compareTo("move") == 0) {
+        }
+        else if (shape.compareTo("square") == 0) {
+
+                gc.setStroke(colorPicker.getValue());
+            gc.setFill(fillpick.getValue());
+            Square s = new Square();
+            s.setFill(isFilled);
+            
+            double l;
+            l = Math.abs(startX-endX);
+            
+            s.setX1((int) startX);
+            s.setY1((int) startY);
+            s.setX2((int) endX);
+            s.setY2((int) startY+ (int)l);
+            s.setPaint(colorPicker.getValue());
+            s.setFillPaint(fillpick.getValue());
+           // r.setLineWidth(width.getValue());
+            s.addShape(hmap);
+
+        }/*else if (shape.compareTo("move") == 0) {
             EventHandler<MouseEvent> circleOnMousePressedEventHandler
                     = new EventHandler<MouseEvent>() {
 
