@@ -163,6 +163,9 @@ public class PaintController implements Initializable {
     @FXML
     private void circleBtn(ActionEvent event) {
         shape = "circle";
+        Boolean mero = true;
+        Filled.setDisable(!mero);
+        fillpick.setDisable(!mero);
     }
 
     @FXML
