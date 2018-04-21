@@ -69,6 +69,12 @@ public class PaintController implements Initializable {
     //
     double orgSceneX, orgSceneY;
     double orgTranslateX, orgTranslateY;
+    @FXML
+    private Button delete;
+    @FXML
+    private Button moveBtn;
+    @FXML
+    private Button eraser;
 
     /**
      * Initializes the controller class.
@@ -105,13 +111,13 @@ public class PaintController implements Initializable {
     private void canvasOnMOuseDragged(MouseEvent e) {
         if (shape.compareTo("brush") == 0) {
             //widthText.setText("8");
-            double size = Double.parseDouble(widthText.getText());
+         
+            
+              double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);
-
-            gc.setFill(colorPicker.getValue());
-
-            gc.fillRoundRect(x, y, size, size, size, size);
+            Brush b = new Brush(size,x,y,colorPicker.getValue());
+            b.draw(gc);
 
         }else if (shape.compareTo("circle") == 0)
         {
@@ -122,6 +128,13 @@ public class PaintController implements Initializable {
             c.setX2((int) e.getX());
             c.setY2((int) e.getY());  
             c.createCopy();
+        }
+        else if(shape.compareTo("eraser") == 0){
+             double size = Double.parseDouble(widthText.getText());
+            double x = e.getX() - (size / 2);
+            double y = e.getY() - (size / 2);
+            Eraser eraser = new Eraser(size, x, y);
+            eraser.draw(gc);
         }
     }
 
@@ -186,7 +199,8 @@ public class PaintController implements Initializable {
                 gc.setStroke(colorPicker.getValue());
             }
             gc.setFill(fillpick.getValue());
-            Line l = new Line();
+             double size = Double.parseDouble(widthText.getText());
+            Line l = new Line(size);
             l.setX1((int) startX);
             l.setY1((int) startY);
             l.setX2((int) endX);
@@ -286,6 +300,11 @@ public class PaintController implements Initializable {
         private void setstroke(ActionEvent event) {
         gc.setStroke(javafx.scene.paint.Paint.valueOf(colorPicker.getValue().toString()));
 
+    }
+
+    @FXML
+    private void eraserBtn(ActionEvent event) {
+        shape = "eraser";
     }
 
 }

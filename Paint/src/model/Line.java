@@ -12,17 +12,21 @@ public class Line extends Shape
     /**
      * No parameter constructor which calls the no parameter constructor in MyShape
      */
-    public Line()
+     private double size;
+    public Line(double size)
     {
         super();
+        this.size = size;
     }
     
     /** 
      * Overloaded constructor that takes coordinates and color. It passes them to the constructor in MyShape
      */
-    public Line( int x1, int y1, int x2, int y2, Color color )
+  
+    public Line( int x1, int y1, int x2, int y2, Color color , double size )
     {
         super(x1, y1, x2, y2, color);
+        this.size = size;
     } 
      
     /**
@@ -32,6 +36,7 @@ public class Line extends Shape
     public void draw(GraphicsContext g)
     {
         g.setStroke(g.getStroke() ); //sets the color
+        g.setLineWidth(size);
         g.strokeLine( getX1(), getY1(), getX2(), getY2() ); //draws the line
     } 
 } 
