@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.HashMap;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import model.*;
 import view.PaintController;
@@ -27,6 +28,14 @@ public abstract class Tools implements DrawingEngine {
 
         }
     }
-    //public static void refresh();
+
+    /**
+     *
+     * @param canvas
+     */
+    public void refresh(Canvas canvas)
+    {
+
+    }
 
 }

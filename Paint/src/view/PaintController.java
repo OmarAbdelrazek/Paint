@@ -86,6 +86,8 @@ public class PaintController implements Initializable {
     HashMap<Integer, Shape> hmap = new HashMap<Integer, Shape>();
     ArrayList<Shape> temp = new ArrayList<Shape>();
     public static int priority = 0;
+    public javafx.scene.paint.Paint prev = javafx.scene.paint.Paint.valueOf("#ffffff") ;
+    public javafx.scene.paint.Paint current = javafx.scene.paint.Paint.valueOf("#ffffff") ;
 
     /**
      * Initializes the controller class.
@@ -109,17 +111,13 @@ public class PaintController implements Initializable {
 
     @FXML
     private Canvas canvas;
+
     @FXML
     private void canvasOnMousePressed(MouseEvent e) {
         startX = e.getX();
         startY = e.getY();
-        Oval SampleOval = new Oval();
-            SampleOval.setFill(isFilled);
-            SampleOval.setX1(0);
-            SampleOval.setY1(0);
-            SampleOval.setX2(0);
-            SampleOval.setY2(0);
-            SampleOval.addShape(hmap);
+        javafx.scene.paint.Paint prev = gc.getFill();
+        javafx.scene.paint.Paint current = fillpick.getValue();
 
     }
 
@@ -142,10 +140,77 @@ public class PaintController implements Initializable {
             c.setX2((int) e.getX());
             c.setY2((int) e.getY());
             c.setPaint(colorPicker.getValue());
-            temp.add(0,(Shape) c);
+            c.addShape(hmap);
+            priority--;
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(current);
+            Tools.parse(hmap, gc);
 
+        } 
+        else if (shape.compareTo("rectangle") == 0) {
+            Rectangle c = new Rectangle();
+            c.setFill(isFilled);
+            c.setX1((int) startX);
+            c.setY1((int) startY);
+            c.setX2((int) e.getX());
+            c.setY2((int) e.getY());
+            c.setPaint(colorPicker.getValue());
+            c.addShape(hmap);
+            priority--;
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(current);
+            Tools.parse(hmap, gc);
 
-        } else if (shape.compareTo("eraser") == 0) {
+        }
+        else if (shape.compareTo("triangle") == 0) {
+            Triangle c = new Triangle();
+            c.setFill(isFilled);
+            c.setX1((int) startX);
+            c.setY1((int) startY);
+            c.setX2((int) e.getX());
+            c.setY2((int) e.getY());
+            c.setPaint(colorPicker.getValue());
+            c.addShape(hmap);
+            priority--;
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(current);
+            Tools.parse(hmap, gc);
+
+        }
+        else if (shape.compareTo("line") == 0) {
+            Line c = new Line();
+            c.setX1((int) startX);
+            c.setY1((int) startY);
+            c.setX2((int) e.getX());
+            c.setY2((int) e.getY());
+            c.setPaint(colorPicker.getValue());
+            c.addShape(hmap);
+            priority--;
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(current);
+            Tools.parse(hmap, gc);
+
+        }
+        else if (shape.compareTo("square") == 0) {
+            Square c = new Square();
+            c.setFill(isFilled);
+            c.setX1((int) startX);
+            c.setY1((int) startY);
+            c.setX2((int) e.getX());
+            c.setY2((int) e.getY());
+            c.setPaint(colorPicker.getValue());
+            c.addShape(hmap);
+            priority--;
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(current);
+            Tools.parse(hmap, gc);
+
+        }else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);
@@ -167,7 +232,8 @@ public class PaintController implements Initializable {
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
     }
-     @FXML
+
+    @FXML
     private void squareBtn(ActionEvent event) {
         shape = "square";
         Boolean mero = true;
@@ -183,9 +249,9 @@ public class PaintController implements Initializable {
         wdth = Math.abs(endX - startX);
 
         if (shape.compareTo("circle") == 0) {
-         
-                gc.setStroke(colorPicker.getValue());
-            
+
+            gc.setStroke(colorPicker.getValue());
+
             gc.setFill(fillpick.getValue());
             Oval c = new Oval();
             c.setFill(isFilled);
@@ -195,12 +261,12 @@ public class PaintController implements Initializable {
             c.setY2((int) endY);
             c.setPaint(colorPicker.getValue());
             c.setFillPaint(fillpick.getValue());
-           // c.setLineWidth(width.getValue());
+            // c.setLineWidth(width.getValue());
             c.addShape(hmap);
 
         } else if (shape.compareTo("rectangle") == 0) {
 
-                gc.setStroke(colorPicker.getValue());
+            gc.setStroke(colorPicker.getValue());
             gc.setFill(fillpick.getValue());
             Rectangle r = new Rectangle();
             r.setFill(isFilled);
@@ -210,7 +276,7 @@ public class PaintController implements Initializable {
             r.setY2((int) endY);
             r.setPaint(colorPicker.getValue());
             r.setFillPaint(fillpick.getValue());
-           // r.setLineWidth(width.getValue());
+            // r.setLineWidth(width.getValue());
             r.addShape(hmap);
 
         } else if (shape.compareTo("triangle") == 0) {
@@ -226,7 +292,7 @@ public class PaintController implements Initializable {
             t.setY2((int) endY);
             t.setPaint(colorPicker.getValue());
             t.setFillPaint(fillpick.getValue());
-          //  t.setLineWidth(width.getValue());
+            //  t.setLineWidth(width.getValue());
             t.addShape(hmap);
         } else if (shape.compareTo("line") == 0) {
             if (!isFilled) {
@@ -239,26 +305,25 @@ public class PaintController implements Initializable {
             l.setX2((int) endX);
             l.setY2((int) endY);
             l.setPaint(colorPicker.getValue());
-          //  l.setLineWidth(width.getValue());
+            //  l.setLineWidth(width.getValue());
             l.addShape(hmap);
-        }
-        else if (shape.compareTo("square") == 0) {
+        } else if (shape.compareTo("square") == 0) {
 
-                gc.setStroke(colorPicker.getValue());
+            gc.setStroke(colorPicker.getValue());
             gc.setFill(fillpick.getValue());
             Square s = new Square();
             s.setFill(isFilled);
-            
+
             double l;
-            l = Math.abs(startX-endX);
-            
+            l = Math.abs(startX - endX);
+
             s.setX1((int) startX);
             s.setY1((int) startY);
             s.setX2((int) endX);
-            s.setY2((int) startY+ (int)l);
+            s.setY2((int) startY + (int) l);
             s.setPaint(colorPicker.getValue());
             s.setFillPaint(fillpick.getValue());
-           // r.setLineWidth(width.getValue());
+            // r.setLineWidth(width.getValue());
             s.addShape(hmap);
 
         }/*else if (shape.compareTo("move") == 0) {
@@ -292,7 +357,6 @@ public class PaintController implements Initializable {
         startY = 0;
         endX = 0;
         endY = 0;
-        javafx.scene.paint.Paint prev = gc.getFill();
         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         controller.Tools.parse(hmap, gc);
@@ -341,7 +405,7 @@ public class PaintController implements Initializable {
         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         hmap.clear();
-        priority=0;
+        priority = 0;
     }
 
     @FXML

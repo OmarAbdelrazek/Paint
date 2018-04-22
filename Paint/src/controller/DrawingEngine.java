@@ -7,6 +7,7 @@ package controller;
 
 
 import java.util.HashMap;
+import javafx.scene.canvas.Canvas;
 import model.Shape;
 import view.*;
 
@@ -17,7 +18,7 @@ import view.*;
 public interface DrawingEngine {
 
     /* redraw all shapes on the canvas */
-   public void refresh(Object canvas);
+   public void refresh(Canvas canvas);
 
     public void addShape(Shape shape,HashMap HashMapOfShapes);
 

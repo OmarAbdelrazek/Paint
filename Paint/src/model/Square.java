@@ -40,10 +40,10 @@ public class Square extends BoundedShape {
         if (getFill()) //determines whether fill is true or false
         {
             g.setFill(this.getFillPaint());
-            g.strokeRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-            g.fillRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a filled rectangle
+            g.strokeRect(getUpperLeftX(), getUpperLeftY(), Math.min(getWidth(),getHeight()), Math.min(getWidth(),getHeight()));
+            g.fillRect(getUpperLeftX(), getUpperLeftY(),Math.min(getWidth(),getHeight()) , Math.min(getWidth(),getHeight())); //draws a filled rectangle
         } else {
-            g.strokeRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight()); //draws a regular rectangle
+            g.strokeRect(getUpperLeftX(), getUpperLeftY(), Math.min(getWidth(),getHeight()), Math.min(getWidth(),getHeight())); //draws a regular rectangle
         }
     }
 
