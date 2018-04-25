@@ -4,14 +4,7 @@
  * and open the template in the editor.
  */
 package view;
-
 import controller.Tools;
-import model.Brush;
-import model.Oval;
-import model.Eraser;
-import model.Rectangle;
-import model.Triangle;
-import model.Line;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.PageAttributes.ColorType.COLOR;
@@ -44,7 +37,6 @@ import model.*;
  * @author Omar's PC
  */
 public class PaintController implements Initializable {
-
     @FXML
     private Button button2;
     @FXML
@@ -86,8 +78,8 @@ public class PaintController implements Initializable {
     HashMap<Integer, Shape> hmap = new HashMap<Integer, Shape>();
     ArrayList<Shape> temp = new ArrayList<Shape>();
     public static int priority = 0;
-    public javafx.scene.paint.Paint prev = javafx.scene.paint.Paint.valueOf("#ffffff") ;
-    public javafx.scene.paint.Paint current = javafx.scene.paint.Paint.valueOf("#ffffff") ;
+    public javafx.scene.paint.Paint prev = javafx.scene.paint.Paint.valueOf("#ffffff");
+    public javafx.scene.paint.Paint currentfill = javafx.scene.paint.Paint.valueOf("#ffffff");
 
     /**
      * Initializes the controller class.
@@ -98,10 +90,8 @@ public class PaintController implements Initializable {
         widthText.setText("1.0");
         widthText.textProperty().bindBidirectional(width.valueProperty(), NumberFormat.getNumberInstance());
         fillpick.setVisible(false);
-        Paint p = new Paint();
-        gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        colorPicker.setValue(javafx.scene.paint.Color.BLACK);
+                    gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
     }
 
@@ -116,13 +106,14 @@ public class PaintController implements Initializable {
     private void canvasOnMousePressed(MouseEvent e) {
         startX = e.getX();
         startY = e.getY();
-        javafx.scene.paint.Paint prev = gc.getFill();
-        javafx.scene.paint.Paint current = fillpick.getValue();
+        javafx.scene.paint.Paint currentfill = fillpick.getValue();
 
     }
 
     @FXML
     private void canvasOnMOuseDragged(MouseEvent e) {
+                    double currentX = e.getX();
+            double currentY = e.getY();
         if (shape.compareTo("brush") == 0) {
             //widthText.setText("8");
 
@@ -134,21 +125,10 @@ public class PaintController implements Initializable {
 
         } else if (shape.compareTo("circle") == 0) {
             Oval c = new Oval();
-            c.setFill(isFilled);
-            c.setX1((int) startX);
-            c.setY1((int) startY);
-            c.setX2((int) e.getX());
-            c.setY2((int) e.getY());
-            c.setPaint(colorPicker.getValue());
-            c.addShape(hmap);
-            priority--;
-            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(current);
+            c.updateShape(c, hmap, prev, startX, startY, currentX, currentY, prev);
             Tools.parse(hmap, gc);
 
-        } 
-        else if (shape.compareTo("rectangle") == 0) {
+        } else if (shape.compareTo("rectangle") == 0) {
             Rectangle c = new Rectangle();
             c.setFill(isFilled);
             c.setX1((int) startX);
@@ -160,11 +140,10 @@ public class PaintController implements Initializable {
             priority--;
             gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(current);
+            gc.setFill(currentfill);
             Tools.parse(hmap, gc);
 
-        }
-        else if (shape.compareTo("triangle") == 0) {
+        } else if (shape.compareTo("triangle") == 0) {
             Triangle c = new Triangle();
             c.setFill(isFilled);
             c.setX1((int) startX);
@@ -176,11 +155,10 @@ public class PaintController implements Initializable {
             priority--;
             gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(current);
+            gc.setFill(currentfill);
             Tools.parse(hmap, gc);
 
-        }
-        else if (shape.compareTo("line") == 0) {
+        } else if (shape.compareTo("line") == 0) {
             Line c = new Line();
             c.setX1((int) startX);
             c.setY1((int) startY);
@@ -191,11 +169,10 @@ public class PaintController implements Initializable {
             priority--;
             gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(current);
+            gc.setFill(currentfill);
             Tools.parse(hmap, gc);
 
-        }
-        else if (shape.compareTo("square") == 0) {
+        } else if (shape.compareTo("square") == 0) {
             Square c = new Square();
             c.setFill(isFilled);
             c.setX1((int) startX);
@@ -207,10 +184,10 @@ public class PaintController implements Initializable {
             priority--;
             gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(current);
+            gc.setFill(currentfill);
             Tools.parse(hmap, gc);
 
-        }else if (shape.compareTo("eraser") == 0) {
+        } else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);

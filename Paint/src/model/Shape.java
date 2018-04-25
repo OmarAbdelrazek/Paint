@@ -1,5 +1,6 @@
 package model;
 
+import controller.Tools;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Effect;
 import javafx.scene.paint.Paint;
+import static view.PaintController.priority;
 
 /**
  * This class contains int coordinates and a Color color. It has accessor and mutator methods for them.
@@ -178,6 +180,18 @@ public abstract class Shape implements Serializable ,Cloneable
     int order = view.PaintController.priority-1;
     Shapeshm.remove(order);
     
+    }
+    public void updateShape(HashMap shapehm, Paint isFilled, double startX,double startY, double currentX,double currentY ,Paint paint)
+    {
+            this.setFillPaint(isFilled);
+            this.setX1((int) startX);
+            this.setY1((int) startY);
+            this.setX2((int) currentX);
+            this.setY2((int) currentY);
+            this.setPaint(paint);
+            this.addShape(shapehm);
+            priority--;
+
     }
 
     

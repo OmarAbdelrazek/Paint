@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.HashMap;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
@@ -56,4 +57,6 @@ public class Triangle extends BoundedShape {
         gc.strokePolygon(Xcoord, Ycoord, 3);
 
     }
+
+
 }
