@@ -20,7 +20,7 @@ import view.PaintController;
  *
  * @author Tommy
  */
-public abstract class Tools implements DrawingEngine {
+public abstract class MydrawingEngine implements DrawingEngine {
 
     public static void parse(HashMap Shapeshm, GraphicsContext gc) {
         for (int i = 0; i <= PaintController.priority; i++) {

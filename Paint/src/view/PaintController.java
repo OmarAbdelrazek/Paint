@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.Tools;
+import controller.MydrawingEngine;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.PageAttributes.ColorType.COLOR;
@@ -134,32 +134,32 @@ public class PaintController implements Initializable {
         } else if (shape.compareTo("circle") == 0) {
             Oval c = new Oval();
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
-            Tools.refresh(gc, canvas, currentfill);
-            Tools.parse(hmap, gc);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
 
         } else if (shape.compareTo("rectangle") == 0) {
             Rectangle c = new Rectangle();
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
-            Tools.refresh(gc, canvas, currentfill);
-            Tools.parse(hmap, gc);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
 
         } else if (shape.compareTo("triangle") == 0) {
             Triangle c = new Triangle();
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
-            Tools.refresh(gc, canvas, currentfill);
-            Tools.parse(hmap, gc);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
 
         } else if (shape.compareTo("line") == 0) {
             Line c = new Line();
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
-            Tools.refresh(gc, canvas, currentfill);
-            Tools.parse(hmap, gc);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
 
         } else if (shape.compareTo("square") == 0) {
             Square c = new Square();
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
-            Tools.refresh(gc, canvas, currentfill);
-            Tools.parse(hmap, gc);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
 
         } else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
@@ -312,7 +312,7 @@ public class PaintController implements Initializable {
         endY = 0;
         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        controller.Tools.parse(hmap, gc);
+        controller.MydrawingEngine.parse(hmap, gc);
         gc.setFill(prev);
 
     }

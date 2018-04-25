@@ -1,6 +1,6 @@
 package model;
 
-import controller.Tools;
+import controller.MydrawingEngine;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
