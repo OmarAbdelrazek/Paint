@@ -34,7 +34,7 @@ public abstract class Tools implements DrawingEngine {
      *
      * @param canvas
      */
-    public void refresh(GraphicsContext gc ,Canvas canvas ,Paint current)
+    public static void refresh(GraphicsContext gc ,Canvas canvas ,Paint current)
     {
             gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package view;
+
 import controller.Tools;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
@@ -29,7 +30,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
-import model.*;
+import model.*; 
 
 /**
  * FXML Controller class
@@ -37,6 +38,7 @@ import model.*;
  * @author Omar's PC
  */
 public class PaintController implements Initializable {
+
     @FXML
     private Button button2;
     @FXML
@@ -80,6 +82,9 @@ public class PaintController implements Initializable {
     public static int priority = 0;
     public javafx.scene.paint.Paint prev = javafx.scene.paint.Paint.valueOf("#ffffff");
     public javafx.scene.paint.Paint currentfill = javafx.scene.paint.Paint.valueOf("#ffffff");
+    public javafx.scene.paint.Paint currentcolor = javafx.scene.paint.Paint.valueOf("#ffffff");
+    @FXML
+    private Button square;
 
     /**
      * Initializes the controller class.
@@ -90,9 +95,9 @@ public class PaintController implements Initializable {
         widthText.setText("1.0");
         widthText.textProperty().bindBidirectional(width.valueProperty(), NumberFormat.getNumberInstance());
         fillpick.setVisible(false);
-                    gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+        gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
     }
 
     public ColorPicker getColorPicker() {
@@ -107,13 +112,16 @@ public class PaintController implements Initializable {
         startX = e.getX();
         startY = e.getY();
         javafx.scene.paint.Paint currentfill = fillpick.getValue();
+        javafx.scene.paint.Paint currentcolor = colorPicker.getValue();
 
     }
 
     @FXML
     private void canvasOnMOuseDragged(MouseEvent e) {
-                    double currentX = e.getX();
-            double currentY = e.getY();
+        double currentX = e.getX();
+        double currentY = e.getY();
+                javafx.scene.paint.Paint currentfill = fillpick.getValue();
+        javafx.scene.paint.Paint currentcolor = colorPicker.getValue();
         if (shape.compareTo("brush") == 0) {
             //widthText.setText("8");
 
@@ -125,66 +133,32 @@ public class PaintController implements Initializable {
 
         } else if (shape.compareTo("circle") == 0) {
             Oval c = new Oval();
-            c.updateShape(c, hmap, prev, startX, startY, currentX, currentY, prev);
+            c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
+            Tools.refresh(gc, canvas, currentfill);
             Tools.parse(hmap, gc);
 
         } else if (shape.compareTo("rectangle") == 0) {
             Rectangle c = new Rectangle();
-            c.setFill(isFilled);
-            c.setX1((int) startX);
-            c.setY1((int) startY);
-            c.setX2((int) e.getX());
-            c.setY2((int) e.getY());
-            c.setPaint(colorPicker.getValue());
-            c.addShape(hmap);
-            priority--;
-            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(currentfill);
+            c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
+            Tools.refresh(gc, canvas, currentfill);
             Tools.parse(hmap, gc);
 
         } else if (shape.compareTo("triangle") == 0) {
             Triangle c = new Triangle();
-            c.setFill(isFilled);
-            c.setX1((int) startX);
-            c.setY1((int) startY);
-            c.setX2((int) e.getX());
-            c.setY2((int) e.getY());
-            c.setPaint(colorPicker.getValue());
-            c.addShape(hmap);
-            priority--;
-            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(currentfill);
+            c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
+            Tools.refresh(gc, canvas, currentfill);
             Tools.parse(hmap, gc);
 
         } else if (shape.compareTo("line") == 0) {
             Line c = new Line();
-            c.setX1((int) startX);
-            c.setY1((int) startY);
-            c.setX2((int) e.getX());
-            c.setY2((int) e.getY());
-            c.setPaint(colorPicker.getValue());
-            c.addShape(hmap);
-            priority--;
-            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(currentfill);
+            c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
+            Tools.refresh(gc, canvas, currentfill);
             Tools.parse(hmap, gc);
 
         } else if (shape.compareTo("square") == 0) {
             Square c = new Square();
-            c.setFill(isFilled);
-            c.setX1((int) startX);
-            c.setY1((int) startY);
-            c.setX2((int) e.getX());
-            c.setY2((int) e.getY());
-            c.setPaint(colorPicker.getValue());
-            c.addShape(hmap);
-            priority--;
-            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(currentfill);
+            c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
+            Tools.refresh(gc, canvas, currentfill);
             Tools.parse(hmap, gc);
 
         } else if (shape.compareTo("eraser") == 0) {
@@ -255,6 +229,7 @@ public class PaintController implements Initializable {
             r.setFillPaint(fillpick.getValue());
             // r.setLineWidth(width.getValue());
             r.addShape(hmap);
+           
 
         } else if (shape.compareTo("triangle") == 0) {
             if (!isFilled) {

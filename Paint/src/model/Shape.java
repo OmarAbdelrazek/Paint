@@ -166,10 +166,7 @@ public abstract class Shape implements Serializable ,Cloneable
     /**
      * Accessor method for color
      */
-    public Paint getPaint(Paint paint)
-    {
-        return paint;
-    }
+    
     abstract public void draw(GraphicsContext g);
     public void addShape(HashMap Shapeshm ){
     int order = view.PaintController.priority;
@@ -191,6 +188,7 @@ public abstract class Shape implements Serializable ,Cloneable
             this.setPaint(paint);
             this.addShape(shapehm);
             priority--;
+
 
     }
 

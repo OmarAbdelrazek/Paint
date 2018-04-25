@@ -26,8 +26,10 @@ public class Paint extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Paint.fxml"));
         
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
+        stage.setTitle("Picasso");
+        stage.setResizable(true);
+        stage.setMaximized(true);
         stage.show();
     }
 
