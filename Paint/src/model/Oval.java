@@ -59,6 +59,10 @@ public class Oval extends BoundedShape {
     public void updateShape(Oval c, HashMap<Integer, Shape> hmap, Paint prev, double startX, double startY, double currentX, double currentY, Paint prev0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    @Override
+    public String toString(){
+        return "Oval";
+    }
 
 
 

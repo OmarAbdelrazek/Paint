@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import model.*; 
+import controller.*;
 
 /**
  * FXML Controller class
@@ -85,6 +86,7 @@ public class PaintController implements Initializable {
     public javafx.scene.paint.Paint currentcolor = javafx.scene.paint.Paint.valueOf("#ffffff");
     @FXML
     private Button square;
+    SaveJSON s = new SaveJSON();
 
     /**
      * Initializes the controller class.
@@ -215,6 +217,8 @@ public class PaintController implements Initializable {
             c.setFillPaint(fillpick.getValue());
             // c.setLineWidth(width.getValue());
             c.addShape(hmap);
+            s.save(hmap, "lolxd");
+             
 
         } else if (shape.compareTo("rectangle") == 0) {
 

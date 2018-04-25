@@ -5,15 +5,11 @@
  */
 package controller;
 
-import java.util.HashMap;
-
 /**
  *
  * @author Omar
  */
-public class SaveXML implements SaveStrategy{
-     public void save(HashMap HashMapOfShapes , String path){
-       
-   }
+public interface LoadStrategy {
+    public void Load(java.util.HashMap hmap,String path);
     
 }

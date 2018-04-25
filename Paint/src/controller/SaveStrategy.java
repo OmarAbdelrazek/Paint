@@ -5,10 +5,20 @@
  */
 package controller;
 
+import java.util.HashMap;
+import model.Shape;
+
 /**
  *
  * @author Omar
  */
 public interface SaveStrategy {
+
+    /**
+     *
+     * @param hmap
+     * @param path
+     */
+    public void save(java.util.HashMap hmap , String path);
     
 }
