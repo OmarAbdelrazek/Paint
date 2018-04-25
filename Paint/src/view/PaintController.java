@@ -167,6 +167,7 @@ public class PaintController implements Initializable {
             double y = e.getY() - (size / 2);
             Eraser eraser = new Eraser(size, x, y);
             eraser.draw(gc);
+            
         }
     }
 
