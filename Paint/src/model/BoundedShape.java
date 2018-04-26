@@ -2,9 +2,11 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.HashMap;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import static view.PaintController.priority;
 
 /**
  * This is an abstract class with an abstract draw method. It inherits from MyShape
@@ -92,6 +94,33 @@ abstract class BoundedShape extends Shape
     public boolean getFill()
     {
         return fill;
+    }
+        public void updateShape(HashMap shapehm,Boolean isFilled ,Paint fillpaint, double startX,double startY, double currentX,double currentY ,Paint paint)
+    {
+            this.setFill(isFilled);
+            this.setFillPaint(fillpaint);
+            this.setX1((int) startX);
+            this.setY1((int) startY);
+            this.setX2((int) currentX);
+            this.setY2((int) currentY);
+            this.setPaint(paint);
+            this.addShape(shapehm);
+            priority--;
+
+
+    }
+        public void updateShapeinfo(HashMap shapehm, Boolean isFilled, Paint fillpaint, double startX,double startY, double currentX,double currentY ,Paint paint)
+    {       
+            this.setFill(isFilled);
+            this.setFillPaint(fillpaint);
+            this.setX1((int) startX);
+            this.setY1((int) startY);
+            this.setX2((int) currentX);
+            this.setY2((int) currentY);
+            this.setPaint(paint);
+            this.addShape(shapehm);
+
+
     }
     
     /**

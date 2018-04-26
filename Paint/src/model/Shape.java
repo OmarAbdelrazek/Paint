@@ -183,19 +183,7 @@ public abstract class Shape implements Serializable ,Cloneable
     }
     
     
-    public void updateShape(HashMap shapehm, Paint isFilled, double startX,double startY, double currentX,double currentY ,Paint paint)
-    {
-            this.setFillPaint(isFilled);
-            this.setX1((int) startX);
-            this.setY1((int) startY);
-            this.setX2((int) currentX);
-            this.setY2((int) currentY);
-            this.setPaint(paint);
-            this.addShape(shapehm);
-            priority--;
 
-
-    }
 
     
     /**
