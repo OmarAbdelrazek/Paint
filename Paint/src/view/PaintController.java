@@ -126,7 +126,7 @@ public class PaintController implements Initializable {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
        found = new ArrayList();
        String[] arr = {"move","delete"};
-       selectAction.getItems().removeAll(selectAction.getItems());
+//       selectAction.getItems().removeAll(selectAction.getItems());
         
     
         
