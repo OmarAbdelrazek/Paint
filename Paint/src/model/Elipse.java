@@ -17,8 +17,8 @@ import javafx.scene.paint.Paint;
  */
 public class Elipse extends BoundedShape {
 
-    public Elipse(int x1, int y1, int x2, int y2, Paint paint, boolean fill, Paint fillpaint,Double lw) {
-        super(x1, y1, x2, y2, paint, fill, fillpaint,lw);
+    public Elipse(int x1, int y1, int x2, int y2, Paint paint, boolean fill, Paint fillpaint, Double lw) {
+        super(x1, y1, x2, y2, paint, fill, fillpaint, lw);
     }
 
     /**
@@ -30,7 +30,7 @@ public class Elipse extends BoundedShape {
      */
     @Override
     public void draw(GraphicsContext g) {
-       // g.setLineWidth(this.getLineWidth());
+        g.setLineWidth(this.lw);// g.setLineWidth(this.getLineWidth());
         g.setStroke(this.getPaint()); //sets the color
         if (getFill()) //determines whether fill is true or false
         {

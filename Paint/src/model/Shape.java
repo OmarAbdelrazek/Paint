@@ -19,7 +19,7 @@ public abstract class Shape implements Serializable ,Cloneable
 {
     private int x1,y1,x2,y2; //coordinates of shape
     private Paint paint,fillpaint; // color of shape
-    private Double lw;
+    Double lw;
     /**
     * public constructor which takes no variables and
     * sets coordinates to zero and color to black
@@ -52,7 +52,7 @@ public abstract class Shape implements Serializable ,Cloneable
         this.y2=y2;
         this.paint=paint;
         this.fillpaint=fillpaint;
-        this.lw=1.0;
+        this.lw=lw;
     }
 
     public Shape(int x1, int y1, int x2, int y2, Paint paint,Double lw) {

@@ -240,7 +240,7 @@ public class PaintController implements Initializable {
                 gc.setStroke(hmap.get(target).getPaint());
                 //gc.strokeOval(startX, startY, Math.abs(hmap.get(target).getX1() - hmap.get(target).getX2()), Math.abs(hmap.get(target).getY1() - hmap.get(target).getY2()));
                 Oval o = new Oval();
-                o.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue());
+                o.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
                 hmap.put(hmap.size(), o);
                 MydrawingEngine.refresh(gc, canvas, currentfill);
                 MydrawingEngine.parse(hmap, gc);
@@ -271,7 +271,7 @@ public class PaintController implements Initializable {
 
         } else if (shape.compareTo("circle") == 0) {
             Oval c = new Oval();
-            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor);
+            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
             selectBtn.setDisable(false);
@@ -280,7 +280,7 @@ public class PaintController implements Initializable {
             // gc.fillRect(c.getUpperLeftX(), c.getUpperLeftY(), c.getWidth(), c.getHeight() );
         } else if (shape.compareTo("rectangle") == 0) {
             Rectangle c = new Rectangle();
-            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor);
+            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
             selectBtn.setDisable(false);
@@ -288,7 +288,7 @@ public class PaintController implements Initializable {
 
         } else if (shape.compareTo("triangle") == 0) {
             Triangle c = new Triangle();
-            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor);
+            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
             selectBtn.setDisable(false);
@@ -310,7 +310,7 @@ public class PaintController implements Initializable {
 
         } else if (shape.compareTo("square") == 0) {
             Square c = new Square();
-            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor);
+            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
             undoBtn.setDisable(false);
@@ -395,7 +395,7 @@ public class PaintController implements Initializable {
 
             gc.setFill(fillpick.getValue());
             Oval c = new Oval();
-            c.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue());
+            c.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(c.getUpperLeftX(), c.getUpperLeftY(), c.getLowerRightX(), c.getLowerRightY(), selectCounter);
             selectCounter++;
 
@@ -407,7 +407,7 @@ public class PaintController implements Initializable {
             gc.setStroke(colorPicker.getValue());
             gc.setFill(fillpick.getValue());
             Rectangle r = new Rectangle();
-            r.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue());
+            r.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(r.getUpperLeftX(), r.getUpperLeftY(), r.getLowerRightX(), r.getLowerRightY(), selectCounter);
             selectCounter++;
             // r.setLineWidth(width.getValue());
@@ -419,7 +419,7 @@ public class PaintController implements Initializable {
             }
             gc.setFill(fillpick.getValue());
             Triangle t = new Triangle();
-            t.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue());
+            t.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(t.getUpperLeftX(), t.getUpperLeftY(), t.getLowerRightX(), t.getLowerRightY(), selectCounter);
             selectCounter++;
             //  t.setLineWidth(width.getValue());

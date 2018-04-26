@@ -26,7 +26,7 @@ public class Triangle extends BoundedShape {
      * them into MyBoundedShape's constructor.
      */
     public Triangle(int x1, int y1, int x2, int y2, Paint paint, boolean isfill, Paint fillpaint, Double lw) {
-        super(x1, y1, x2, y2, paint, isfill, fillpaint,lw);
+        super(x1, y1, x2, y2, paint, isfill, fillpaint, lw);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Triangle extends BoundedShape {
     public void draw(GraphicsContext g) {
         double[] Xcoord = {getX1() + Math.abs(getX2() - getX1()) / 2, getX1(), getX2()};
         double[] Ycoord = {getY1(), getY2(), getY2()};
-       // g.setLineWidth(this.getLineWidth());
+        g.setLineWidth(this.lw);// g.setLineWidth(this.getLineWidth());
         g.setStroke(this.getPaint()); //sets the color
         if (getFill()) //determines whether fill is true or false
         {
@@ -57,10 +57,10 @@ public class Triangle extends BoundedShape {
         gc.strokePolygon(Xcoord, Ycoord, 3);
 
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "triangle";
     }
-
 
 }

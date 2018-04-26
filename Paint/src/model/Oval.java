@@ -39,7 +39,7 @@ public class Oval extends BoundedShape {
     public void draw(GraphicsContext g) {
 
         g.setStroke(this.getPaint()); //sets the color
-        //g.setLineWidth(this.getLineWidth());
+        g.setLineWidth(this.lw);//g.setLineWidth(this.getLineWidth());
         if (getFill()) //determines whether fill is true or false
         {   g.setFill(this.getFillPaint());
             g.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());

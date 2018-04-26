@@ -95,7 +95,7 @@ abstract class BoundedShape extends Shape
     {
         return fill;
     }
-        public void updateShape(HashMap shapehm,Boolean isFilled ,Paint fillpaint, double startX,double startY, double currentX,double currentY ,Paint paint)
+        public void updateShape(HashMap shapehm,Boolean isFilled ,Paint fillpaint, double startX,double startY, double currentX,double currentY ,Paint paint , Double lw)
     {
             this.setFill(isFilled);
             this.setFillPaint(fillpaint);
@@ -104,12 +104,13 @@ abstract class BoundedShape extends Shape
             this.setX2((int) currentX);
             this.setY2((int) currentY);
             this.setPaint(paint);
+            this.setLineWidth(lw);
             this.addShape(shapehm);
             priority--;
 
 
     }
-        public void updateShapeinfo(HashMap shapehm, Boolean isFilled, Paint fillpaint, double startX,double startY, double currentX,double currentY ,Paint paint)
+        public void updateShapeinfo(HashMap shapehm, Boolean isFilled, Paint fillpaint, double startX,double startY, double currentX,double currentY ,Paint paint ,Double lw)
     {       
             this.setFill(isFilled);
             this.setFillPaint(fillpaint);
@@ -118,6 +119,7 @@ abstract class BoundedShape extends Shape
             this.setX2((int) currentX);
             this.setY2((int) currentY);
             this.setPaint(paint);
+            this.setLineWidth(lw);
             this.addShape(shapehm);
 
 

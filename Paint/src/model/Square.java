@@ -35,7 +35,7 @@ public class Square extends BoundedShape {
      */
     @Override
     public void draw(GraphicsContext g) {
-        //g.setLineWidth(this.getLineWidth());
+        g.setLineWidth(this.lw);//g.setLineWidth(this.getLineWidth());
         g.setStroke(this.getPaint()); //sets the color
         if (getFill()) //determines whether fill is true or false
         {
