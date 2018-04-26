@@ -311,6 +311,7 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+             undoBtn.setDisable(false);
 
            
 
@@ -361,6 +362,8 @@ public class PaintController implements Initializable {
        moveBtn.setDisable(true);
        resizeBtn.setDisable(true);
        copyBtn.setDisable(true);
+       undoBtn.setDisable(true);
+       redoBtn.setDisable(true);
     }
 
     @FXML
@@ -539,6 +542,8 @@ public class PaintController implements Initializable {
        moveBtn.setDisable(true);
        resizeBtn.setDisable(true);
        copyBtn.setDisable(true);
+       undoBtn.setDisable(true);
+       redoBtn.setDisable(true);
         
     }
 
@@ -552,6 +557,8 @@ public class PaintController implements Initializable {
        moveBtn.setDisable(true);
        resizeBtn.setDisable(true);
        copyBtn.setDisable(true);
+       undoBtn.setDisable(true);
+       redoBtn.setDisable(true);
     }
 
     @FXML
@@ -570,6 +577,8 @@ public class PaintController implements Initializable {
        moveBtn.setDisable(true);
        resizeBtn.setDisable(true);
        copyBtn.setDisable(true);
+       undoBtn.setDisable(true);
+       redoBtn.setDisable(true);
     }
 
     @FXML
@@ -586,6 +595,8 @@ public class PaintController implements Initializable {
         priority = 0;
         BoundsOperations.boundMap.clear();
         found.clear();
+        undoBtn.setDisable(true);
+       redoBtn.setDisable(true);
     }
 
     @FXML
