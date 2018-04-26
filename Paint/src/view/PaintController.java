@@ -32,6 +32,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import model.*; 
 import controller.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.paint.Color;
@@ -40,6 +44,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import org.json.simple.parser.ParseException;
 
 /**
  * FXML Controller class
@@ -138,6 +146,53 @@ public class PaintController implements Initializable {
 
     @FXML
     private Canvas canvas;
+    private Stage stg;
+    void init(Stage stage) {
+       // throw new UnsupportedOperationException("Not supported yet."); 
+       this.stg =stage;
+    }
+    @FXML
+    private void openFile() throws FileNotFoundException, ParseException
+    {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+              fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(stg); 
+        System.out.println(file.getPath());
+         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        LoadJSON.Load( file.getPath());
+        
+    }
+    @FXML
+    private void saveFile() throws IOException
+    {
+        SaveJSON.save(hmap);
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+              fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(stg);
+        if(file != null){
+                 buffer(SaveJSON.readFile(), file);
+              }
+    }
+       private void buffer(String content, File file){
+        try {
+            
+            
+            
+            FileWriter fileWriter = null;
+             
+            fileWriter = new FileWriter(file);
+            fileWriter.write(content);
+            fileWriter.close();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "error!");
+            
+        }
+         
+    }
+        
 
     @FXML
     private void canvasOnMousePressed(MouseEvent e) {

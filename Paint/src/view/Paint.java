@@ -23,13 +23,16 @@ public class Paint extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Paint.fxml"));
+       FXMLLoader loader= new FXMLLoader(getClass().getResource("Paint.fxml"));
+        Parent root = loader.load();
+        PaintController controller = (PaintController)loader.getController();
+        controller.init(stage);
         
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Picasso");
-        stage.setResizable(true);
-        stage.setMaximized(true);
+        stage.setResizable(false);
+       // stage.setMaximized(true);
         stage.show();
     }
 

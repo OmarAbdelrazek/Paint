@@ -5,7 +5,9 @@
  */
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,8 +21,8 @@ import model.*;
  *
  * @author Omar
  */
-public class SaveJSON implements SaveStrategy{
-   public  void save(HashMap HashMapOfShapes,String path){
+public class SaveJSON {
+   public static void save(HashMap HashMapOfShapes){
      
         JSONObject obj = new JSONObject();
          JSONArray list = new JSONArray();
@@ -30,18 +32,19 @@ public class SaveJSON implements SaveStrategy{
           FileWriter file;
        try {
            
-    BufferedWriter writer = new BufferedWriter(new FileWriter("lool.json"));
+    BufferedWriter writer = new BufferedWriter(new FileWriter("lol.json"));
             for(int i=0;i<HashMapOfShapes.size();i++){
        
         Shape s = (Shape) HashMapOfShapes.get(i);
+        
        obj.put("Y1", s.getY1());
         obj.put("X1", s.getX1());
         obj.put("Y2", s.getY2());
         obj.put("X2", s.getX2());
         
         
-         obj.put("Paint", s.getPaint());
-          obj.put("fillPaint", s.getFillPaint());
+         obj.put("Paint", s.getPaint().toString());
+          obj.put("fillPaint", s.getFillPaint().toString());
            obj.put("lW", s.getLineWidth());
                     
 
@@ -63,6 +66,23 @@ public class SaveJSON implements SaveStrategy{
         
        
    }
+   public static String readFile() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader ("lol.json"));
+    String         line = null;
+    StringBuilder  stringBuilder = new StringBuilder();
+    String         ls = System.getProperty("line.separator");
+
+    try {
+        while((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
+            stringBuilder.append(ls);
+        }
+
+        return stringBuilder.toString();
+    } finally {
+        reader.close();
+    }
+}
     
     
 }
