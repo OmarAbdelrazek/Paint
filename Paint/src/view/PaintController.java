@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -116,7 +117,13 @@ public class PaintController implements Initializable {
     boolean removeShape = false;
     private ChoiceBox<?> selectAction;
     @FXML
-    private ComboBox<?> dropAction;
+    private MenuItem btnOpenJ;
+    @FXML
+    private MenuItem btnSaveJ;
+    @FXML
+    private Button resizeBtn;
+    @FXML
+    private Button copyBtn;
     
           
    
@@ -132,6 +139,7 @@ public class PaintController implements Initializable {
         fillpick.setVisible(false);
         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        selectBtn.setDisable(true);
        found = new ArrayList();
        String[] arr = {"move","delete"};
 //       selectAction.getItems().removeAll(selectAction.getItems());
@@ -226,6 +234,8 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+                    selectBtn.setDisable(false);
+
             
            // gc.fillRect(c.getUpperLeftX(), c.getUpperLeftY(), c.getWidth(), c.getHeight() );
 
@@ -234,6 +244,8 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+                                selectBtn.setDisable(false);
+
             
 
         } else if (shape.compareTo("triangle") == 0) {
@@ -241,12 +253,15 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+                                selectBtn.setDisable(false);
+
 
         } else if (shape.compareTo("line") == 0) {
             Line c = new Line();
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+
            
 
         } else if (shape.compareTo("square") == 0) {
@@ -296,12 +311,12 @@ public class PaintController implements Initializable {
         wdth = Math.abs(endX - startX);
 
          if(shape.compareTo("select") ==0 && isSelected){
-            
-             for(int i=0 ; i<= BoundsOperations.boundMap.size() ; i++){
+           
+             for(int i= BoundsOperations.boundMap.size()-1 ; i>= 0 ; i--){
                   System.out.print("x1:  "+BoundsOperations.boundMap.get(i)[0]);
                  System.out.print("x2:   "+BoundsOperations.boundMap.get(i)[2]);
                  System.out.print("Y1:  "+BoundsOperations.boundMap.get(i)[1]);
-                 System.out.print("y2:  "+BoundsOperations.boundMap.get(i)[3]);
+                System.out.print("y2:  "+BoundsOperations.boundMap.get(i)[3]);
                  System.out.println("");
                 if(startX >= Math.min(BoundsOperations.boundMap.get(i)[0], BoundsOperations.boundMap.get(i)[2]) && startX <= Math.max(BoundsOperations.boundMap.get(i)[0], BoundsOperations.boundMap.get(i)[2]) && startY > Math.min(BoundsOperations.boundMap.get(i)[1], BoundsOperations.boundMap.get(i)[3]) && startY < Math.max(BoundsOperations.boundMap.get(i)[1], BoundsOperations.boundMap.get(i)[3]) && !hmap.isEmpty())
                  {
@@ -309,6 +324,8 @@ public class PaintController implements Initializable {
                      found.add(i);
                      target = i;
                      System.out.println(target);
+                                          break;
+
                  }
                 if(found.size()>1)
                 {
@@ -316,7 +333,7 @@ public class PaintController implements Initializable {
                 }
                  System.out.println(target);
                    isSelected = false;
-                   selectLbl.setText("Selection Mode: OFF");
+                  // selectLbl.setText("Selection Mode: OFF");
                  
              }
              
@@ -502,7 +519,6 @@ public class PaintController implements Initializable {
 
     }
 
-    @FXML
     private void moveBtn(ActionEvent event) {
         shape = "move";
         Boolean mero = false;
@@ -535,19 +551,32 @@ public class PaintController implements Initializable {
         if(!isSelected){
             isSelected = true;
             shape = "select";
-            selectLbl.setText("Selection Mode : ON");
+             selectBtn.setDisable(true);
         }
         else
         {
             isSelected = false;
             
-            selectLbl.setText("Selection Mode : OFF");
+            
             
         }
     }
 
     @FXML
-    private void cmbChoose(ActionEvent event) {
+    private void moveBtnAction(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void resizeBtnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void copyBtnAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void deleteBtnAction(ActionEvent event) {
     }
 
    
