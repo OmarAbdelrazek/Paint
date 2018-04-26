@@ -57,7 +57,7 @@ public class LoadJSON {
           /*  obj.put("Paint", s.getPaint());
           obj.put("fillPaint", s.getFillPaint());
            obj.put("lW", s.getLineWidth());*/
-          String paint =  (String)jsonObject.get("Paint");
+            String paint =  (String)jsonObject.get("Paint");
             System.out.println(paint);
             String fillpaint =  (String)jsonObject.get("fillPaint");
             System.out.println(fillpaint);
