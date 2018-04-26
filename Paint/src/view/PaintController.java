@@ -184,6 +184,11 @@ public class PaintController implements Initializable {
         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         LoadJSON.Load(file.getPath());
+        Oval o = (Oval) LoadJSON.array.get(0);
+        o.draw(gc);
+      
+       
+        
 
     }
 

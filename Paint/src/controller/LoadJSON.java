@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import model.Oval;
 import model.Shape;
 import model.Shapes;
 
@@ -19,7 +20,7 @@ import org.json.simple.parser.JSONParser;
 
 
 public class LoadJSON { 
-    public static  ArrayList<Shapes> array;
+    public static  ArrayList<Shape> array;
     
     
     public static void Load(String path) throws FileNotFoundException, org.json.simple.parser.ParseException{
@@ -30,7 +31,7 @@ public class LoadJSON {
  JSONParser parser = new JSONParser();
         try
         {
-            
+          
             
             Object object;
       object = parser.parse(new FileReader(path));
@@ -51,22 +52,21 @@ public class LoadJSON {
           /*  obj.put("Paint", s.getPaint());
           obj.put("fillPaint", s.getFillPaint());
            obj.put("lW", s.getLineWidth());*/
-          Paint paint =  (Paint)jsonObject.get("Paint");
+          String paint =  (String)jsonObject.get("Paint");
             System.out.println(paint);
-            Paint fillpaint =  (Paint)jsonObject.get("fillPaint");
+            String fillpaint =  (String)jsonObject.get("fillPaint");
             System.out.println(fillpaint);
             double lw = (double)jsonObject.get("lW");
             System.out.println(lw);
+            String name = (String)jsonObject.get("Name");
+            System.out.println(name);
+           
             System.out.println("Ameeeeeeeeeeeeer");
-            Shape s = new Shape((int)X1, (int)Y1, (int)X2, (int)Y2, paint, fillpaint, lw) {
-                   @Override
-                   public void draw(GraphicsContext g) {
-                       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                   }
-               } ;
+                  
+               Oval o = new Oval((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
             
             
-            array.add((Shapes) s);
+            array.add( (Shape) o);
           
                
 

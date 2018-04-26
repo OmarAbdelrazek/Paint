@@ -31,6 +31,7 @@ public class Paint extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Picasso");
+        
         stage.setResizable(false);
        // stage.setMaximized(true);
         stage.show();
