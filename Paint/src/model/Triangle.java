@@ -57,6 +57,10 @@ public class Triangle extends BoundedShape {
         gc.strokePolygon(Xcoord, Ycoord, 3);
 
     }
+    @Override
+    public String toString(){
+        return "triangle";
+    }
 
 
 }

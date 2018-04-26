@@ -53,5 +53,9 @@ public class Square extends BoundedShape {
         gc.strokeRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
 
     }
+    @Override
+    public String toString(){
+        return "square";
+    }
 
 }

@@ -48,6 +48,8 @@ import javafx.scene.control.RadioButton;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.layout.AnchorPane;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -112,10 +114,10 @@ public class PaintController implements Initializable {
     boolean isSelected = false;
     private Label selectLbl;
     private  ArrayList found;
-    private int target;
+    public static int target;
     private int selectCounter = 0;
     boolean removeShape = false;
-    private ChoiceBox<?> selectAction;
+   
     @FXML
     private MenuItem btnOpenJ;
     @FXML
@@ -124,6 +126,13 @@ public class PaintController implements Initializable {
     private Button resizeBtn;
     @FXML
     private Button copyBtn;
+    boolean isCopy = false;
+    public Stack<Shape> undoStack;
+      public Stack<String>namesStack;
+    @FXML
+    private Button undoBtn;
+    @FXML
+    private Button redoBtn;
     
           
    
@@ -141,8 +150,15 @@ public class PaintController implements Initializable {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         selectBtn.setDisable(true);
        found = new ArrayList();
-       String[] arr = {"move","delete"};
-//       selectAction.getItems().removeAll(selectAction.getItems());
+       delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
+       undoStack = new Stack<>();
+       namesStack = new Stack<>();
+       undoBtn.setDisable(true);
+       redoBtn.setDisable(true);
+       
         
     
         
@@ -208,6 +224,35 @@ public class PaintController implements Initializable {
         startY = e.getY();
         javafx.scene.paint.Paint currentfill = fillpick.getValue();
         javafx.scene.paint.Paint currentcolor = colorPicker.getValue();
+        if(isCopy && shape.compareTo("copy") == 0){
+          String name =  hmap.get(target).toString();
+          if(name.compareTo("Oval")==0){
+             // int x1, int y1, int x2, int y2,Paint paint, boolean isfill,Paint fillpaint,Double lw)
+              gc.setFill(hmap.get(target).getFillPaint());
+              gc.setStroke(hmap.get(target).getPaint());
+              //gc.strokeOval(startX, startY, Math.abs(hmap.get(target).getX1() - hmap.get(target).getX2()), Math.abs(hmap.get(target).getY1() - hmap.get(target).getY2()));
+              Oval o= new Oval();
+              o.setFill(isFilled);
+              o.setFillPaint(hmap.get(target).getFillPaint());
+              o.setLineWidth(hmap.get(target).getLineWidth());
+              o.setX1((int) startX);
+              o.setX2(hmap.get(target).getX2());
+              o.setY1((int) startY);
+              o.setY2(hmap.get(target).getY2());
+              hmap.put(hmap.size(),o );
+               MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+              
+          }
+          else if(name.compareTo("Rectangle")==0){
+          }
+          else if (name.compareTo("square")==0){
+          }
+          else if(name.compareTo("triangle")==0){
+          }
+            
+        }
+        
          
        
         
@@ -235,6 +280,7 @@ public class PaintController implements Initializable {
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
                     selectBtn.setDisable(false);
+                     undoBtn.setDisable(false);
 
             
            // gc.fillRect(c.getUpperLeftX(), c.getUpperLeftY(), c.getWidth(), c.getHeight() );
@@ -245,6 +291,8 @@ public class PaintController implements Initializable {
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
                                 selectBtn.setDisable(false);
+                                                     undoBtn.setDisable(false);
+
 
             
 
@@ -254,6 +302,8 @@ public class PaintController implements Initializable {
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
                                 selectBtn.setDisable(false);
+                                                     undoBtn.setDisable(false);
+
 
 
         } else if (shape.compareTo("line") == 0) {
@@ -269,6 +319,8 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, currentfill, startX, startY, currentX, currentY, currentcolor);
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+                                 undoBtn.setDisable(false);
+
 
         } else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
@@ -293,6 +345,10 @@ public class PaintController implements Initializable {
         Boolean mero = true;
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
+          delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
     }
 
     @FXML
@@ -301,6 +357,10 @@ public class PaintController implements Initializable {
         Boolean mero = true;
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
+         delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
     }
 
     @FXML
@@ -333,7 +393,7 @@ public class PaintController implements Initializable {
                 }
                  System.out.println(target);
                    isSelected = false;
-                  // selectLbl.setText("Selection Mode: OFF");
+                  
                  
              }
              
@@ -475,6 +535,11 @@ public class PaintController implements Initializable {
         Boolean mero = true;
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
+         delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
+        
     }
 
     @FXML
@@ -483,6 +548,10 @@ public class PaintController implements Initializable {
         Boolean mero = true;
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
+         delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
     }
 
     @FXML
@@ -497,6 +566,10 @@ public class PaintController implements Initializable {
         Boolean mero = false;
         Filled.setDisable(!mero);
         fillpick.setDisable(!mero);
+         delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
     }
 
     @FXML
@@ -511,6 +584,8 @@ public class PaintController implements Initializable {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         hmap.clear();
         priority = 0;
+        BoundsOperations.boundMap.clear();
+        found.clear();
     }
 
     @FXML
@@ -551,7 +626,12 @@ public class PaintController implements Initializable {
         if(!isSelected){
             isSelected = true;
             shape = "select";
-             selectBtn.setDisable(true);
+             selectBtn.setDisable(true); 
+             delete.setDisable(false);
+       moveBtn.setDisable(false);
+       resizeBtn.setDisable(false);
+       copyBtn.setDisable(false);
+             
         }
         else
         {
@@ -564,20 +644,94 @@ public class PaintController implements Initializable {
 
     @FXML
     private void moveBtnAction(ActionEvent event) {
+        if(selectBtn.isDisable()){
+        delete.setDisable(true);
+       moveBtn.setDisable(false);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
+               }
     }
 
 
     @FXML
     private void resizeBtnAction(ActionEvent event) {
+        if(selectBtn.isDisable()){
+        delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(false);
+       copyBtn.setDisable(true);
+        }
     }
 
     @FXML
     private void copyBtnAction(ActionEvent event) {
+       if(selectBtn.isDisable()){
+        delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(false);
+       }
+       isCopy = true;
+       shape = "copy";
     }
 
     @FXML
     private void deleteBtnAction(ActionEvent event) {
+        if(selectBtn.isDisable()){
+        delete.setDisable(false);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(true);
+        }
+        hmap.remove(target);
+        MydrawingEngine.removeShape(hmap);
+         MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+        
+        
+        
     }
+
+    @FXML
+    private void undoBtnAction(ActionEvent event) {
+        if(priority > 0)
+        {
+          ///  undoBtn.setDisable(false);
+        redoBtn.setDisable(false);
+        undoStack.push(hmap.get(priority-1));
+        hmap.remove(priority-1);
+        priority--;
+                    System.out.println(hmap.size());
+
+         MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+        }
+        if(hmap.size() == 0)
+        undoBtn.setDisable(true);
+         
+    }
+
+    @FXML
+    private void redoBtnAction(ActionEvent event) {
+        
+        if(undoStack.size() > 0){
+            redoBtn.setDisable(false);
+            undoBtn.setDisable(false);
+        System.out.println(priority);
+        hmap.put(priority, undoStack.pop());
+        
+                        priority++;
+MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+        }
+        if(undoStack.size() <=0)
+        redoBtn.setDisable(true);
+       
+                             
+
+    }
+
+    
 
    
 

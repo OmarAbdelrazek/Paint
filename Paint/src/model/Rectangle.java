@@ -55,5 +55,9 @@ public class Rectangle extends BoundedShape {
         gc.strokeRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
 
     }
+    @Override
+    public String toString(){
+        return "Rectangle";
+    }
 
 }

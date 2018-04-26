@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Effect;
 import javafx.scene.paint.Paint;
 import static view.PaintController.priority;
+import static view.PaintController.target;
 
 /**
  * This class contains int coordinates and a Color color. It has accessor and mutator methods for them.
@@ -126,7 +127,14 @@ public abstract class Shape implements Serializable ,Cloneable
     /**
      * Mutator method for color
      */
-
+    
+    public int getWidth(int x1,int x2){
+        return Math.abs(x1-x2);
+    }
+    public int getHeight(int y1, int y2){
+    return Math.abs(y1-y2);
+            
+}
     
     
     //Accessor methods
@@ -173,11 +181,8 @@ public abstract class Shape implements Serializable ,Cloneable
     Shapeshm.put(order, this);
     view.PaintController.priority++;
     }
-    public void removeShape(Shape shape,HashMap Shapeshm){
-    int order = view.PaintController.priority-1;
-    Shapeshm.remove(order);
     
-    }
+    
     public void updateShape(HashMap shapehm, Paint isFilled, double startX,double startY, double currentX,double currentY ,Paint paint)
     {
             this.setFillPaint(isFilled);

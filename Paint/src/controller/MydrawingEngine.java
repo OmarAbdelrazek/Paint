@@ -21,6 +21,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import model.*;
 import view.PaintController;
+import static view.PaintController.priority;
+import static view.PaintController.target;
 
 /**
  *
@@ -73,6 +75,21 @@ public abstract class MydrawingEngine implements DrawingEngine {
         }
 
     }
+    public static void removeShape(HashMap shapeshm){
+    shapeshm.remove(target);
+    int count = priority;
+        for(int i = 0 ; i<count ; i++)
+        {
+            if (shapeshm.get(i)==null)
+            {
+                shapeshm.put(i, shapeshm.get(i+1));
+                shapeshm.remove(i+1);
+            }
+                
+        }
+    
+    }
+     
 
 
 }
