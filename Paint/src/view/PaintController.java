@@ -50,6 +50,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.AnchorPane;
+import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -198,6 +199,18 @@ public class PaintController implements Initializable {
         File file = fileChooser.showSaveDialog(stg);
         if(file != null){
                  buffer(SaveJSON.readFile(), file);
+              }
+    }
+         @FXML
+    private void saveXML() throws IOException, ParserConfigurationException
+    {
+        SaveXML.save(hmap);
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+              fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(stg);
+        if(file != null){
+                 buffer(SaveXML.readFile(), file);
               }
     }
        private void buffer(String content, File file){

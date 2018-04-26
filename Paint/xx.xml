@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_161" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <int>0</int>
+   <object class="model.Oval">
+    <void property="x1">
+     <int>83</int>
+    </void>
+    <void property="x2">
+     <int>308</int>
+    </void>
+    <void property="y1">
+     <int>85</int>
+    </void>
+    <void property="y2">
+     <int>252</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <int>1</int>
+   <object class="model.Oval">
+    <void property="x1">
+     <int>308</int>
+    </void>
+    <void property="x2">
+     <int>476</int>
+    </void>
+    <void property="y1">
+     <int>252</int>
+    </void>
+    <void property="y2">
+     <int>373</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <int>2</int>
+   <object class="model.Oval">
+    <void property="x1">
+     <int>236</int>
+    </void>
+    <void property="x2">
+     <int>445</int>
+    </void>
+    <void property="y1">
+     <int>304</int>
+    </void>
+    <void property="y2">
+     <int>543</int>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
