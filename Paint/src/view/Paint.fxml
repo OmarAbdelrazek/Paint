@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -25,7 +18,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
+<VBox prefHeight="691.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -79,17 +72,21 @@
                    </Button>
                   <Slider fx:id="width" layoutX="11.0" layoutY="401.0" min="1.0" showTickMarks="true" value="1.0" />
                   <TextField fx:id="widthText" alignment="CENTER" layoutX="14.0" layoutY="436.0" prefHeight="31.0" prefWidth="69.0" />
-                  <Button fx:id="clearBtn" layoutX="53.0" layoutY="576.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
+                  <Button fx:id="clearBtn" layoutX="52.0" layoutY="541.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                   <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
                   <Button fx:id="Brush" layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="30.0" prefWidth="60.0" text="Brush">
                     </Button>
-                  <Button fx:id="delete" layoutX="48.0" layoutY="522.0" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="delete" layoutX="49.0" layoutY="505.0" mnemonicParsing="false" text="Delete" />
                   <Button fx:id="moveBtn" layoutX="45.0" layoutY="303.0" mnemonicParsing="false" onAction="#moveBtn" prefHeight="30.0" prefWidth="60.0" text="move">
                      </Button>
                   <Button fx:id="eraser" layoutX="44.0" layoutY="210.0" mnemonicParsing="false" onAction="#eraserBtn" prefHeight="30.0" prefWidth="60.0" text="Eraser">
                      
                   </Button>
                   <Button fx:id="square" layoutX="49.0" layoutY="353.0" mnemonicParsing="false" onAction="#squareBtn" text="Square" />
+                  <Label layoutX="60.0" layoutY="582.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" fx:id="xCoordinate" />
+                  <Label fx:id="yCoordinates" layoutX="64.0" layoutY="618.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" />
+                  <Label layoutX="11.0" layoutY="586.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
+                  <Label layoutX="11.0" layoutY="622.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="855.0">
@@ -105,10 +102,12 @@
                               </ColorPicker>
                               <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
                               <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" onAction="#setfill" />
+                              <Button fx:id="selectBtn" layoutX="384.0" layoutY="6.0" mnemonicParsing="false" onAction="#selectBtnAction" prefHeight="26.0" prefWidth="87.0" text="Select" />
+                              <ComboBox fx:id="dropAction" layoutX="482.0" layoutY="7.0" onAction="#cmbChoose" prefWidth="150.0" promptText="choose one..." />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="761.0">
                            <children>
-                              <Canvas fx:id="canvas" height="612.0" onMouseDragged="#canvasOnMOuseDragged" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="791.0">
+                              <Canvas fx:id="canvas" height="612.0" onMouseDragged="#canvasOnMOuseDragged" onMouseMoved="#onMouseMoved" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" width="791.0">
                                 </Canvas>
                            </children>
                         </AnchorPane>
@@ -122,7 +121,5 @@
   <stylesheets>
     <URL value="@../Paint/BasicApplication.css" />
   </stylesheets>
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
+  
 </VBox>

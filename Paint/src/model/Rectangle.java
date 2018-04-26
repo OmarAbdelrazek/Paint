@@ -28,6 +28,8 @@ public class Rectangle extends BoundedShape {
         super(x1, y1, x2, y2, paint, fill, fillpaint, lw);
     }
 
+    
+
     /**
      * Overrides the draw method in MyBoundedShape. It sets the gets the color
      * from MyBoundedShape to set the color and the values it needs to draw from
