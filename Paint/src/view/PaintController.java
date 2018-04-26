@@ -445,16 +445,7 @@ public class PaintController implements Initializable {
             gc.setFill(fillpick.getValue());
             Square s = new Square();
             s.setFill(isFilled);
-
-            double l;
-            l = Math.abs(startX - endX);
-
-            s.setX1((int) startX);
-            s.setY1((int) startY);
-            s.setX2((int) endX);
-            s.setY2((int) startY + (int) l);
-            s.setPaint(colorPicker.getValue());
-            s.setFillPaint(fillpick.getValue());
+            s.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(s.getUpperLeftX(), s.getUpperLeftY(), s.getLowerRightX(), s.getLowerRightY(), selectCounter);
             selectCounter++;
             // r.setLineWidth(width.getValue());
