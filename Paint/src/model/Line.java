@@ -17,6 +17,7 @@ public class Line extends Shape
     public Line()
     {
         super();
+        this.setFillPaint(javafx.scene.paint.Paint.valueOf("#ffffff"));
 
     }
     
@@ -24,9 +25,10 @@ public class Line extends Shape
      * Overloaded constructor that takes coordinates and color. It passes them to the constructor in MyShape
      */
   
-    public Line( int x1, int y1, int x2, int y2, Paint paint , double size ,Paint fillpaint,Double lw)
+    public Line( int x1, int y1, int x2, int y2, Paint paint ,Double lw,Paint fillpaint)
     {
         super(x1, y1, x2, y2, paint,lw);
+        this.setFillPaint(javafx.scene.paint.Paint.valueOf("#ffffff"));
     } 
 
   

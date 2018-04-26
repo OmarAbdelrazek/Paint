@@ -10,9 +10,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import model.Line;
 import model.Oval;
+import model.Rectangle;
 import model.Shape;
 import model.Shapes;
+import model.Square;
+import model.Triangle;
 
 
 import org.json.simple.JSONObject;
@@ -21,6 +25,7 @@ import org.json.simple.parser.JSONParser;
 
 public class LoadJSON { 
     public static  ArrayList<Shape> array;
+    public static String type = null;
     
     
     public static void Load(String path) throws FileNotFoundException, org.json.simple.parser.ParseException{
@@ -62,11 +67,38 @@ public class LoadJSON {
             System.out.println(name);
            
             System.out.println("Ameeeeeeeeeeeeer");
+            if(name.compareToIgnoreCase("oval")==0)
                   
-               Oval o = new Oval((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
+            {Oval o = new Oval((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
+            type="oval";
+            
+            array.add( (Shape) o);}
+            else if(name.compareToIgnoreCase("rectangle")==0)
+            {
+                Rectangle c = new Rectangle((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
+                type = "rectangle";
+                 array.add( (Shape) c);
+            }
+            else if(name.compareToIgnoreCase("triangle")==0)
+            {
+                Triangle t = new Triangle((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
+                type = "triangle";
+                 array.add( (Shape) t);
+            }
+            else if(name.compareToIgnoreCase("square")==0)
+            {
+                Square s = new Square((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
+                type = "square";
+                 array.add( (Shape) s);
+            }
+            else
+            {
+                Line l = new Line((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint),lw,Paint.valueOf(fillpaint));
+            type = "line";
+            array.add( (Shape) l);
+            }
             
             
-            array.add( (Shape) o);
           
                
 
