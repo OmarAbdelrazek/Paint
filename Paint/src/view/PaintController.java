@@ -295,12 +295,12 @@ public class PaintController implements Initializable {
             undoBtn.setDisable(false);
 
         } else if (shape.compareTo("line") == 0) {
-            Line c = new Line();
             Line l = new Line();
             l.setX1((int) startX);
             l.setY1((int) startY);
             l.setX2((int) currentX);
             l.setY2((int) currentY);
+            l.setLineWidth(width.getValue());
             l.setPaint(colorPicker.getValue());
             l.addShape(hmap);
             priority--;
@@ -434,6 +434,7 @@ public class PaintController implements Initializable {
             l.setY1((int) startY);
             l.setX2((int) endX);
             l.setY2((int) endY);
+            l.setLineWidth(width.getValue());
             l.setPaint(colorPicker.getValue());
             // BoundsOperations.setNewBound(l.getUpperLeftX(), l.getUpperLeftY(), l.getWidth(), l.getHeight());
             //  l.setLineWidth(width.getValue());
@@ -559,8 +560,6 @@ public class PaintController implements Initializable {
         moveBtn.setDisable(true);
         resizeBtn.setDisable(true);
         copyBtn.setDisable(true);
-        undoBtn.setDisable(true);
-        redoBtn.setDisable(true);
     }
 
     @FXML

@@ -36,9 +36,8 @@ public class Line extends Shape
      */
     public void draw(GraphicsContext g)
     {
-        g.setLineWidth(this.lw);
+        g.setLineWidth(this.lw);        //g.setLineWidth(this.getLineWidth());
         g.setStroke(g.getStroke() ); //sets the color
-        //g.setLineWidth(this.getLineWidth());
         g.strokeLine( getX1(), getY1(), getX2(), getY2() ); //draws the line
     } 
 } 
