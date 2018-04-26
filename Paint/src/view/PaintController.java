@@ -134,6 +134,8 @@ public class PaintController implements Initializable {
     private Button undoBtn;
     @FXML
     private Button redoBtn;
+    boolean isDeleted = false;
+    boolean isDeleteUndo = false;
     
           
    
@@ -189,6 +191,18 @@ public class PaintController implements Initializable {
         LoadJSON.Load( file.getPath());
         
     }
+     @FXML
+    private void saveXML() throws IOException, ParserConfigurationException
+    {
+        SaveXML.save(hmap);
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+              fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(stg);
+        if(file != null){
+                 buffer(SaveXML.readFile(), file);
+              }
+    }
     @FXML
     private void saveFile() throws IOException
     {
@@ -199,18 +213,6 @@ public class PaintController implements Initializable {
         File file = fileChooser.showSaveDialog(stg);
         if(file != null){
                  buffer(SaveJSON.readFile(), file);
-              }
-    }
-         @FXML
-    private void saveXML() throws IOException, ParserConfigurationException
-    {
-        SaveXML.save(hmap);
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
-              fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showSaveDialog(stg);
-        if(file != null){
-                 buffer(SaveXML.readFile(), file);
               }
     }
        private void buffer(String content, File file){
@@ -707,7 +709,12 @@ public class PaintController implements Initializable {
        resizeBtn.setDisable(true);
        copyBtn.setDisable(true);
         }
+        undoBtn.setDisable(false);
+        undoStack.push(hmap.get(target));
         hmap.remove(target);
+        priority --;
+        redoBtn.setDisable(true);
+        isDeleted = true;
         MydrawingEngine.removeShape(hmap);
          MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
@@ -718,7 +725,18 @@ public class PaintController implements Initializable {
 
     @FXML
     private void undoBtnAction(ActionEvent event) {
-        if(priority > 0)
+         if(isDeleted){
+            
+             hmap.put(priority, undoStack.pop());
+        
+                        priority++;
+MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+            undoBtn.setDisable(true);
+            redoBtn.setDisable(false);
+            isDeleteUndo = true;
+        }
+       else if(priority > 0)
         {
           ///  undoBtn.setDisable(false);
         redoBtn.setDisable(false);
@@ -730,15 +748,28 @@ public class PaintController implements Initializable {
          MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
         }
+       
         if(hmap.size() == 0)
         undoBtn.setDisable(true);
-         
+                selectBtn.setDisable(false);
+                delete.setDisable(true);
+ 
     }
 
     @FXML
     private void redoBtnAction(ActionEvent event) {
         
-        if(undoStack.size() > 0){
+        if(isDeleteUndo){
+            redoBtn.setDisable(true);
+        undoStack.push(hmap.get(priority-1));
+        hmap.remove(priority-1);
+        priority--;
+                    System.out.println(hmap.size());
+
+         MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+        }
+       else if(undoStack.size() > 0){
             redoBtn.setDisable(false);
             undoBtn.setDisable(false);
         System.out.println(priority);
@@ -750,7 +781,9 @@ MydrawingEngine.refresh(gc, canvas, currentfill);
         }
         if(undoStack.size() <=0)
         redoBtn.setDisable(true);
-       
+       selectBtn.setDisable(false);
+                       delete.setDisable(true);
+
                              
 
     }
