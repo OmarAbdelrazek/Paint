@@ -120,9 +120,6 @@ abstract class BoundedShape extends Shape
             this.setY2((int) currentY);
             this.setPaint(paint);
             this.setLineWidth(lw);
-            this.addShape(shapehm);
-
-
     }
     
     /**
