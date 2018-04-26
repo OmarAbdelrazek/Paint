@@ -395,7 +395,7 @@ public class PaintController implements Initializable {
 
             gc.setFill(fillpick.getValue());
             Oval c = new Oval();
-            c.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue(), width.getValue());
+            c.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(c.getUpperLeftX(), c.getUpperLeftY(), c.getLowerRightX(), c.getLowerRightY(), selectCounter);
             selectCounter++;
 
@@ -407,7 +407,7 @@ public class PaintController implements Initializable {
             gc.setStroke(colorPicker.getValue());
             gc.setFill(fillpick.getValue());
             Rectangle r = new Rectangle();
-            r.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue(), width.getValue());
+            r.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(r.getUpperLeftX(), r.getUpperLeftY(), r.getLowerRightX(), r.getLowerRightY(), selectCounter);
             selectCounter++;
             // r.setLineWidth(width.getValue());
@@ -419,7 +419,7 @@ public class PaintController implements Initializable {
             }
             gc.setFill(fillpick.getValue());
             Triangle t = new Triangle();
-            t.updateShapeinfo(hmap, isFilled,fillpick.getValue(), (int)startX, (int)startY, (int)endX, (int)endY, colorPicker.getValue(), width.getValue());
+            t.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(t.getUpperLeftX(), t.getUpperLeftY(), t.getLowerRightX(), t.getLowerRightY(), selectCounter);
             selectCounter++;
             //  t.setLineWidth(width.getValue());
@@ -459,19 +459,36 @@ public class PaintController implements Initializable {
             // r.setLineWidth(width.getValue());
             s.addShape(hmap);
 
-        }/*else if (shape.compareTo("move") == 0) {
-            EventHandler<MouseEvent> circleOnMousePressedEventHandler
+        } else if (shape.compareTo("move") == 0) {
+            EventHandler<MouseEvent> OnMousePressedEventHandler
                     = new EventHandler<MouseEvent>() {
 
+                Shape temp = hmap.get(target);
                 @Override
                 public void handle(MouseEvent t) {
                     orgSceneX = t.getSceneX();
                     orgSceneY = t.getSceneY();
-                    orgTranslateX = ((Circle) (t.getSource())).getTranslateX();
-                    orgTranslateY = ((Circle) (t.getSource())).getTranslateY();
+                    if((int) t.getSceneX() > temp.getX1())
+                    {
+                    orgTranslateX = temp.getX1()+((int)orgSceneX-temp.getX1());
+                    }
+                    else 
+                    {
+                    orgTranslateX = temp.getX1()-((int)orgSceneX-temp.getX1());
+                    }
+                    if((int) t.getSceneY() > temp.getY1())
+                    {
+                    orgTranslateY = temp.getY1()+((int)orgSceneY-temp.getY1());
+                    }
+                    else 
+                    {
+                    orgTranslateY = temp.getY1()-((int)orgSceneY-temp.getY1());
+                    }
+                    
+                    
                 }
             };
-            EventHandler<MouseEvent> circleOnMouseDraggedEventHandler
+            EventHandler<MouseEvent> OnMouseDraggedEventHandler
                     = new EventHandler<MouseEvent>() {
 
                 @Override
@@ -485,7 +502,7 @@ public class PaintController implements Initializable {
                     ((Circle) (t.getSource())).setTranslateY(newTranslateY);
                 }
             };
-        }*/
+        }
         startX = 0;
         startY = 0;
         endX = 0;
@@ -724,6 +741,14 @@ public class PaintController implements Initializable {
         selectBtn.setDisable(false);
         delete.setDisable(true);
 
+    }
+
+    @FXML
+    public void ButtonManager(Button Btn1, Button Btn2, Button Btn3, Button Btn4) {
+        Btn1.setDisable(false);
+        Btn2.setDisable(true);
+        Btn3.setDisable(true);
+        Btn2.setDisable(true);
     }
 
 }
