@@ -97,32 +97,33 @@
                     </Button>
                   <Button fx:id="button3" layoutX="44.0" layoutY="161.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="30.0" prefWidth="60.0" text="Triangle">
                      </Button>
-                  <Button fx:id="lineBtn" layoutX="44.0" layoutY="253.0" mnemonicParsing="false" onAction="#lineBtn" prefHeight="30.0" prefWidth="60.0" text="Line">
+                  <Button fx:id="lineBtn" layoutX="50.0" layoutY="354.0" mnemonicParsing="false" onAction="#lineBtn" prefHeight="30.0" prefWidth="60.0" text="Line">
                    </Button>
-                  <Slider fx:id="width" layoutX="11.0" layoutY="401.0" min="1.0" showTickMarks="true" value="1.0" />
-                  <HBox layoutX="14.0" layoutY="436.0">
+                  <Slider fx:id="width" layoutX="12.0" layoutY="460.0" min="1.0" showTickMarks="true" value="1.0" />
+                  <HBox layoutX="15.0" layoutY="495.0">
                      <children>
                         <TextField fx:id="widthText" alignment="CENTER" layoutX="14.0" layoutY="436.0" prefHeight="32.0" prefWidth="69.0" />
                         <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
                      </children>
                   </HBox>
-                  <Button fx:id="clearBtn" layoutX="52.0" layoutY="504.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
+                  <Button fx:id="clearBtn" layoutX="53.0" layoutY="563.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                   <Button fx:id="Brush" layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="30.0" prefWidth="60.0" text="Brush">
                     </Button>
                   <Button fx:id="eraser" layoutX="44.0" layoutY="210.0" mnemonicParsing="false" onAction="#eraserBtn" prefHeight="30.0" prefWidth="60.0" text="Eraser">
                      
                   </Button>
-                  <Button fx:id="square" layoutX="41.0" layoutY="352.0" mnemonicParsing="false" onAction="#squareBtn" text="Square" />
+                  <Button fx:id="square" layoutX="47.0" layoutY="308.0" mnemonicParsing="false" onAction="#squareBtn" text="Square" />
                   <Label layoutX="71.0" layoutY="688.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" fx:id="xCoordinate" />
                   <Label fx:id="yCoordinates" layoutX="75.0" layoutY="724.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" />
                   <Label layoutX="22.0" layoutY="692.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
                   <Label layoutX="22.0" layoutY="728.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
-                  <HBox layoutX="32.0" layoutY="306.0">
+                  <HBox layoutX="37.0" layoutY="417.0">
                      <children>
-                        <Button fx:id="undoBtn" layoutX="22.0" layoutY="306.0" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="26.0" prefWidth="43.0" text="&lt;-" />
+                        <Button fx:id="undoBtn" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="26.0" prefWidth="43.0" text="&lt;-" />
                         <Button fx:id="redoBtn" layoutX="82.0" layoutY="306.0" mnemonicParsing="false" onAction="#redoBtnAction" prefHeight="26.0" prefWidth="43.0" text="-&gt;" />
                      </children>
                   </HBox>
+                  <Button fx:id="sphereBtn" layoutX="47.0" layoutY="257.0" mnemonicParsing="false" onAction="#sphereBtn" text="Circle" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="696.0" prefWidth="1089.0">

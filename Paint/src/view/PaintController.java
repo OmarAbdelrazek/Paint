@@ -90,8 +90,8 @@ public class PaintController implements Initializable {
     @FXML
     private Button Brush;
     //
-    double orgSceneX, orgSceneY;
-    double orgTranslateX, orgTranslateY;
+    int orgSceneX, orgSceneY;
+    int orgTranslateX1, orgTranslateY1 ,orgTranslateX2 , orgTranslateY2;
     @FXML
     private Button delete;
     @FXML
@@ -136,6 +136,8 @@ public class PaintController implements Initializable {
     private Button redoBtn;
     boolean isDeleted = false;
     boolean isDeleteUndo = false;
+    @FXML
+    private Button sphereBtn;
 
     /**
      * Initializes the controller class.
@@ -345,7 +347,15 @@ public class PaintController implements Initializable {
             MydrawingEngine.parse(hmap, gc);
             undoBtn.setDisable(false);
 
-        } else if (shape.compareTo("eraser") == 0) {
+        } 
+        else if (shape.compareTo("sphere") == 0) {
+            model.Circle c = new model.Circle();
+            c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+            undoBtn.setDisable(false);
+
+        }else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);
@@ -353,6 +363,23 @@ public class PaintController implements Initializable {
             eraser.draw(gc);
 
         }
+                  else if (shape.compareTo("move") == 0)
+          {
+                    Shape temp = hmap.get(target);
+                    orgSceneX = (int) e.getX();
+                    orgSceneY = (int) e.getY();
+                    orgTranslateX1 = temp.getX1() + (temp.getX1() - (int) orgSceneX);
+                    orgTranslateY1 = temp.getY1() + (temp.getY1() - (int) orgSceneY);
+                    orgTranslateX2 = temp.getX1() + (temp.getX1() - (int) orgSceneX);
+                    orgTranslateY2 = temp.getY1() + (temp.getY1() - (int) orgSceneY);
+                    hmap.get(target).setX1(orgTranslateX1);
+                    temp.setY1(orgTranslateY1);
+                    temp.setX2(orgTranslateX2);
+                    temp.setY2(orgTranslateY2);
+                    temp.draw(gc);
+                    MydrawingEngine.parse(hmap, gc);
+                    System.out.println("Coppying"); 
+          }
 
     }
 
@@ -482,50 +509,20 @@ if(shape.compareTo("select") ==0 && isSelected){
             // r.setLineWidth(width.getValue());
             s.addShape(hmap);
 
-        } else if (shape.compareTo("move") == 0) {
-            EventHandler<MouseEvent> OnMousePressedEventHandler
-                    = new EventHandler<MouseEvent>() {
+        }        else if (shape.compareTo("sphere") == 0) {
+            model.Circle c = new model.Circle();
+            c.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
+            BoundsOperations b = new BoundsOperations(c.getUpperLeftX(), c.getUpperLeftY(), c.getLowerRightX(), c.getLowerRightY(), selectCounter);
+            selectCounter++;
+            // r.setLineWidth(width.getValue());
+            c.addShape(hmap);
+            
+            undoBtn.setDisable(false);
 
-                Shape temp = hmap.get(target);
-                @Override
-                public void handle(MouseEvent t) {
-                    orgSceneX = t.getSceneX();
-                    orgSceneY = t.getSceneY();
-                    if((int) t.getSceneX() > temp.getX1())
-                    {
-                    orgTranslateX = temp.getX1()+((int)orgSceneX-temp.getX1());
-                    }
-                    else 
-                    {
-                    orgTranslateX = temp.getX1()-((int)orgSceneX-temp.getX1());
-                    }
-                    if((int) t.getSceneY() > temp.getY1())
-                    {
-                    orgTranslateY = temp.getY1()+((int)orgSceneY-temp.getY1());
-                    }
-                    else 
-                    {
-                    orgTranslateY = temp.getY1()-((int)orgSceneY-temp.getY1());
-                    }
-                    
-                    
-                }
-            };
-            EventHandler<MouseEvent> OnMouseDraggedEventHandler
-                    = new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    double offsetX = t.getSceneX() - orgSceneX;
-                    double offsetY = t.getSceneY() - orgSceneY;
-                    double newTranslateX = orgTranslateX + offsetX;
-                    double newTranslateY = orgTranslateY + offsetY;
-
-                    ((Circle) (t.getSource())).setTranslateX(newTranslateX);
-                    ((Circle) (t.getSource())).setTranslateY(newTranslateY);
-                }
-            };
         }
+        else if (shape.compareTo("move") == 0) {
+            
+        } 
         startX = 0;
         startY = 0;
         endX = 0;
@@ -596,6 +593,7 @@ if(shape.compareTo("select") ==0 && isSelected){
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         hmap.clear();
         priority = 0;
+        target=0;
         BoundsOperations.boundMap.clear();
         found.clear();
         undoBtn.setDisable(true);
@@ -653,6 +651,7 @@ if(shape.compareTo("select") ==0 && isSelected){
     @FXML
     private void moveBtnAction(ActionEvent event) {
         if (selectBtn.isDisable()) {
+            shape = "move";
             delete.setDisable(true);
             moveBtn.setDisable(false);
             resizeBtn.setDisable(true);
@@ -796,8 +795,12 @@ if(shape.compareTo("select") ==0 && isSelected){
         delete.setDisable(true);
 
     }
-
     @FXML
+    public void sphereBtn()
+    {
+        shape="sphere";
+    }
+
     public void ButtonManager(Button Btn1, Button Btn2, Button Btn3, Button Btn4) {
         Btn1.setDisable(false);
         Btn2.setDisable(true);
