@@ -17,9 +17,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import model.*;
 
+
 /**
  *
- * @author Omar
+ * @author Ameer.Nasser88
  */
 public class SaveJSON {
    public static void save(HashMap HashMapOfShapes){

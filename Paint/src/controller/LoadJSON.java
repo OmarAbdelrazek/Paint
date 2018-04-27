@@ -34,6 +34,7 @@ public class LoadJSON {
     /**
      *
      * @param path
+     * @author Ameer.Nasser88
      */
     public static void jsonArray(String path) throws ParseException
       {

@@ -219,7 +219,7 @@ public class PaintController implements Initializable {
 
     @FXML
     private void saveXML() throws IOException, ParserConfigurationException {
-        SaveXML.save(hmap);
+        SaveXML.Save(hmap);
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
         fileChooser.getExtensionFilters().add(extFilter);

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Shapeinfo>
+    <Details>
+        <X1>67</X1>
+        <Y1>127</Y1>
+        <X2>540</X2>
+        <Y2>376</Y2>
+        <Paint>0x80334dff</Paint>
+        <fillPaint>0xffffffff1.0</fillPaint>
+        <lw/>
+        <name>Rectangle</name>
+        <X1>320</X1>
+        <Y1>225</Y1>
+        <X2>783</X2>
+        <Y2>519</Y2>
+        <Paint>0x80334dff</Paint>
+        <fillPaint>0xffffffff1.0</fillPaint>
+        <lw/>
+        <name>Rectangle</name>
+        <X1>60</X1>
+        <Y1>119</Y1>
+        <X2>292</X2>
+        <Y2>298</Y2>
+        <Paint>0x80334dff</Paint>
+        <fillPaint>0xffffffff1.0</fillPaint>
+        <lw/>
+        <name>triangle</name>
+        <X1>153</X1>
+        <Y1>132</Y1>
+        <X2>552</X2>
+        <Y2>394</Y2>
+        <Paint>0x80334dff</Paint>
+        <fillPaint>0xffffffff1.0</fillPaint>
+        <lw/>
+        <name>Oval</name>
+    </Details>
+</Shapeinfo>
