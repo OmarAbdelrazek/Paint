@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -21,7 +28,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -116,22 +123,22 @@
                      </children>
                   </GridPane>
                   <Slider fx:id="width" layoutX="11.0" layoutY="495.0" min="1.0" showTickMarks="true" value="1.0" />
-                  <Button fx:id="okBtn" layoutX="101.0" layoutY="536.0" mnemonicParsing="false" onAction="#width" text="OK" />
-                  <TextField fx:id="widthText" alignment="CENTER" layoutX="19.0" layoutY="533.0" prefHeight="32.0" prefWidth="69.0" />
-                  <Label layoutX="68.0" layoutY="703.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" fx:id="xCoordinate" />
-                  <Label fx:id="yCoordinates" layoutX="74.0" layoutY="739.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" />
-                  <Label layoutX="22.0" layoutY="707.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
-                  <Label layoutX="22.0" layoutY="743.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
+                  <Button fx:id="okBtn" layoutX="102.0" layoutY="526.0" mnemonicParsing="false" onAction="#width" text="OK" />
+                  <TextField fx:id="widthText" alignment="CENTER" layoutX="20.0" layoutY="523.0" prefHeight="32.0" prefWidth="69.0" />
+                  <Label layoutX="67.0" layoutY="711.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" fx:id="xCoordinate" />
+                  <Label fx:id="yCoordinates" layoutX="73.0" layoutY="747.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" />
+                  <Label layoutX="21.0" layoutY="715.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
+                  <Label layoutX="21.0" layoutY="751.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
                  
-                  <Button fx:id="upBtn" layoutX="68.0" layoutY="594.0" mnemonicParsing="false" onAction="#upBtnAction" prefHeight="18.0" prefWidth="26.0" text="^" />
-                  <Button fx:id="downBtn" layoutX="68.0" layoutY="648.0" mnemonicParsing="false" onAction="#downBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="180.0" text="^" />
-                  <Button fx:id="rightBtn" layoutX="99.0" layoutY="621.0" mnemonicParsing="false" onAction="#rightBtnAciton" prefHeight="18.0" prefWidth="26.0" rotate="90.0" text="^" />
-                  <Button fx:id="liftBtn" layoutX="40.0" layoutY="621.0" mnemonicParsing="false" onAction="#liftBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="270.0" text="^" />
-                  <Button fx:id="exitMoveModeBtn" layoutX="34.0" layoutY="680.0" mnemonicParsing="false" onAction="#exitMoveModeBtnAction" prefHeight="26.0" prefWidth="102.0" text="Exit move mode" />
+                  <Button fx:id="upBtn" layoutX="66.0" layoutY="590.0" mnemonicParsing="false" onAction="#upBtnAction" prefHeight="18.0" prefWidth="26.0" text="^" />
+                  <Button fx:id="downBtn" layoutX="66.0" layoutY="652.0" mnemonicParsing="false" onAction="#downBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="180.0" text="^" />
+                  <Button fx:id="rightBtn" layoutX="102.0" layoutY="621.0" mnemonicParsing="false" onAction="#rightBtnAciton" prefHeight="18.0" prefWidth="26.0" rotate="90.0" text="^" />
+                  <Button fx:id="liftBtn" layoutX="28.0" layoutY="621.0" mnemonicParsing="false" onAction="#liftBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="270.0" text="^" />
+                  <Button fx:id="exitMoveModeBtn" layoutX="30.0" layoutY="684.0" mnemonicParsing="false" onAction="#exitMoveModeBtnAction" prefHeight="26.0" prefWidth="102.0" text="Exit move mode" />
 
                   <Button fx:id="redoBtn" layoutX="90.0" layoutY="453.0" mnemonicParsing="false" onAction="#redoBtnAction" prefHeight="31.0" prefWidth="54.0" text="Redo" />
                   <Button fx:id="undoBtn" layoutX="16.0" layoutY="453.0" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="32.0" prefWidth="54.0" text="Undo" />
-                  <Button fx:id="clearBtn" layoutX="19.0" layoutY="586.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
+                  <Button fx:id="clearBtn" layoutX="55.0" layoutY="556.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="696.0" prefWidth="1089.0">
