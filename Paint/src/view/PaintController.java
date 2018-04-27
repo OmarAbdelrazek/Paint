@@ -49,6 +49,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
@@ -136,6 +139,16 @@ public class PaintController implements Initializable {
     private Button redoBtn;
     boolean isDeleted = false;
     boolean isDeleteUndo = false;
+    @FXML
+    private Button upBtn;
+    @FXML
+    private Button downBtn;
+    @FXML
+    private Button rightBtn;
+    @FXML
+    private Button liftBtn;
+    @FXML
+    private Button exitMoveModeBtn;
 
     /**
      * Initializes the controller class.
@@ -158,6 +171,11 @@ public class PaintController implements Initializable {
         namesStack = new Stack<>();
         undoBtn.setDisable(true);
         redoBtn.setDisable(true);
+        downBtn.setDisable(true);
+        rightBtn.setDisable(true);
+        upBtn.setDisable(true);
+        liftBtn.setDisable(true);
+        
 
     }
 
@@ -213,7 +231,6 @@ public class PaintController implements Initializable {
 
     }
 
-    @FXML
     private void saveXML() throws IOException, ParserConfigurationException {
         SaveXML.save(hmap);
         FileChooser fileChooser = new FileChooser();
@@ -258,25 +275,10 @@ public class PaintController implements Initializable {
         startY = e.getY();
         javafx.scene.paint.Paint currentfill = fillpick.getValue();
         javafx.scene.paint.Paint currentcolor = colorPicker.getValue();
-        if (isCopy && shape.compareTo("copy") == 0) {
-            String name = hmap.get(target).toString();
-            if (name.compareTo("Oval") == 0) {
-                // int x1, int y1, int x2, int y2,Paint paint, boolean isfill,Paint fillpaint,Double lw)
-                gc.setFill(hmap.get(target).getFillPaint());
-                gc.setStroke(hmap.get(target).getPaint());
-                //gc.strokeOval(startX, startY, Math.abs(hmap.get(target).getX1() - hmap.get(target).getX2()), Math.abs(hmap.get(target).getY1() - hmap.get(target).getY2()));
-                Oval o = new Oval();
-                o.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
-                hmap.put(hmap.size(), o);
-                MydrawingEngine.refresh(gc, canvas, currentfill);
-                MydrawingEngine.parse(hmap, gc);
-
-            } else if (name.compareTo("Rectangle") == 0) {
-            } else if (name.compareTo("square") == 0) {
-            } else if (name.compareTo("triangle") == 0) {
+        
+            if(shape.compareTo("move")==0){
+                
             }
-
-        }
 
     }
 
@@ -356,6 +358,10 @@ public class PaintController implements Initializable {
 
     private void brushBtn(ActionEvent event) {
         shape = "brush";
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
     }
 
     @FXML
@@ -368,6 +374,10 @@ public class PaintController implements Initializable {
         moveBtn.setDisable(true);
         resizeBtn.setDisable(true);
         copyBtn.setDisable(true);
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
     }
 
     @FXML
@@ -382,6 +392,10 @@ public class PaintController implements Initializable {
         copyBtn.setDisable(true);
         undoBtn.setDisable(true);
         redoBtn.setDisable(true);
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
     }
 
     @FXML
@@ -545,6 +559,10 @@ if(shape.compareTo("select") ==0 && isSelected){
         copyBtn.setDisable(true);
         undoBtn.setDisable(true);
         redoBtn.setDisable(true);
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
 
     }
 
@@ -560,6 +578,10 @@ if(shape.compareTo("select") ==0 && isSelected){
         copyBtn.setDisable(true);
         undoBtn.setDisable(true);
         redoBtn.setDisable(true);
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
     }
 
     @FXML
@@ -578,6 +600,10 @@ if(shape.compareTo("select") ==0 && isSelected){
         moveBtn.setDisable(true);
         resizeBtn.setDisable(true);
         copyBtn.setDisable(true);
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
     }
 
     @FXML
@@ -596,6 +622,10 @@ if(shape.compareTo("select") ==0 && isSelected){
         found.clear();
         undoBtn.setDisable(true);
         redoBtn.setDisable(true);
+        isCopy = false;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
     }
 
     @FXML
@@ -620,6 +650,7 @@ if(shape.compareTo("select") ==0 && isSelected){
     @FXML
     private void eraserBtn(ActionEvent event) {
         shape = "eraser";
+        isCopy = false;
     }
 
     @FXML
@@ -648,12 +679,18 @@ if(shape.compareTo("select") ==0 && isSelected){
 
     @FXML
     private void moveBtnAction(ActionEvent event) {
-        if (selectBtn.isDisable()) {
+       
             delete.setDisable(true);
             moveBtn.setDisable(false);
             resizeBtn.setDisable(true);
             copyBtn.setDisable(true);
-        }
+        downBtn.setDisable(false);
+        rightBtn.setDisable(false);
+        upBtn.setDisable(false);
+        liftBtn.setDisable(false); 
+             exitMoveModeBtn.setDisable(false);
+            shape = "move";
+        
     }
 
     @FXML
@@ -663,7 +700,44 @@ if(shape.compareTo("select") ==0 && isSelected){
             moveBtn.setDisable(true);
             resizeBtn.setDisable(false);
             copyBtn.setDisable(true);
+            shape = "resize";
         }
+                    shape = "resize";
+
+    }
+     @FXML
+    private void canvasOnMouseScroll(ScrollEvent event) {
+       if(shape.compareTo("resize")  == 0){
+        double deltaY = event.getDeltaY();
+        Shape s = hmap.get(target);
+         if(deltaY > 0){
+            System.out.println("up");
+           // s.setX1(s.getX1() - 25);
+           if(s.getX1() <= s.getX2()-25)
+            s.setX2(s.getX2() - 25);
+           // s.setY1(s.getY1() - 25);
+           if(s.getY1() < s.getY2()-25)
+            s.setY2(s.getY2() - 25);
+            
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+        MydrawingEngine.parse(hmap, gc);
+            
+            
+        }
+       else if(deltaY < 0){
+            System.out.println("down");
+             // s.setX1(s.getX1() - 25);
+             if(s.getX1() <= s.getX2()+25)
+            s.setX2(s.getX2() + 25);
+           // s.setY1(s.getY1() - 25);
+            if(s.getY1() < s.getY2()+25)
+            s.setY2(s.getY2() + 25);
+             MydrawingEngine.refresh(gc, canvas, currentfill);
+        MydrawingEngine.parse(hmap, gc);
+        }
+        
+   
+    }
     }
 
     @FXML
@@ -675,36 +749,43 @@ if(shape.compareTo("select") ==0 && isSelected){
             copyBtn.setDisable(true);
             selectBtn.setDisable(false);
 
+            
+            
+            
+            
        
        
        //set offset
-       Shape s = hmap.get(target);
-        s.setX1(s.getX1()+50);
+      Shape s = BoundsOperations.copyShape(hmap.get(target));
+      
+           System.out.println("beforeeee"+hmap.size());
+
+       /*s.setX1(s.getX1()+50);
         s.setY1(s.getY1()+50);
         s.setX2(s.getX2()+50);
-        s.setY2(s.getY2()+50);
-        s.addShape(hmap);
+        s.setY2(s.getY2()+50);*/
+        System.out.println("orignallll"+ target);
+       s.setFillPaint(hmap.get(target).getFillPaint());
+     //  s.setFillPaint(hmap.get(target).getFillPaint());
+       s.addShape(hmap);
       
 
             /* hena feh error 
                 - bya5od offset sah , w by7ot el shape fe el hmap sah,
                     bas byrsem 8alat
         */
-        System.out.println(hmap.size());
-              // s.updateShape(hmap, hmap.get(target).getFillPaint(), s.getX1(), s.getY1(), s.getX2(), s.getY2(), hmap.get(target).getPaint());
-
-          
-
-          MydrawingEngine.parse(hmap, gc);
-                                  
-   
-       
-
-          
-        System.out.println( hmap.get(hmap.size()-1).getY1());
-            System.out.println(hmap.size());
-
+               BoundsOperations b = new BoundsOperations(s.getX1(), s.getY1(), s.getX2(), s.getX2(), selectCounter);
+            selectCounter++;
+           System.out.println(hmap.get(hmap.size()-1).getX1());
+           System.out.println(hmap.get(hmap.size()-2).getX1());
+         MydrawingEngine.parse(hmap, gc);
+      System.out.println("beforeeee2"+hmap.size());
+     
+            
        isCopy = true;
+        isDeleteUndo = false;
+        isDeleted = false;
+        isSelected = false;
        
         
        
@@ -733,7 +814,25 @@ if(shape.compareTo("select") ==0 && isSelected){
 
     @FXML
     private void undoBtnAction(ActionEvent event) {
-        if (isDeleted) {
+        if(isCopy){
+           // System.out.println(hmap.get(priority-2).toString());
+            
+            undoStack.push(hmap.get(hmap.size()-1));
+                        System.out.println(hmap.size()-1);
+
+            hmap.remove(hmap.size()-1);
+            priority--;
+             MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+            redoBtn.setDisable(false);
+                    delete.setDisable(true);
+            moveBtn.setDisable(true);
+            resizeBtn.setDisable(true);
+            copyBtn.setDisable(true);
+            
+        }
+       else if (isDeleted) {
+            System.out.println("hiiiiii2");
 
             hmap.put(priority, undoStack.pop());
 
@@ -743,6 +842,10 @@ if(shape.compareTo("select") ==0 && isSelected){
             undoBtn.setDisable(true);
             redoBtn.setDisable(false);
             isDeleteUndo = true;
+            delete.setDisable(true);
+            moveBtn.setDisable(true);
+            resizeBtn.setDisable(true);
+            copyBtn.setDisable(true);
         } else if (priority > 0) {
             ///  undoBtn.setDisable(false);
             redoBtn.setDisable(false);
@@ -753,6 +856,10 @@ if(shape.compareTo("select") ==0 && isSelected){
 
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            delete.setDisable(true);
+            moveBtn.setDisable(true);
+            resizeBtn.setDisable(true);
+            copyBtn.setDisable(true);
         }
 
         if (hmap.size() == 0) {
@@ -760,13 +867,23 @@ if(shape.compareTo("select") ==0 && isSelected){
         }
         selectBtn.setDisable(false);
         delete.setDisable(true);
+        delete.setDisable(true);
+            moveBtn.setDisable(true);
+            resizeBtn.setDisable(true);
+            copyBtn.setDisable(true);
 
     }
 
     @FXML
     private void redoBtnAction(ActionEvent event) {
 
-        if (isDeleteUndo) {
+        if(isCopy){
+            hmap.put(priority, undoStack.pop());
+            priority++;
+             MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+        }
+        else if (isDeleteUndo) {
             redoBtn.setDisable(true);
             undoStack.push(hmap.get(priority - 1));
             hmap.remove(priority - 1);
@@ -793,12 +910,66 @@ if(shape.compareTo("select") ==0 && isSelected){
 
     }
 
-    @FXML
     public void ButtonManager(Button Btn1, Button Btn2, Button Btn3, Button Btn4) {
         Btn1.setDisable(false);
         Btn2.setDisable(true);
         Btn3.setDisable(true);
         Btn2.setDisable(true);
     }
+
+   
+
+    @FXML
+    private void upBtnAction(ActionEvent event) {
+         Shape s = hmap.get(target);
+            s.setY1(s.getY1()-25);
+            s.setY2(s.getY2()-25);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+    }
+
+    @FXML
+    private void downBtnAction(ActionEvent event) {
+        Shape s = hmap.get(target);
+            s.setY1(s.getY1()+25);
+            s.setY2(s.getY2()+25);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+    }
+
+    @FXML
+    private void rightBtnAciton(ActionEvent event) {
+         Shape s = hmap.get(target);
+            s.setX1(s.getX1()+25);
+            s.setX2(s.getX2()+25);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+    }
+
+    @FXML
+    private void liftBtnAction(ActionEvent event) {
+         Shape s = hmap.get(target);
+            s.setX1(s.getX1()-25);
+            s.setX2(s.getX2()-25);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.parse(hmap, gc);
+    }
+
+    @FXML
+    private void exitMoveModeBtnAction(ActionEvent event) {
+         downBtn.setDisable(true);
+        rightBtn.setDisable(true);
+        upBtn.setDisable(true);
+        liftBtn.setDisable(true); 
+        selectBtn.setDisable(false);
+        delete.setDisable(true);
+            moveBtn.setDisable(true);
+            resizeBtn.setDisable(true);
+            copyBtn.setDisable(true);
+            exitMoveModeBtn.setDisable(true);
+        
+    }
+
+   
 
 }

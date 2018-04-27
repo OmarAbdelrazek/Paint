@@ -7,6 +7,7 @@
 package model;
 
 import java.util.HashMap;
+import javafx.scene.canvas.GraphicsContext;
 
 
 public class BoundsOperations {
@@ -28,9 +29,42 @@ public class BoundsOperations {
     public void setBoundMap(HashMap<Integer, int[]> boundMap) {
         this.boundMap = boundMap;
     }
+    
+    
+    public static Shape copyShape(Shape s){
+        Shape copy;
+        switch(s.toString()){
+            case "Oval":
+                copy = new Oval();
+                break;
+             case"rectangle":
+                 copy = new Rectangle(); 
+                         break;
+             case "square":
+                 copy = new Square();
+                 break;
+             case "triangle":
+                 copy = new Triangle();
+                 break;
+                 default: copy = new Rectangle(); {
+           
+        }
+                 
+        }
+        
+        copy.setLineWidth(s.getLineWidth());
+        copy.setX1(s.getX1()+50);
+        copy.setY1(s.getY1()+50);
+        copy.setX2(s.getX2()+50);
+        copy.setY2(s.getY2()+50);
+        copy.setFillPaint(s.getFillPaint());
+        copy.setPaint(s.getPaint());
+       // copy.setFillPaint(s.getFillPaint());
+    
    
 
     
     
-
+return copy;
+}
 }

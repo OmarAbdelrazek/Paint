@@ -126,7 +126,7 @@ abstract class BoundedShape extends Shape
      * Abstract method for drawing the shape that must be overriden
      */
         public void Clone (BoundedShape s)
-    {
+    {   
         this.setLineWidth(s.getLineWidth());
         this.setX1(s.getX1()+50);
         this.setY1(s.getY1()+50);
