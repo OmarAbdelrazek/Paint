@@ -674,8 +674,46 @@ if(shape.compareTo("select") ==0 && isSelected){
             resizeBtn.setDisable(true);
             copyBtn.setDisable(false);
         }
-        isCopy = true;
-        shape = "copy";
+        
+         if(selectBtn.isDisable()){
+        delete.setDisable(true);
+       moveBtn.setDisable(true);
+       resizeBtn.setDisable(true);
+       copyBtn.setDisable(false);
+       }
+       
+       //set offset
+       Shape s = hmap.get(target);
+        s.setX1(s.getX1()+50);
+        s.setY1(s.getY1()+50);
+        s.setX2(s.getX2()+50);
+        s.setY2(s.getY2()+50);
+        s.addShape(hmap);
+      
+
+            /* hena feh error 
+                - bya5od offset sah , w by7ot el shape fe el hmap sah,
+                    bas byrsem 8alat
+        */
+        System.out.println(hmap.size());
+              // s.updateShape(hmap, hmap.get(target).getFillPaint(), s.getX1(), s.getY1(), s.getX2(), s.getY2(), hmap.get(target).getPaint());
+
+                  MydrawingEngine.refresh(gc, canvas, currentfill);
+
+          MydrawingEngine.parse(hmap, gc);
+                                  
+   
+       
+
+          
+        System.out.println( hmap.get(hmap.size()-1).getY1());
+            System.out.println(hmap.size());
+
+       isCopy = true;
+       
+        
+       
+       
     }
 
     @FXML
