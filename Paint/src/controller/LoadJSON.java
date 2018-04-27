@@ -27,9 +27,9 @@ import org.json.simple.parser.ParseException;
 
 public class LoadJSON { 
     public static  ArrayList<Shape> array;
-    public static String type = null;
+    public static  ArrayList<String> type = new ArrayList<>();
     
-      static ArrayList<JSONObject> json;
+  public static ArrayList<JSONObject> json;
      
     /**
      *
@@ -108,31 +108,31 @@ for(int i=0;i<json.size();i++){
     if(name.compareToIgnoreCase("oval")==0)
         
     {Oval o = new Oval((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
-    type="oval";
+    type.add("oval");
     
     array.add( (Shape) o);}
     else if(name.compareToIgnoreCase("rectangle")==0)
     {
         Rectangle c = new Rectangle((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
-        type = "rectangle";
+        type.add("rectangle");
         array.add( (Shape) c);
     }
     else if(name.compareToIgnoreCase("triangle")==0)
     {
         Triangle t = new Triangle((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
-        type = "triangle";
+        type.add("triangle");
         array.add( (Shape) t);
     }
     else if(name.compareToIgnoreCase("square")==0)
     {
         Square s = new Square((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
-        type = "square";
+        type.add("square");
         array.add( (Shape) s);
     }
     else
     {
         Line l = new Line((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint),lw,Paint.valueOf(fillpaint));
-        type = "line";
+        type.add("line");
         array.add( (Shape) l);
     }
     

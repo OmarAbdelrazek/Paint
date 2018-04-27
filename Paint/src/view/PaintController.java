@@ -186,23 +186,23 @@ public class PaintController implements Initializable {
         LoadJSON.jsonArray(file.getPath());
         LoadJSON.Load();
         for(int i =0 ; i<LoadJSON.array.size();i++){
-        if(LoadJSON.type.compareToIgnoreCase("oval")==0){
+        if(LoadJSON.type.get(i).compareToIgnoreCase("oval")==0){
         Oval o = (Oval) LoadJSON.array.get(i);
         o.draw(gc);
         }
-        else  if(LoadJSON.type.compareToIgnoreCase("rectangle")==0){
+        else   if(LoadJSON.type.get(i).compareToIgnoreCase("rectangle")==0){
         Rectangle r = (Rectangle) LoadJSON.array.get(i);
         r.draw(gc);
         }
-        else  if(LoadJSON.type.compareToIgnoreCase("triangle")==0){
+        else   if(LoadJSON.type.get(i).compareToIgnoreCase("triangle")==0){
         Triangle r = (Triangle) LoadJSON.array.get(i);
         r.draw(gc);
         }
-        else  if(LoadJSON.type.compareToIgnoreCase("square")==0){
+        else   if(LoadJSON.type.get(i).compareToIgnoreCase("square")==0){
         Square s= (Square) LoadJSON.array.get(i);
         s.draw(gc);
         }
-        else  if(LoadJSON.type.compareToIgnoreCase("line")==0){
+        else   if(LoadJSON.type.get(i).compareToIgnoreCase("line")==0){
         Line l = (Line) LoadJSON.array.get(i);
         l.draw(gc);
         }
