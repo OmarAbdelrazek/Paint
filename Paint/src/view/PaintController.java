@@ -94,7 +94,7 @@ public class PaintController implements Initializable {
     private Button Brush;
     //
     int orgSceneX, orgSceneY;
-    int orgTranslateX1, orgTranslateY1 ,orgTranslateX2 , orgTranslateY2;
+    int orgTranslateX1, orgTranslateY1, orgTranslateX2, orgTranslateY2;
     @FXML
     private Button delete;
     @FXML
@@ -135,6 +135,7 @@ public class PaintController implements Initializable {
     public Stack<String> namesStack;
     @FXML
     private Button undoBtn;
+
     @FXML
     private Button redoBtn;
     boolean isDeleted = false;
@@ -153,7 +154,6 @@ public class PaintController implements Initializable {
 
     @FXML
     private Button sphereBtn;
-
 
     /**
      * Initializes the controller class.
@@ -181,7 +181,6 @@ public class PaintController implements Initializable {
         upBtn.setDisable(true);
         liftBtn.setDisable(true);
         exitMoveModeBtn.setDisable(true);
-        
 
     }
 
@@ -201,7 +200,7 @@ public class PaintController implements Initializable {
     @FXML
     private void openFile() throws FileNotFoundException, ParseException {
         hmap.clear();
-        priority=0;
+        priority = 0;
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -211,38 +210,30 @@ public class PaintController implements Initializable {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         LoadJSON.jsonArray(file.getPath());
         LoadJSON.Load();
-        for(int i =0 ; i<LoadJSON.array.size();i++){
-        if(LoadJSON.type.get(i).compareToIgnoreCase("oval")==0){
-        Oval o = (Oval) LoadJSON.array.get(i);
-        o.addShape(hmap);
-        }
-        else   if(LoadJSON.type.get(i).compareToIgnoreCase("rectangle")==0){
-        Rectangle r = (Rectangle) LoadJSON.array.get(i);
-        r.addShape(hmap);
-        }
-        else   if(LoadJSON.type.get(i).compareToIgnoreCase("triangle")==0){
-        Triangle r = (Triangle) LoadJSON.array.get(i);
-        r.addShape(hmap);
-        }
-        else   if(LoadJSON.type.get(i).compareToIgnoreCase("square")==0){
-        Square s= (Square) LoadJSON.array.get(i);
-        s.addShape(hmap);
-        }
-        else   if(LoadJSON.type.get(i).compareToIgnoreCase("line")==0){
-        Line l = (Line) LoadJSON.array.get(i);
-        hmap.put(priority, l);
-        priority++;
-        }
-        else if(LoadJSON.type.get(i).compareToIgnoreCase("circle")==0){
-        model.Circle c  = (model.Circle) LoadJSON.array.get(i);
-        c.addShape(hmap);
-        }
-        
+        for (int i = 0; i < LoadJSON.array.size(); i++) {
+            if (LoadJSON.type.get(i).compareToIgnoreCase("oval") == 0) {
+                Oval o = (Oval) LoadJSON.array.get(i);
+                o.addShape(hmap);
+            } else if (LoadJSON.type.get(i).compareToIgnoreCase("rectangle") == 0) {
+                Rectangle r = (Rectangle) LoadJSON.array.get(i);
+                r.addShape(hmap);
+            } else if (LoadJSON.type.get(i).compareToIgnoreCase("triangle") == 0) {
+                Triangle r = (Triangle) LoadJSON.array.get(i);
+                r.addShape(hmap);
+            } else if (LoadJSON.type.get(i).compareToIgnoreCase("square") == 0) {
+                Square s = (Square) LoadJSON.array.get(i);
+                s.addShape(hmap);
+            } else if (LoadJSON.type.get(i).compareToIgnoreCase("line") == 0) {
+                Line l = (Line) LoadJSON.array.get(i);
+                hmap.put(priority, l);
+                priority++;
+            } else if (LoadJSON.type.get(i).compareToIgnoreCase("circle") == 0) {
+                model.Circle c = (model.Circle) LoadJSON.array.get(i);
+                c.addShape(hmap);
+            }
+
         }
         MydrawingEngine.parse(hmap, gc);
-       
-       
-        
 
     }
 
@@ -291,10 +282,10 @@ public class PaintController implements Initializable {
         startY = e.getY();
         javafx.scene.paint.Paint currentfill = fillpick.getValue();
         javafx.scene.paint.Paint currentcolor = colorPicker.getValue();
-        
-            if(shape.compareTo("move")==0){
-                
-            }
+
+        if (shape.compareTo("move") == 0) {
+
+        }
 
     }
 
@@ -359,15 +350,14 @@ public class PaintController implements Initializable {
             MydrawingEngine.parse(hmap, gc);
             undoBtn.setDisable(false);
 
-        } 
-        else if (shape.compareTo("sphere") == 0) {
+        } else if (shape.compareTo("sphere") == 0) {
             model.Circle c = new model.Circle();
             c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
             undoBtn.setDisable(false);
 
-        }else if (shape.compareTo("eraser") == 0) {
+        } else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);
@@ -375,23 +365,6 @@ public class PaintController implements Initializable {
             eraser.draw(gc);
 
         }
-                  else if (shape.compareTo("move") == 0)
-          {
-                    Shape temp = hmap.get(target);
-                    orgSceneX = (int) e.getX();
-                    orgSceneY = (int) e.getY();
-                    orgTranslateX1 = temp.getX1() + (temp.getX1() - (int) orgSceneX);
-                    orgTranslateY1 = temp.getY1() + (temp.getY1() - (int) orgSceneY);
-                    orgTranslateX2 = temp.getX1() + (temp.getX1() - (int) orgSceneX);
-                    orgTranslateY2 = temp.getY1() + (temp.getY1() - (int) orgSceneY);
-                    hmap.get(target).setX1(orgTranslateX1);
-                    temp.setY1(orgTranslateY1);
-                    temp.setX2(orgTranslateX2);
-                    temp.setY2(orgTranslateY2);
-                    temp.draw(gc);
-                    MydrawingEngine.parse(hmap, gc);
-                    System.out.println("Coppying"); 
-          }
 
     }
 
@@ -446,30 +419,23 @@ public class PaintController implements Initializable {
         hght = Math.abs(endY - startY);
         wdth = Math.abs(endX - startX);
 
-if(shape.compareTo("select") ==0 && isSelected){
-           
-             for(int i= BoundsOperations.boundMap.size()-1 ; i>= 0 ; i--){
-                  System.out.print("x1:  "+BoundsOperations.boundMap.get(i)[0]);
-                 System.out.print("x2:   "+BoundsOperations.boundMap.get(i)[2]);
-                 System.out.print("Y1:  "+BoundsOperations.boundMap.get(i)[1]);
-                System.out.print("y2:  "+BoundsOperations.boundMap.get(i)[3]);
-                 System.out.println("");
-                if(startX >= Math.min(BoundsOperations.boundMap.get(i)[0], BoundsOperations.boundMap.get(i)[2]) && startX <= Math.max(BoundsOperations.boundMap.get(i)[0], BoundsOperations.boundMap.get(i)[2]) && startY > Math.min(BoundsOperations.boundMap.get(i)[1], BoundsOperations.boundMap.get(i)[3]) && startY < Math.max(BoundsOperations.boundMap.get(i)[1], BoundsOperations.boundMap.get(i)[3]) && !hmap.isEmpty())
-                 {
-                    
-                  
-                     target = i;
-                     System.out.println("tarrget" + target);
-                                          break;
+        if (shape.compareTo("select") == 0 && isSelected) {
 
-                 }
-               
-                  
-                 
-             }
-             
-         
-    
+            for (int i = BoundsOperations.boundMap.size() - 1; i >= 0; i--) {
+                System.out.print("x1:  " + BoundsOperations.boundMap.get(i)[0]);
+                System.out.print("x2:   " + BoundsOperations.boundMap.get(i)[2]);
+                System.out.print("Y1:  " + BoundsOperations.boundMap.get(i)[1]);
+                System.out.print("y2:  " + BoundsOperations.boundMap.get(i)[3]);
+                System.out.println("");
+                if (startX >= Math.min(BoundsOperations.boundMap.get(i)[0], BoundsOperations.boundMap.get(i)[2]) && startX <= Math.max(BoundsOperations.boundMap.get(i)[0], BoundsOperations.boundMap.get(i)[2]) && startY > Math.min(BoundsOperations.boundMap.get(i)[1], BoundsOperations.boundMap.get(i)[3]) && startY < Math.max(BoundsOperations.boundMap.get(i)[1], BoundsOperations.boundMap.get(i)[3]) && !hmap.isEmpty()) {
+
+                    target = i;
+                    System.out.println("tarrget" + target);
+                    break;
+
+                }
+
+            }
 
         } else if (shape.compareTo("circle") == 0) {
 
@@ -533,20 +499,18 @@ if(shape.compareTo("select") ==0 && isSelected){
             // r.setLineWidth(width.getValue());
             s.addShape(hmap);
 
-        }        else if (shape.compareTo("sphere") == 0) {
+        } else if (shape.compareTo("sphere") == 0) {
             model.Circle c = new model.Circle();
             c.updateShapeinfo(hmap, isFilled, fillpick.getValue(), (int) startX, (int) startY, (int) endX, (int) endY, colorPicker.getValue(), width.getValue());
             BoundsOperations b = new BoundsOperations(c.getUpperLeftX(), c.getUpperLeftY(), c.getLowerRightX(), c.getLowerRightY(), selectCounter);
             selectCounter++;
             // r.setLineWidth(width.getValue());
             c.addShape(hmap);
-            
+
             undoBtn.setDisable(false);
 
         }
-        else if (shape.compareTo("move") == 0) {
-            
-        } 
+
         startX = 0;
         startY = 0;
         endX = 0;
@@ -629,7 +593,7 @@ if(shape.compareTo("select") ==0 && isSelected){
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         hmap.clear();
         priority = 0;
-        target=0;
+        target = 0;
         BoundsOperations.boundMap.clear();
         found.clear();
         undoBtn.setDisable(true);
@@ -692,8 +656,6 @@ if(shape.compareTo("select") ==0 && isSelected){
     @FXML
     private void moveBtnAction(ActionEvent event) {
 
-       
-
         if (selectBtn.isDisable()) {
             shape = "move";
 
@@ -701,14 +663,14 @@ if(shape.compareTo("select") ==0 && isSelected){
             moveBtn.setDisable(false);
             resizeBtn.setDisable(true);
             copyBtn.setDisable(true);
-        downBtn.setDisable(false);
-        rightBtn.setDisable(false);
-        upBtn.setDisable(false);
-        liftBtn.setDisable(false); 
-             exitMoveModeBtn.setDisable(false);
+            downBtn.setDisable(false);
+            rightBtn.setDisable(false);
+            upBtn.setDisable(false);
+            liftBtn.setDisable(false);
+            exitMoveModeBtn.setDisable(false);
             shape = "move";
-        
-    }
+
+        }
     }
 
     @FXML
@@ -720,88 +682,86 @@ if(shape.compareTo("select") ==0 && isSelected){
             copyBtn.setDisable(true);
             shape = "resize";
         }
-                    shape = "resize";
+        shape = "resize";
 
     }
-     @FXML
+
+    @FXML
     private void canvasOnMouseScroll(ScrollEvent event) {
-       if(shape.compareTo("resize")  == 0){
-        double deltaY = event.getDeltaY();
-        Shape s = hmap.get(target);
-         if(deltaY > 0){
-            System.out.println("up");
-           // s.setX1(s.getX1() - 25);
-           if(s.getX1() <= s.getX2()-25)
-            s.setX2(s.getX2() - 25);
-           // s.setY1(s.getY1() - 25);
-           if(s.getY1() < s.getY2()-25)
-            s.setY2(s.getY2() - 25);
-            
-            MydrawingEngine.refresh(gc, canvas, currentfill);
-        MydrawingEngine.parse(hmap, gc);
-            
-            
+        if (shape.compareTo("resize") == 0) {
+            double deltaY = event.getDeltaY();
+            Shape s = hmap.get(target);
+            if (deltaY > 0) {
+                System.out.println("up");
+                // s.setX1(s.getX1() - 25);
+                if (s.getX1() <= s.getX2() - 25) {
+                    s.setX2(s.getX2() - 25);
+                }
+                // s.setY1(s.getY1() - 25);
+                if (s.getY1() < s.getY2() - 25) {
+                    s.setY2(s.getY2() - 25);
+                }
+
+                MydrawingEngine.refresh(gc, canvas, currentfill);
+                MydrawingEngine.parse(hmap, gc);
+
+            } else if (deltaY < 0) {
+                System.out.println("down");
+                // s.setX1(s.getX1() - 25);
+                if (s.getX1() <= s.getX2() + 25) {
+                    s.setX2(s.getX2() + 25);
+                }
+                // s.setY1(s.getY1() - 25);
+                if (s.getY1() < s.getY2() + 25) {
+                    s.setY2(s.getY2() + 25);
+                }
+                MydrawingEngine.refresh(gc, canvas, currentfill);
+                MydrawingEngine.parse(hmap, gc);
+            }
+
         }
-       else if(deltaY < 0){
-            System.out.println("down");
-             // s.setX1(s.getX1() - 25);
-             if(s.getX1() <= s.getX2()+25)
-            s.setX2(s.getX2() + 25);
-           // s.setY1(s.getY1() - 25);
-            if(s.getY1() < s.getY2()+25)
-            s.setY2(s.getY2() + 25);
-             MydrawingEngine.refresh(gc, canvas, currentfill);
-        MydrawingEngine.parse(hmap, gc);
-        }
-        
-   
-    }
     }
 
     @FXML
     private void copyBtnAction(ActionEvent event) {
-        
-            delete.setDisable(true);
-            moveBtn.setDisable(true);
-            resizeBtn.setDisable(true);
-            copyBtn.setDisable(true);
-            selectBtn.setDisable(false);
 
-       //set offset
-      Shape s = BoundsOperations.copyShape(hmap.get(target));
-      
-           System.out.println("beforeeee"+hmap.size());
+        delete.setDisable(true);
+        moveBtn.setDisable(true);
+        resizeBtn.setDisable(true);
+        copyBtn.setDisable(true);
+        selectBtn.setDisable(false);
 
-       /*s.setX1(s.getX1()+50);
+        //set offset
+        Shape s = BoundsOperations.copyShape(hmap.get(target));
+
+        System.out.println("beforeeee" + hmap.size());
+
+        /*s.setX1(s.getX1()+50);
         s.setY1(s.getY1()+50);
         s.setX2(s.getX2()+50);
         s.setY2(s.getY2()+50);*/
-        System.out.println("orignallll"+ target);
-       s.setFillPaint(hmap.get(target).getFillPaint());
-     //  s.setFillPaint(hmap.get(target).getFillPaint());
-       s.addShape(hmap);
-      
+        System.out.println("orignallll" + target);
+        s.setFillPaint(hmap.get(target).getFillPaint());
+        //  s.setFillPaint(hmap.get(target).getFillPaint());
+        s.addShape(hmap);
 
-            /* hena feh error 
+
+        /* hena feh error 
                 - bya5od offset sah , w by7ot el shape fe el hmap sah,
                     bas byrsem 8alat
-        */
-               BoundsOperations b = new BoundsOperations(s.getX1(), s.getY1(), s.getX2(), s.getX2(), selectCounter);
-            selectCounter++;
-           System.out.println(hmap.get(hmap.size()-1).getX1());
-           System.out.println(hmap.get(hmap.size()-2).getX1());
-         MydrawingEngine.parse(hmap, gc);
-      System.out.println("beforeeee2"+hmap.size());
-     
-            
-       isCopy = true;
+         */
+        BoundsOperations b = new BoundsOperations(s.getX1(), s.getY1(), s.getX2(), s.getX2(), selectCounter);
+        selectCounter++;
+        System.out.println(hmap.get(hmap.size() - 1).getX1());
+        System.out.println(hmap.get(hmap.size() - 2).getX1());
+        MydrawingEngine.parse(hmap, gc);
+        System.out.println("beforeeee2" + hmap.size());
+
+        isCopy = true;
         isDeleteUndo = false;
         isDeleted = false;
         isSelected = false;
-       
-        
-       
-       
+
     }
 
     @FXML
@@ -826,24 +786,23 @@ if(shape.compareTo("select") ==0 && isSelected){
 
     @FXML
     private void undoBtnAction(ActionEvent event) {
-        if(isCopy){
-           // System.out.println(hmap.get(priority-2).toString());
-            
-            undoStack.push(hmap.get(hmap.size()-1));
-                        System.out.println(hmap.size()-1);
+        if (isCopy) {
+            // System.out.println(hmap.get(priority-2).toString());
 
-            hmap.remove(hmap.size()-1);
+            undoStack.push(hmap.get(hmap.size() - 1));
+            System.out.println(hmap.size() - 1);
+
+            hmap.remove(hmap.size() - 1);
             priority--;
-             MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
             redoBtn.setDisable(false);
-                    delete.setDisable(true);
+            delete.setDisable(true);
             moveBtn.setDisable(true);
             resizeBtn.setDisable(true);
             copyBtn.setDisable(true);
-            
-        }
-       else if (isDeleted) {
+
+        } else if (isDeleted) {
             System.out.println("hiiiiii2");
 
             hmap.put(priority, undoStack.pop());
@@ -880,22 +839,21 @@ if(shape.compareTo("select") ==0 && isSelected){
         selectBtn.setDisable(false);
         delete.setDisable(true);
         delete.setDisable(true);
-            moveBtn.setDisable(true);
-            resizeBtn.setDisable(true);
-            copyBtn.setDisable(true);
+        moveBtn.setDisable(true);
+        resizeBtn.setDisable(true);
+        copyBtn.setDisable(true);
 
     }
 
     @FXML
     private void redoBtnAction(ActionEvent event) {
 
-        if(isCopy){
+        if (isCopy) {
             hmap.put(priority, undoStack.pop());
             priority++;
-             MydrawingEngine.refresh(gc, canvas, currentfill);
+            MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
-        }
-        else if (isDeleteUndo) {
+        } else if (isDeleteUndo) {
             redoBtn.setDisable(true);
             undoStack.push(hmap.get(priority - 1));
             hmap.remove(priority - 1);
@@ -923,74 +881,59 @@ if(shape.compareTo("select") ==0 && isSelected){
     }
 
     @FXML
-    public void sphereBtn()
-    {
-        shape="sphere";
+    public void sphereBtn() {
+        shape = "sphere";
     }
-
-
-    public void ButtonManager(Button Btn1, Button Btn2, Button Btn3, Button Btn4) {
-        Btn1.setDisable(false);
-        Btn2.setDisable(true);
-        Btn3.setDisable(true);
-        Btn2.setDisable(true);
-    }
-
-   
 
     @FXML
     private void upBtnAction(ActionEvent event) {
-         Shape s = hmap.get(target);
-            s.setY1(s.getY1()-25);
-            s.setY2(s.getY2()-25);
-            MydrawingEngine.refresh(gc, canvas, currentfill);
-            MydrawingEngine.parse(hmap, gc);
+        Shape s = hmap.get(target);
+        s.setY1(s.getY1() - 25);
+        s.setY2(s.getY2() - 25);
+        MydrawingEngine.refresh(gc, canvas, currentfill);
+        MydrawingEngine.parse(hmap, gc);
     }
 
     @FXML
     private void downBtnAction(ActionEvent event) {
         Shape s = hmap.get(target);
-            s.setY1(s.getY1()+25);
-            s.setY2(s.getY2()+25);
-            MydrawingEngine.refresh(gc, canvas, currentfill);
-            MydrawingEngine.parse(hmap, gc);
+        s.setY1(s.getY1() + 25);
+        s.setY2(s.getY2() + 25);
+        MydrawingEngine.refresh(gc, canvas, currentfill);
+        MydrawingEngine.parse(hmap, gc);
     }
 
     @FXML
     private void rightBtnAciton(ActionEvent event) {
-         Shape s = hmap.get(target);
-            s.setX1(s.getX1()+25);
-            s.setX2(s.getX2()+25);
-            MydrawingEngine.refresh(gc, canvas, currentfill);
-            MydrawingEngine.parse(hmap, gc);
+        Shape s = hmap.get(target);
+        s.setX1(s.getX1() + 25);
+        s.setX2(s.getX2() + 25);
+        MydrawingEngine.refresh(gc, canvas, currentfill);
+        MydrawingEngine.parse(hmap, gc);
     }
 
     @FXML
     private void liftBtnAction(ActionEvent event) {
-         Shape s = hmap.get(target);
-            s.setX1(s.getX1()-25);
-            s.setX2(s.getX2()-25);
-            MydrawingEngine.refresh(gc, canvas, currentfill);
-            MydrawingEngine.parse(hmap, gc);
+        Shape s = hmap.get(target);
+        s.setX1(s.getX1() - 25);
+        s.setX2(s.getX2() - 25);
+        MydrawingEngine.refresh(gc, canvas, currentfill);
+        MydrawingEngine.parse(hmap, gc);
     }
 
     @FXML
     private void exitMoveModeBtnAction(ActionEvent event) {
-         downBtn.setDisable(true);
+        downBtn.setDisable(true);
         rightBtn.setDisable(true);
         upBtn.setDisable(true);
-        liftBtn.setDisable(true); 
+        liftBtn.setDisable(true);
         selectBtn.setDisable(false);
         delete.setDisable(true);
-            moveBtn.setDisable(true);
-            resizeBtn.setDisable(true);
-            copyBtn.setDisable(true);
-            exitMoveModeBtn.setDisable(true);
-        
+        moveBtn.setDisable(true);
+        resizeBtn.setDisable(true);
+        copyBtn.setDisable(true);
+        exitMoveModeBtn.setDisable(true);
+
     }
-
-
-
-   
 
 }

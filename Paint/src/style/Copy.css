@@ -1,0 +1,15 @@
+.button{
+    -fx-background-image: url("Copy.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+}
+
+.button:pressed{
+    -fx-background-image: url("Copy.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-border-radius: 20;
+    -fx-rotate: 10;
+        
+    
+}

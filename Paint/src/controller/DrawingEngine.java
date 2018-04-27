@@ -18,13 +18,13 @@ import view.*;
 public interface DrawingEngine {
 
     /* redraw all shapes on the canvas */
-   public void refresh(Canvas canvas);
+  // public void refresh(Canvas canvas);
 
-    public void addShape(Shape shape,HashMap HashMapOfShapes);
+    //public void addShape(Shape shape,HashMap HashMapOfShapes);
 
-    public void removeShape(Shape shape);
+    //public void removeShape(Shape shape);
 
-    public void updateShape(Shape oldShape, Shape newShape);
+    //public void updateShape(Shape oldShape, Shape newShape);
 
     /* return the created shapes objects */
    // public Shape[] getShapes();

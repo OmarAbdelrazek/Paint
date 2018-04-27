@@ -1,0 +1,19 @@
+.button{
+    -fx-background-image: url("Oval.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+}
+.button:hover{
+    -fx-background-image: url("FilledOval.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+}
+.button:pressed{
+    -fx-background-image: url("FilledOval.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-border-radius: 20;
+    -fx-rotate: 10;
+        
+    
+}

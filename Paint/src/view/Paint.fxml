@@ -105,20 +105,20 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="eraser" layoutX="44.0" layoutY="210.0" mnemonicParsing="false" onAction="#eraserBtn" prefHeight="52.0" prefWidth="57.0" text="Eraser" GridPane.rowIndex="4">
+                        <Button fx:id="eraser" layoutX="44.0" layoutY="210.0" mnemonicParsing="false" onAction="#eraserBtn" prefHeight="52.0" prefWidth="57.0" stylesheets="@../style/Eraser.css" GridPane.rowIndex="4">
                      
                   </Button>
-                        <Button fx:id="circleBtn" layoutX="44.0" layoutY="65.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="52.0" prefWidth="56.0" text="Oval" GridPane.rowIndex="1">
+                        <Button fx:id="circleBtn" layoutX="44.0" layoutY="65.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="52.0" prefWidth="56.0" stylesheets="@../style/Oval.css" GridPane.rowIndex="1">
                     </Button>
-                        <Button fx:id="Brush" layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="53.0" prefWidth="55.0" text="Brush">
+                        <Button fx:id="Brush" layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="53.0" prefWidth="55.0" stylesheets="@../style/Brush.css">
                     </Button>
-                        <Button fx:id="button3" layoutX="44.0" layoutY="161.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="54.0" prefWidth="57.0" text="Triangle" GridPane.rowIndex="3">
+                        <Button fx:id="button3" layoutX="44.0" layoutY="161.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="54.0" prefWidth="57.0" stylesheets="@../style/Triangle.css" GridPane.rowIndex="3">
                      </Button>
-                        <Button fx:id="sphereBtn" layoutX="47.0" layoutY="257.0" mnemonicParsing="false" onAction="#sphereBtn" prefHeight="53.0" prefWidth="57.0" text="Circle" GridPane.rowIndex="5" />
-                        <Button fx:id="square" layoutX="47.0" layoutY="308.0" mnemonicParsing="false" onAction="#squareBtn" prefHeight="53.0" prefWidth="57.0" text="Square" GridPane.rowIndex="6" />
-                        <Button fx:id="lineBtn" layoutX="50.0" layoutY="362.0" mnemonicParsing="false" onAction="#lineBtn" prefHeight="53.0" prefWidth="57.0" text="Line" GridPane.rowIndex="7">
+                        <Button fx:id="sphereBtn" layoutX="47.0" layoutY="257.0" mnemonicParsing="false" onAction="#sphereBtn" prefHeight="53.0" prefWidth="57.0" stylesheets="@../style/Circle.css" GridPane.rowIndex="5" />
+                        <Button fx:id="square" layoutX="47.0" layoutY="308.0" mnemonicParsing="false" onAction="#squareBtn" prefHeight="53.0" prefWidth="57.0" stylesheets="@../style/Square.css" GridPane.rowIndex="6" />
+                        <Button fx:id="lineBtn" layoutX="50.0" layoutY="362.0" mnemonicParsing="false" onAction="#lineBtn" prefHeight="53.0" prefWidth="57.0" stylesheets="@../style/Line.css" GridPane.rowIndex="7">
                    </Button>
-                        <Button fx:id="button2" mnemonicParsing="false" onAction="#rectangleBtn" prefHeight="54.0" prefWidth="57.0" text="Rectangle" GridPane.rowIndex="2">
+                        <Button fx:id="button2" mnemonicParsing="false" onAction="#rectangleBtn" prefHeight="54.0" prefWidth="57.0" stylesheets="@../style/Rectangle.css" GridPane.rowIndex="2">
                     </Button>
                      </children>
                   </GridPane>
@@ -130,14 +130,14 @@
                   <Label layoutX="21.0" layoutY="715.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
                   <Label layoutX="21.0" layoutY="751.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
                  
-                  <Button fx:id="upBtn" layoutX="66.0" layoutY="590.0" mnemonicParsing="false" onAction="#upBtnAction" prefHeight="18.0" prefWidth="26.0" text="^" />
-                  <Button fx:id="downBtn" layoutX="66.0" layoutY="652.0" mnemonicParsing="false" onAction="#downBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="180.0" text="^" />
-                  <Button fx:id="rightBtn" layoutX="102.0" layoutY="621.0" mnemonicParsing="false" onAction="#rightBtnAciton" prefHeight="18.0" prefWidth="26.0" rotate="90.0" text="^" />
-                  <Button fx:id="liftBtn" layoutX="28.0" layoutY="621.0" mnemonicParsing="false" onAction="#liftBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="270.0" text="^" />
-                  <Button fx:id="exitMoveModeBtn" layoutX="30.0" layoutY="684.0" mnemonicParsing="false" onAction="#exitMoveModeBtnAction" prefHeight="26.0" prefWidth="102.0" text="Exit move mode" />
+                  <Button fx:id="upBtn" layoutX="66.0" layoutY="590.0" mnemonicParsing="false" onAction="#upBtnAction" prefHeight="31.0" prefWidth="31.0" stylesheets="@../style/Up.css" />
+                  <Button fx:id="downBtn" layoutX="66.0" layoutY="652.0" mnemonicParsing="false" onAction="#downBtnAction" prefHeight="31.0" prefWidth="31.0" rotate="180.0" stylesheets="@../style/Up.css" />
+                  <Button fx:id="rightBtn" layoutX="103.0" layoutY="621.0" mnemonicParsing="false" onAction="#rightBtnAciton" prefHeight="26.0" prefWidth="31.0" rotate="90.0" stylesheets="@../style/Up.css" />
+                  <Button fx:id="liftBtn" layoutX="29.0" layoutY="621.0" mnemonicParsing="false" onAction="#liftBtnAction" prefHeight="31.0" prefWidth="31.0" rotate="270.0" stylesheets="@../style/Up.css" />
+                  <Button fx:id="exitMoveModeBtn" layoutX="30.0" layoutY="684.0" mnemonicParsing="false" onAction="#exitMoveModeBtnAction" prefHeight="26.0" prefWidth="102.0" text="Exit move" />
 
-                  <Button fx:id="redoBtn" layoutX="90.0" layoutY="453.0" mnemonicParsing="false" onAction="#redoBtnAction" prefHeight="31.0" prefWidth="54.0" text="Redo" />
-                  <Button fx:id="undoBtn" layoutX="16.0" layoutY="453.0" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="32.0" prefWidth="54.0" text="Undo" />
+                  <Button fx:id="redoBtn" layoutX="90.0" layoutY="446.0" mnemonicParsing="false" onAction="#redoBtnAction" prefHeight="38.0" prefWidth="57.0" stylesheets="@../style/Redo.css" />
+                  <Button fx:id="undoBtn" layoutX="16.0" layoutY="446.0" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="38.0" prefWidth="57.0" stylesheets="@../style/Undo.css" />
                   <Button fx:id="clearBtn" layoutX="55.0" layoutY="556.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                </children>
             </AnchorPane>
@@ -155,10 +155,10 @@
                               <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
                               <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" onAction="#setfill" />
                               <Button fx:id="selectBtn" layoutX="384.0" layoutY="6.0" mnemonicParsing="false" onAction="#selectBtnAction" prefHeight="26.0" prefWidth="87.0" text="Select" />
-                              <Button fx:id="resizeBtn" layoutX="753.0" layoutY="6.0" mnemonicParsing="false" onAction="#resizeBtnAction" prefHeight="38.0" prefWidth="38.0" text="R" />
-                              <Button fx:id="delete" layoutX="808.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteBtnAction" prefHeight="38.0" prefWidth="42.0" text="D" />
-                              <Button fx:id="moveBtn" layoutX="636.0" layoutY="5.0" mnemonicParsing="false" onAction="#moveBtnAction" prefHeight="38.0" prefWidth="38.0" text="M" />
-                              <Button fx:id="copyBtn" layoutX="698.0" layoutY="6.0" mnemonicParsing="false" onAction="#copyBtnAction" prefHeight="38.0" prefWidth="38.0" text="C" />
+                              <Button fx:id="resizeBtn" layoutX="753.0" layoutY="6.0" mnemonicParsing="false" onAction="#resizeBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Resize.css" />
+                              <Button fx:id="delete" layoutX="808.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteBtnAction" prefHeight="38.0" prefWidth="42.0" stylesheets="@../style/Delete.css" />
+                              <Button fx:id="moveBtn" layoutX="636.0" layoutY="5.0" mnemonicParsing="false" onAction="#moveBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Move.css" />
+                              <Button fx:id="copyBtn" layoutX="698.0" layoutY="6.0" mnemonicParsing="false" onAction="#copyBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Copy.css" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="671.0" prefWidth="1008.0">
                            <children>

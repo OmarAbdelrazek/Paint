@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.canvas.Canvas;
@@ -28,8 +29,8 @@ import static view.PaintController.target;
  *
  * @author Tommy
  */
-public abstract class MydrawingEngine implements DrawingEngine {
-
+public class MydrawingEngine implements DrawingEngine {
+private static final MydrawingEngine instance = new MydrawingEngine() ;
     public static void parse(HashMap Shapeshm, GraphicsContext gc) {
         for (int i = 0; i <= PaintController.priority; i++) {
             Shape s = (Shape) Shapeshm.get(i);
@@ -40,11 +41,9 @@ public abstract class MydrawingEngine implements DrawingEngine {
 
         }
     }
-
-    /**
-     *
-     * @param canvas
-     */
+    public static MydrawingEngine getInstance(){
+        return instance;
+    }
     public static void refresh(GraphicsContext gc ,Canvas canvas ,Paint current)
     {
             gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
@@ -52,7 +51,6 @@ public abstract class MydrawingEngine implements DrawingEngine {
             gc.setFill(current);
     }
     
-        public abstract java.util.List<Class<? extends Shape>> getSupportedShapes();
 
 
     public static void installPluginShape(String jarPath)
@@ -79,4 +77,5 @@ public abstract class MydrawingEngine implements DrawingEngine {
     shapeshm.remove(target);
 
     }
+
 }

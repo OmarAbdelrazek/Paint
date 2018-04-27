@@ -1,0 +1,5 @@
+.button{
+    -fx-background-image: url("Up.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+}
