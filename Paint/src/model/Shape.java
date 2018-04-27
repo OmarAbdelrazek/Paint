@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.HashMap;
+import static javafx.print.PrintColor.COLOR;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Effect;
@@ -181,6 +182,23 @@ public abstract class Shape implements Serializable ,Cloneable
     Shapeshm.put(order, this);
     view.PaintController.priority++;
     }
+    public void HighLightShape(GraphicsContext gc)
+    {
+        Rectangle r = new Rectangle();
+        r.setX1(this.x1);
+        r.setY1(this.y1);
+        r.setX2(this.x2);
+        r.setY2(this.y2);
+        r.setLineWidth(10.0);
+        r.setFillPaint(javafx.scene.paint.Paint.valueOf("#ffffff"));
+        r.setFill(false);
+        r.setPaint(javafx.scene.paint.Paint.valueOf("#000000"));
+        gc.setLineDashes(50);
+        r.draw(gc);
+        gc.setLineDashes(0);
+        
+    }
+
     
     
 

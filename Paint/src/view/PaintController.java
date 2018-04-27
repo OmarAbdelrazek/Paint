@@ -668,19 +668,14 @@ if(shape.compareTo("select") ==0 && isSelected){
 
     @FXML
     private void copyBtnAction(ActionEvent event) {
-        if (selectBtn.isDisable()) {
+        
             delete.setDisable(true);
             moveBtn.setDisable(true);
             resizeBtn.setDisable(true);
-            copyBtn.setDisable(false);
-        }
-        
-         if(selectBtn.isDisable()){
-        delete.setDisable(true);
-       moveBtn.setDisable(true);
-       resizeBtn.setDisable(true);
-       copyBtn.setDisable(false);
-       }
+            copyBtn.setDisable(true);
+            selectBtn.setDisable(false);
+
+       
        
        //set offset
        Shape s = hmap.get(target);
@@ -698,7 +693,7 @@ if(shape.compareTo("select") ==0 && isSelected){
         System.out.println(hmap.size());
               // s.updateShape(hmap, hmap.get(target).getFillPaint(), s.getX1(), s.getY1(), s.getX2(), s.getY2(), hmap.get(target).getPaint());
 
-                  MydrawingEngine.refresh(gc, canvas, currentfill);
+          
 
           MydrawingEngine.parse(hmap, gc);
                                   
