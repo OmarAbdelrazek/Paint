@@ -49,12 +49,7 @@ public class Oval extends BoundedShape {
         }
     }
 
-    @Override
-    public void update(GraphicsContext gc) {
-        gc.clearRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-        gc.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-
-    }
+  
 
     public void updateShape(Oval c, HashMap<Integer, Shape> hmap, Paint prev, double startX, double startY, double currentX, double currentY, Paint prev0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

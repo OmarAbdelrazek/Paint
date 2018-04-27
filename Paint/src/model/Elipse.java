@@ -42,11 +42,5 @@ public class Elipse extends BoundedShape {
         }
     }
 
-    @Override
-    public void update(GraphicsContext gc) {
-
-        gc.clearRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-        gc.strokeOval(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-    }
 
 }

@@ -49,12 +49,7 @@ public class Rectangle extends BoundedShape {
         }
     }
 
-    @Override
-    public void update(GraphicsContext gc) {
-        gc.clearRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-        gc.strokeRect(getUpperLeftX(), getUpperLeftY(), getWidth(), getHeight());
-
-    }
+ 
     @Override
     public String toString(){
         return "Rectangle";

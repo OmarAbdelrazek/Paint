@@ -136,5 +136,4 @@ abstract class BoundedShape extends Shape
         this.setPaint(this.getPaint());
         this.setFill(s.getFill());
     }
-    abstract public void update(GraphicsContext gc );
 } // end class MyBoundedShape

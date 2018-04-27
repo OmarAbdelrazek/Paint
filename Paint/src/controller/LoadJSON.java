@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import model.Circle;
 import model.Line;
 import model.Oval;
 import model.Rectangle;
@@ -34,6 +35,7 @@ public class LoadJSON {
     /**
      *
      * @param path
+     * @author Ameer.Nasser88
      */
     public static void jsonArray(String path) throws ParseException
       {
@@ -128,6 +130,12 @@ for(int i=0;i<json.size();i++){
         Square s = new Square((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
         type.add("square");
         array.add( (Shape) s);
+    }
+     else if(name.compareToIgnoreCase("Circle")==0)
+    {
+        Circle c = new Circle((int)X1, (int)Y1, (int)X2, (int)Y2,Paint.valueOf(paint), true, Paint.valueOf(fillpaint), lw);
+        type.add("Circle");
+        array.add( (Shape) c);
     }
     else
     {

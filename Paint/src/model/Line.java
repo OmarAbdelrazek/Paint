@@ -42,4 +42,10 @@ public class Line extends Shape
         g.setStroke(this.getPaint() ); //sets the color
         g.strokeLine( getX1(), getY1(), getX2(), getY2() ); //draws the line
     } 
+    
+    @Override
+    public String toString(){
+        return "Line";
+    }
+
 } 

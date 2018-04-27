@@ -16,7 +16,9 @@
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
@@ -25,7 +27,10 @@
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" onAction="#clearBtn" text="New">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <Menu mnemonicParsing="false" text="Open">
                     <items>
                   <MenuItem fx:id="btnOpenJ" mnemonicParsing="false" onAction="#openFile" text="Open JSON">
@@ -44,26 +49,27 @@
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#saveXML" text="XML" />
                     </items>
                   </Menu>
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
+            <MenuItem mnemonicParsing="false" onAction="#undoBtnAction" text="Undo">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#redoBtnAction" text="Redo">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
             <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
+            <MenuItem mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -73,47 +79,59 @@
         </Menu>
       </menus>
     </MenuBar>
-      <SplitPane dividerPositions="0.13145539906103287" prefHeight="789.0" prefWidth="1280.0">
+      <SplitPane dividerPositions="0.13536776212832552" prefHeight="789.0" prefWidth="1280.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="217.0" style="-fx-background-color: #3D4956;">
                <children>
-                  <Button fx:id="circleBtn" layoutX="44.0" layoutY="65.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="30.0" prefWidth="60.0" text="Circle">
-                    </Button>
-                  <Button fx:id="button2" layoutX="44.0" layoutY="113.0" mnemonicParsing="false" onAction="#rectangleBtn" prefHeight="30.0" prefWidth="60.0" text="Rectangle">
-                    </Button>
-                  <Button fx:id="button3" layoutX="44.0" layoutY="161.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="30.0" prefWidth="60.0" text="Triangle">
-                     </Button>
-                  <Button fx:id="lineBtn" layoutX="44.0" layoutY="253.0" mnemonicParsing="false" onAction="#lineBtn" prefHeight="30.0" prefWidth="60.0" text="Line">
-                   </Button>
-                  <Slider fx:id="width" layoutX="11.0" layoutY="401.0" min="1.0" showTickMarks="true" value="1.0" />
-                  <HBox layoutX="14.0" layoutY="436.0">
+                  <GridPane layoutX="54.0" layoutY="14.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <TextField fx:id="widthText" alignment="CENTER" layoutX="14.0" layoutY="436.0" prefHeight="32.0" prefWidth="69.0" />
-                        <Button fx:id="okBtn" layoutX="105.0" layoutY="436.0" mnemonicParsing="false" onAction="#width" text="OK" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="clearBtn" layoutX="52.0" layoutY="504.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
-                  <Button fx:id="Brush" layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="30.0" prefWidth="60.0" text="Brush">
-                    </Button>
-                  <Button fx:id="eraser" layoutX="44.0" layoutY="210.0" mnemonicParsing="false" onAction="#eraserBtn" prefHeight="30.0" prefWidth="60.0" text="Eraser">
+                        <Button fx:id="eraser" layoutX="44.0" layoutY="210.0" mnemonicParsing="false" onAction="#eraserBtn" prefHeight="52.0" prefWidth="57.0" text="Eraser" GridPane.rowIndex="4">
                      
                   </Button>
-                  <Button fx:id="square" layoutX="41.0" layoutY="352.0" mnemonicParsing="false" onAction="#squareBtn" text="Square" />
-                  <Label layoutX="71.0" layoutY="688.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" fx:id="xCoordinate" />
-                  <Label fx:id="yCoordinates" layoutX="75.0" layoutY="724.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" />
-                  <Label layoutX="22.0" layoutY="692.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
-                  <Label layoutX="22.0" layoutY="728.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
-                  <HBox layoutX="32.0" layoutY="306.0">
-                     <children>
-                        <Button fx:id="undoBtn" layoutX="22.0" layoutY="306.0" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="26.0" prefWidth="43.0" text="&lt;-" />
-                        <Button fx:id="redoBtn" layoutX="82.0" layoutY="306.0" mnemonicParsing="false" onAction="#redoBtnAction" prefHeight="26.0" prefWidth="43.0" text="-&gt;" />
+                        <Button fx:id="circleBtn" layoutX="44.0" layoutY="65.0" mnemonicParsing="false" onAction="#circleBtn" prefHeight="52.0" prefWidth="56.0" text="Oval" GridPane.rowIndex="1">
+                    </Button>
+                        <Button fx:id="Brush" layoutX="45.0" layoutY="15.0" mnemonicParsing="false" onAction="#brushBtn" prefHeight="53.0" prefWidth="55.0" text="Brush">
+                    </Button>
+                        <Button fx:id="button3" layoutX="44.0" layoutY="161.0" mnemonicParsing="false" onAction="#triangleBtn" prefHeight="54.0" prefWidth="57.0" text="Triangle" GridPane.rowIndex="3">
+                     </Button>
+                        <Button fx:id="sphereBtn" layoutX="47.0" layoutY="257.0" mnemonicParsing="false" onAction="#sphereBtn" prefHeight="53.0" prefWidth="57.0" text="Circle" GridPane.rowIndex="5" />
+                        <Button fx:id="square" layoutX="47.0" layoutY="308.0" mnemonicParsing="false" onAction="#squareBtn" prefHeight="53.0" prefWidth="57.0" text="Square" GridPane.rowIndex="6" />
+                        <Button fx:id="lineBtn" layoutX="50.0" layoutY="362.0" mnemonicParsing="false" onAction="#lineBtn" prefHeight="53.0" prefWidth="57.0" text="Line" GridPane.rowIndex="7">
+                   </Button>
+                        <Button fx:id="button2" mnemonicParsing="false" onAction="#rectangleBtn" prefHeight="54.0" prefWidth="57.0" text="Rectangle" GridPane.rowIndex="2">
+                    </Button>
                      </children>
-                  </HBox>
-                  <Button fx:id="upBtn" layoutX="48.0" layoutY="555.0" mnemonicParsing="false" onAction="#upBtnAction" prefHeight="18.0" prefWidth="26.0" text="^" />
-                  <Button fx:id="downBtn" layoutX="48.0" layoutY="609.0" mnemonicParsing="false" onAction="#downBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="180.0" text="^" />
-                  <Button fx:id="rightBtn" layoutX="81.0" layoutY="581.0" mnemonicParsing="false" onAction="#rightBtnAciton" prefHeight="18.0" prefWidth="26.0" rotate="90.0" text="^" />
-                  <Button fx:id="liftBtn" layoutX="19.0" layoutY="581.0" mnemonicParsing="false" onAction="#liftBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="270.0" text="^" />
-                  <Button fx:id="exitMoveModeBtn" layoutX="16.0" layoutY="661.0" mnemonicParsing="false" onAction="#exitMoveModeBtnAction" prefHeight="26.0" prefWidth="102.0" text="Exit move mode" />
+                  </GridPane>
+                  <Slider fx:id="width" layoutX="11.0" layoutY="495.0" min="1.0" showTickMarks="true" value="1.0" />
+                  <Button fx:id="okBtn" layoutX="101.0" layoutY="536.0" mnemonicParsing="false" onAction="#width" text="OK" />
+                  <TextField fx:id="widthText" alignment="CENTER" layoutX="19.0" layoutY="533.0" prefHeight="32.0" prefWidth="69.0" />
+                  <Label layoutX="68.0" layoutY="703.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" fx:id="xCoordinate" />
+                  <Label fx:id="yCoordinates" layoutX="74.0" layoutY="739.0" prefHeight="31.0" prefWidth="87.0" textFill="#0081ff" />
+                  <Label layoutX="22.0" layoutY="707.0" prefHeight="24.0" prefWidth="43.0" text="X:" textFill="WHITE" />
+                  <Label layoutX="22.0" layoutY="743.0" prefHeight="24.0" prefWidth="43.0" text="Y:" textFill="WHITE" />
+                 
+                  <Button fx:id="upBtn" layoutX="68.0" layoutY="594.0" mnemonicParsing="false" onAction="#upBtnAction" prefHeight="18.0" prefWidth="26.0" text="^" />
+                  <Button fx:id="downBtn" layoutX="68.0" layoutY="648.0" mnemonicParsing="false" onAction="#downBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="180.0" text="^" />
+                  <Button fx:id="rightBtn" layoutX="99.0" layoutY="621.0" mnemonicParsing="false" onAction="#rightBtnAciton" prefHeight="18.0" prefWidth="26.0" rotate="90.0" text="^" />
+                  <Button fx:id="liftBtn" layoutX="40.0" layoutY="621.0" mnemonicParsing="false" onAction="#liftBtnAction" prefHeight="18.0" prefWidth="26.0" rotate="270.0" text="^" />
+                  <Button fx:id="exitMoveModeBtn" layoutX="34.0" layoutY="680.0" mnemonicParsing="false" onAction="#exitMoveModeBtnAction" prefHeight="26.0" prefWidth="102.0" text="Exit move mode" />
+
+                  <Button fx:id="redoBtn" layoutX="90.0" layoutY="453.0" mnemonicParsing="false" onAction="#redoBtnAction" prefHeight="31.0" prefWidth="54.0" text="Redo" />
+                  <Button fx:id="undoBtn" layoutX="16.0" layoutY="453.0" mnemonicParsing="false" onAction="#undoBtnAction" prefHeight="32.0" prefWidth="54.0" text="Undo" />
+                  <Button fx:id="clearBtn" layoutX="19.0" layoutY="586.0" mnemonicParsing="false" onAction="#clearBtn" text="Clear" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="696.0" prefWidth="1089.0">
@@ -130,18 +148,15 @@
                               <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
                               <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" onAction="#setfill" />
                               <Button fx:id="selectBtn" layoutX="384.0" layoutY="6.0" mnemonicParsing="false" onAction="#selectBtnAction" prefHeight="26.0" prefWidth="87.0" text="Select" />
-                              <HBox layoutX="650.0" layoutY="6.0">
-                                 <children>
-                                    <Button fx:id="moveBtn" layoutX="650.0" layoutY="8.0" mnemonicParsing="false" onAction="#moveBtnAction" text="Move" />
-                                    <Button fx:id="copyBtn" layoutX="736.0" layoutY="8.0" mnemonicParsing="false" onAction="#copyBtnAction" text="Copy" />
-                                    <Button fx:id="resizeBtn" layoutX="808.0" layoutY="8.0" mnemonicParsing="false" onAction="#resizeBtnAction" text="Resize" />
-                                    <Button fx:id="delete" layoutX="885.0" layoutY="6.0" mnemonicParsing="false" onAction="#deleteBtnAction" text="Delete" />
-                                 </children>
-                              </HBox>
+                              <Button fx:id="resizeBtn" layoutX="753.0" layoutY="6.0" mnemonicParsing="false" onAction="#resizeBtnAction" prefHeight="38.0" prefWidth="38.0" text="R" />
+                              <Button fx:id="delete" layoutX="808.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteBtnAction" prefHeight="38.0" prefWidth="42.0" text="D" />
+                              <Button fx:id="moveBtn" layoutX="636.0" layoutY="5.0" mnemonicParsing="false" onAction="#moveBtnAction" prefHeight="38.0" prefWidth="38.0" text="M" />
+                              <Button fx:id="copyBtn" layoutX="698.0" layoutY="6.0" mnemonicParsing="false" onAction="#copyBtnAction" prefHeight="38.0" prefWidth="38.0" text="C" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="671.0" prefWidth="1008.0">
                            <children>
-                              <Canvas fx:id="canvas" height="734.0" onMouseDragged="#canvasOnMOuseDragged" onMouseMoved="#onMouseMoved" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" onScroll="#canvasOnMouseScroll" width="1104.0">
+
+                              <Canvas fx:id="canvas" height="734.0" layoutX="10.0" layoutY="-1.0" onMouseDragged="#canvasOnMOuseDragged" onMouseMoved="#onMouseMoved" onMousePressed="#canvasOnMousePressed" onMouseReleased="#canvasOnMouseRe" onScroll="#canvasOnMouseScroll" width="1085.0">
                                 </Canvas>
                            </children>
                         </AnchorPane>
