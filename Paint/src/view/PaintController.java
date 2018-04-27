@@ -211,6 +211,11 @@ public class PaintController implements Initializable {
         hmap.put(priority, l);
         priority++;
         }
+        else if(LoadJSON.type.get(i).compareToIgnoreCase("circle")==0){
+        model.Circle c  = (model.Circle) LoadJSON.array.get(i);
+        c.addShape(hmap);
+        }
+        
         }
         MydrawingEngine.parse(hmap, gc);
        

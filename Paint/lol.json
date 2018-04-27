@@ -1,2 +1,7 @@
-{"Y1":50,"X1":56,"Y2":405,"X2":460,"fillPaint":"0xffffffff","Paint":"0xffcc99ff","lW":1.0,"Name":"Oval"}
-{"Y1":222,"X1":230,"Y2":487,"X2":617,"fillPaint":"0xffffffff","Paint":"0xffcc99ff","lW":1.0,"Name":"Oval"}
+{"Y1":50,"X1":47,"Y2":203,"X2":241,"fillPaint":"0x663366ff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"Oval"}
+{"Y1":67,"X1":394,"Y2":179,"X2":631,"fillPaint":"0x663366ff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"Rectangle"}
+{"Y1":293,"X1":177,"Y2":530,"X2":75,"fillPaint":"0x663366ff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"triangle"}
+{"Y1":288,"X1":372,"Y2":453,"X2":614,"fillPaint":"0x663366ff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"Circle"}
+{"Y1":216,"X1":653,"Y2":387,"X2":895,"fillPaint":"0x663366ff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"square"}
+{"Y1":125,"X1":996,"Y2":498,"X2":818,"fillPaint":"0xffffffff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"Line"}
+{"Y1":204,"X1":265,"Y2":204,"X2":265,"fillPaint":"0xffffffff","Paint":"0x661a33ff","lW":12.785714285714285,"Name":"Line"}
