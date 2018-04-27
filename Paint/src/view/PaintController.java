@@ -176,6 +176,8 @@ public class PaintController implements Initializable {
 
     @FXML
     private void openFile() throws FileNotFoundException, ParseException {
+        hmap.clear();
+        priority=0;
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -188,25 +190,27 @@ public class PaintController implements Initializable {
         for(int i =0 ; i<LoadJSON.array.size();i++){
         if(LoadJSON.type.get(i).compareToIgnoreCase("oval")==0){
         Oval o = (Oval) LoadJSON.array.get(i);
-        o.draw(gc);
+        o.addShape(hmap);
         }
         else   if(LoadJSON.type.get(i).compareToIgnoreCase("rectangle")==0){
         Rectangle r = (Rectangle) LoadJSON.array.get(i);
-        r.draw(gc);
+        r.addShape(hmap);
         }
         else   if(LoadJSON.type.get(i).compareToIgnoreCase("triangle")==0){
         Triangle r = (Triangle) LoadJSON.array.get(i);
-        r.draw(gc);
+        r.addShape(hmap);
         }
         else   if(LoadJSON.type.get(i).compareToIgnoreCase("square")==0){
         Square s= (Square) LoadJSON.array.get(i);
-        s.draw(gc);
+        s.addShape(hmap);
         }
         else   if(LoadJSON.type.get(i).compareToIgnoreCase("line")==0){
         Line l = (Line) LoadJSON.array.get(i);
-        l.draw(gc);
+        hmap.put(priority, l);
+        priority++;
         }
         }
+        MydrawingEngine.parse(hmap, gc);
        
        
         
