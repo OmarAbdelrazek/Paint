@@ -38,7 +38,7 @@ stage.getIcons().add( new Image(    Paint.class.getResourceAsStream( "icon.png" 
        
         
         stage.setResizable(false);
-       // stage.setMaximized(true);
+        stage.setMaximized(true);
         stage.show();
     }
 

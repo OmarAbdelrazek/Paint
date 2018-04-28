@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import model.Shape;
 
@@ -16,9 +17,17 @@ public interface SaveStrategy {
 
     /**
      *
+     * @param HashMapOfShapes
      * @param hmap
      * @param path
      */
-    public void save(java.util.HashMap hmap , String path);
+    public static void save(HashMap HashMapOfShapes)
+    {
+        
+    }
+    public static String readFile() throws IOException {
+        return null;
+        
+    }
     
 }

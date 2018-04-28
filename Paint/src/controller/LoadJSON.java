@@ -26,7 +26,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
-public class LoadJSON { 
+public class LoadJSON implements LoadStrategy { 
     public static  ArrayList<Shape> array;
     public static  ArrayList<String> type = new ArrayList<>();
     

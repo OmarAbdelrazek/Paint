@@ -22,7 +22,7 @@ import model.*;
  *
  * @author Ameer.Nasser88
  */
-public class SaveJSON {
+public class SaveJSON implements SaveStrategy{
    public static void save(HashMap HashMapOfShapes){
      
         JSONObject obj = new JSONObject();

@@ -5,11 +5,21 @@
  */
 package controller;
 
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author Omar
  */
 public interface LoadStrategy {
-    public void Load(java.util.HashMap hmap,String path);
+
+    /**
+     *
+     * @param path
+     * @throws org.json.simple.parser.ParseException
+     */
+    public static void jsonArray(String path)  throws ParseException {
+        
+    }
     
 }
