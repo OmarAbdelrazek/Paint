@@ -102,8 +102,10 @@ public class PaintController implements Initializable {
     @FXML
     private Button eraser;
     HashMap<Integer, Shape> hmap = new HashMap<Integer, Shape>();
+    HashMap<Integer, Brush> freehmap = new HashMap<Integer, Brush>();
     ArrayList<Shape> temp = new ArrayList<Shape>();
     public static int priority = 0;
+    public static int freecount = 0;
     public javafx.scene.paint.Paint prev = javafx.scene.paint.Paint.valueOf("#ffffff");
     public javafx.scene.paint.Paint currentfill = javafx.scene.paint.Paint.valueOf("#ffffff");
     public javafx.scene.paint.Paint currentcolor = javafx.scene.paint.Paint.valueOf("#ffffff");
@@ -302,13 +304,16 @@ public class PaintController implements Initializable {
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);
             Brush b = new Brush(size, x, y, colorPicker.getValue());
-            b.draw(gc);
+            freehmap.put(freecount, b);
+            freecount++;
+            MydrawingEngine.parsebrush(freehmap, gc);
 
         } else if (shape.compareTo("circle") == 0) {
             Oval c = new Oval();
             c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
             selectBtn.setDisable(false);
             undoBtn.setDisable(false);
 
@@ -318,6 +323,7 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
             selectBtn.setDisable(false);
             undoBtn.setDisable(false);
 
@@ -326,6 +332,7 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
             selectBtn.setDisable(false);
             undoBtn.setDisable(false);
 
@@ -341,6 +348,7 @@ public class PaintController implements Initializable {
             priority--;
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
             undoBtn.setDisable(false);
 
         } else if (shape.compareTo("square") == 0) {
@@ -348,6 +356,7 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
             undoBtn.setDisable(false);
 
         } else if (shape.compareTo("sphere") == 0) {
@@ -355,14 +364,17 @@ public class PaintController implements Initializable {
             c.updateShape(hmap, isFilled, currentfill, startX, startY, currentX, currentY, currentcolor, width.getValue());
             MydrawingEngine.refresh(gc, canvas, currentfill);
             MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
             undoBtn.setDisable(false);
 
         } else if (shape.compareTo("eraser") == 0) {
             double size = Double.parseDouble(widthText.getText());
             double x = e.getX() - (size / 2);
             double y = e.getY() - (size / 2);
-            Eraser eraser = new Eraser(size, x, y);
-            eraser.draw(gc);
+            Brush b = new Brush(size * 2, x, y, Color.WHITE);
+            freehmap.put(freecount, b);
+            freecount++;
+            MydrawingEngine.parsebrush(freehmap, gc);
 
         }
 
@@ -449,6 +461,11 @@ public class PaintController implements Initializable {
 
             // c.setLineWidth(width.getValue());
             c.addShape(hmap);
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
+            gc.setFill(prev);
 
         } else if (shape.compareTo("rectangle") == 0) {
 
@@ -460,6 +477,11 @@ public class PaintController implements Initializable {
             selectCounter++;
             // r.setLineWidth(width.getValue());
             r.addShape(hmap);
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
+            gc.setFill(prev);
 
         } else if (shape.compareTo("triangle") == 0) {
             if (!isFilled) {
@@ -472,6 +494,11 @@ public class PaintController implements Initializable {
             selectCounter++;
             //  t.setLineWidth(width.getValue());
             t.addShape(hmap);
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
+            gc.setFill(prev);
         } else if (shape.compareTo("line") == 0) {
             if (!isFilled) {
                 gc.setStroke(colorPicker.getValue());
@@ -487,6 +514,11 @@ public class PaintController implements Initializable {
             // BoundsOperations.setNewBound(l.getUpperLeftX(), l.getUpperLeftY(), l.getWidth(), l.getHeight());
             //  l.setLineWidth(width.getValue());
             l.addShape(hmap);
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
+            gc.setFill(prev);
         } else if (shape.compareTo("square") == 0) {
 
             gc.setStroke(colorPicker.getValue());
@@ -498,6 +530,11 @@ public class PaintController implements Initializable {
             selectCounter++;
             // r.setLineWidth(width.getValue());
             s.addShape(hmap);
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
+            gc.setFill(prev);
 
         } else if (shape.compareTo("sphere") == 0) {
             model.Circle c = new model.Circle();
@@ -508,6 +545,13 @@ public class PaintController implements Initializable {
             c.addShape(hmap);
 
             undoBtn.setDisable(false);
+            gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            MydrawingEngine.parse(hmap, gc);
+            MydrawingEngine.parsebrush(freehmap, gc);
+            gc.setFill(prev);
+
+        } else if (shape.compareTo("free") == 0) {
 
         }
 
@@ -515,10 +559,6 @@ public class PaintController implements Initializable {
         startY = 0;
         endX = 0;
         endY = 0;
-        gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        MydrawingEngine.parse(hmap, gc);
-        gc.setFill(prev);
 
     }
 
@@ -935,5 +975,7 @@ public class PaintController implements Initializable {
         exitMoveModeBtn.setDisable(true);
 
     }
+
+ 
 
 }

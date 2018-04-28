@@ -22,6 +22,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
 import model.*;
 import view.PaintController;
+import static view.PaintController.freecount;
 import static view.PaintController.priority;
 import static view.PaintController.target;
 
@@ -34,6 +35,16 @@ private static final MydrawingEngine instance = new MydrawingEngine() ;
     public static void parse(HashMap Shapeshm, GraphicsContext gc) {
         for (int i = 0; i <= PaintController.priority; i++) {
             Shape s = (Shape) Shapeshm.get(i);
+            if (s==null)
+                continue;
+            s.draw(gc);
+
+
+        }
+    }
+        public static void parsebrush(HashMap Shapeshm, GraphicsContext gc) {
+        for (int i = 0; i <= freecount; i++) {
+            Brush s = (Brush) Shapeshm.get(i);
             if (s==null)
                 continue;
             s.draw(gc);
