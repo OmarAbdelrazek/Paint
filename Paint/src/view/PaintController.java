@@ -40,6 +40,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
@@ -49,10 +50,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.WritableImage;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
+import javax.imageio.ImageIO;
+import static javax.swing.SpringLayout.HEIGHT;
 import javax.xml.parsers.ParserConfigurationException;
 import org.json.simple.parser.ParseException;
 
@@ -976,6 +981,20 @@ public class PaintController implements Initializable {
 
     }
 
+ @FXML
+    private void savePNG() throws IOException {
+         FileChooser fc = new FileChooser();
  
-
+    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG","*.png"));
+  
+    File file = fc.showSaveDialog(stg);
+    if(file != null){
+        WritableImage wi = new WritableImage((int)canvas.getWidth(),(int)canvas.getHeight()); //3'ayar de bl function ely
+        try {                    ImageIO.write(SwingFXUtils.fromFXImage(canvas.snapshot(null,wi),null),"png",file);
+        } catch (IOException e) {
+        }
+    }
+  
+   
+}
 }

@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.input.*?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -29,7 +21,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -52,6 +44,7 @@
             <MenuItem mnemonicParsing="false" text="Close" />
                   <Menu mnemonicParsing="false" text="Save As…">
                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#savePNG" text="png" />
                   <MenuItem fx:id="btnSaveJ" mnemonicParsing="false" onAction="#saveFile" text="JSON">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -148,24 +141,18 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="57.0" prefWidth="957.0">
                            <children>
-                              <Group />
-                              <AnchorPane layoutX="698.0" layoutY="4.0">
-                                 <children>
-                                    <Button fx:id="moveBtn" layoutX="178.0" mnemonicParsing="false" onAction="#moveBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Move.css" />
-                                    <Button fx:id="copyBtn" layoutX="240.0" layoutY="1.0" mnemonicParsing="false" onAction="#copyBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Copy.css" />
-                                    <Button fx:id="selectBtn" layoutY="4.0" mnemonicParsing="false" onAction="#selectBtnAction" prefHeight="26.0" prefWidth="87.0" text="Select" />
-                                    <Button fx:id="delete" layoutX="350.0" layoutY="2.0" mnemonicParsing="false" onAction="#deleteBtnAction" prefHeight="38.0" prefWidth="42.0" stylesheets="@../style/Delete.css" />
-                                    <Button fx:id="resizeBtn" layoutX="295.0" layoutY="1.0" mnemonicParsing="false" onAction="#resizeBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Resize.css" />
-                                 </children>
-                              </AnchorPane>
-                              <CheckBox fx:id="Filled" layoutX="271.0" layoutY="13.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
-                              <ColorPicker fx:id="fillpick" layoutX="347.0" layoutY="8.0" onAction="#setfill" />
-                              <ColorPicker fx:id="colorPicker" layoutX="117.0" layoutY="8.0" onAction="#setstroke">
+                              <ColorPicker fx:id="colorPicker" layoutX="14.0" layoutY="6.0" onAction="#setstroke">
                                  <effect>
                                     <Blend />
                                  </effect>
                               </ColorPicker>
-                              <Label layoutX="55.0" layoutY="13.0" text="Stroke :" />
+                              <CheckBox fx:id="Filled" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#isFilled" text="Fill :" />
+                              <ColorPicker fx:id="fillpick" layoutX="238.0" layoutY="6.0" onAction="#setfill" />
+                              <Button fx:id="selectBtn" layoutX="384.0" layoutY="6.0" mnemonicParsing="false" onAction="#selectBtnAction" prefHeight="26.0" prefWidth="87.0" text="Select" />
+                              <Button fx:id="resizeBtn" layoutX="753.0" layoutY="6.0" mnemonicParsing="false" onAction="#resizeBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Resize.css" />
+                              <Button fx:id="delete" layoutX="808.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteBtnAction" prefHeight="38.0" prefWidth="42.0" stylesheets="@../style/Delete.css" />
+                              <Button fx:id="moveBtn" layoutX="636.0" layoutY="5.0" mnemonicParsing="false" onAction="#moveBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Move.css" />
+                              <Button fx:id="copyBtn" layoutX="698.0" layoutY="6.0" mnemonicParsing="false" onAction="#copyBtnAction" prefHeight="38.0" prefWidth="38.0" stylesheets="@../style/Copy.css" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="671.0" prefWidth="1008.0">
                            <children>
