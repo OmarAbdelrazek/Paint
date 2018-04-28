@@ -243,9 +243,8 @@ public class PaintController implements Initializable {
 
         }
         MydrawingEngine.parse(hmap, gc);
-
     }
-
+            
      @FXML
     private void saveJSON() throws IOException, ParserConfigurationException {
         SaveJSON.save(hmap);
