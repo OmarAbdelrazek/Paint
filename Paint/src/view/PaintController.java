@@ -173,7 +173,9 @@ public class PaintController implements Initializable {
         fillpick.setVisible(false);
         gc.setFill(javafx.scene.paint.Paint.valueOf("#ffffff"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        colorPicker.setValue(Color.BLACK);
         selectBtn.setDisable(true);
+        
         found = new ArrayList();
         delete.setDisable(true);
         moveBtn.setDisable(true);
@@ -244,6 +246,18 @@ public class PaintController implements Initializable {
 
     }
 
+     @FXML
+    private void saveJSON() throws IOException, ParserConfigurationException {
+        SaveJSON.save(hmap);
+           
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(stg);
+        if (file != null) {
+            buffer(SaveJSON.readFile(), file);
+        }
+    }
     @FXML
     private void saveXML() throws IOException, ParserConfigurationException {
         SaveXML.Save(hmap);
@@ -257,15 +271,44 @@ public class PaintController implements Initializable {
     }
 
     @FXML
-    private void saveFile() throws IOException {
-        SaveJSON.save(hmap);
+    private void saveFile() throws IOException, ParserConfigurationException {
+       
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
         fileChooser.getExtensionFilters().add(extFilter);
+        FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter2);
+        FileChooser.ExtensionFilter extFilter3 = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter3);
         File file = fileChooser.showSaveDialog(stg);
+      if (  fileChooser.getSelectedExtensionFilter().equals(extFilter) )
+      {
+          
         if (file != null) {
+             SaveJSON.save(hmap);
             buffer(SaveJSON.readFile(), file);
         }
+      }
+      else if (  fileChooser.getSelectedExtensionFilter().equals(extFilter2) )
+      {
+           SaveXML.Save(hmap);
+      
+        if (file != null) {
+            buffer(SaveXML.readFile(), file);
+        }
+          
+      }
+      else if (  fileChooser.getSelectedExtensionFilter().equals(extFilter3) )
+      {
+          
+        WritableImage wi = new WritableImage((int)canvas.getWidth(),(int)canvas.getHeight()); //3'ayar de bl function ely
+        try {                    ImageIO.write(SwingFXUtils.fromFXImage(canvas.snapshot(null,wi),null),"png",file);
+        } catch (IOException e) {
+        }
+          
+      }
+        
+        
     }
 
     private void buffer(String content, File file) {

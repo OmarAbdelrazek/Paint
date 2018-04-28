@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -21,7 +28,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PaintController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -44,12 +51,13 @@
             <MenuItem mnemonicParsing="false" text="Close" />
                   <Menu mnemonicParsing="false" text="Save As…">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#savePNG" text="png" />
-                  <MenuItem fx:id="btnSaveJ" mnemonicParsing="false" onAction="#saveFile" text="JSON">
+                        <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save As">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#savePNG" text="PNG" />
+                  <MenuItem fx:id="btnSaveJ" mnemonicParsing="false" onAction="#saveJSON" text="JSON" />
                         <MenuItem mnemonicParsing="false" onAction="#saveXML" text="XML" />
                     </items>
                   </Menu>

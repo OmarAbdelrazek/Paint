@@ -5,6 +5,7 @@
  */
 package view;
 
+import javafx.scene.image.Image;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,8 +30,13 @@ public class Paint extends Application {
         controller.init(stage);
         
         Scene scene = new Scene(root);
+        
         stage.setScene(scene);
-        stage.setTitle("Picasso");        
+stage.getIcons().add( new Image(    Paint.class.getResourceAsStream( "icon.png" ))); 
+        
+        stage.setTitle("Paint++");        
+       
+        
         stage.setResizable(false);
        // stage.setMaximized(true);
         stage.show();
